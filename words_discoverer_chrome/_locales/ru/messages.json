@@ -1,0 +1,92 @@
+{
+  "appName": {
+    "message": "Words Discoverer: Пополни словарный запас.",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "Подсвечивает редкие слова и идиомы английского языка на веб страницах. Расширяет словарный запас и помогает учить английский.",
+    "description":"The description of the application, displayed in the web store."
+  },
+  "menuItem": {
+    "message": "Добавить слово в список выученных",
+    "description": "Text in context menu"
+  },
+  "rateInfo1": {
+    "message": "Не подсвечивать"
+  },
+  "rateInfo2": {
+      "message": "наиболее частых английских слов."
+  },
+  "adjust": {
+      "message": "Настроить подсветку..."
+  },
+  "vocabSizeInfo1": {
+      "message": "В личном списке:"
+  },
+  "vocabSizeInfo2": {
+      "message": "выученных слов."
+  },
+  "showVocab": {
+      "message": "Показать список"
+  },
+  "saveVocab": {
+      "message": "Экспортировать список"
+  },
+  "loadVocab": {
+      "message": "Импортировать список"
+  },
+  "tipInfo": {
+      "message": "Чтобы добавить новое слово в список выученных - выделите текст слова, кликните правой кнопкой и выберите нужное действие. Также можно воспользоваться этим текстовым полем:"
+  },
+  "addErrorDupp": {
+      "message": "Уже добавлено."
+  },
+  "addErrorBad": {
+      "message": "Не удалось добавить."
+  },
+  "addSuccess": {
+      "message": "Добавлено."
+  },
+  "saveVisuals": {
+      "message": "Сохранить"
+  },
+  "enableWordsLabel": {
+      "message": "Включить подсветку слов"
+  },
+  "enableIdiomsLabel": {
+      "message": "Включить подсветку выражений"
+  },
+  "useQuotes": {
+      "message": "Использовать кавычки (вместо подсветки)"
+  },
+  "useText": {
+      "message": "Подсвечивать текст"
+  },
+  "useBackground": {
+      "message": "Подсвечивать фон текста"
+  },
+  "useBold": {
+      "message": "Использовать жирный шрифт"
+  },
+  "enabledDescription": {
+      "message": "Подсвечивать весь Интернет кроме сайтов из \"Стоп-cписка\"."
+  },
+  "disabledDescription": {
+      "message": "Подсвечивать только сайты из \"Списка Избранных\"."
+  },
+  "addVerb": {
+      "message": "Добавить"
+  },
+  "toVerb": {
+      "message": "в"
+  },
+  "addFavoritesLabel": {
+      "message": "Список Избранных"
+  },
+  "addSkippedLabel": {
+      "message": "Стоп-список"
+  },
+  "switchModeLabel": {
+      "message": "Переключить режим"
+  }
+}

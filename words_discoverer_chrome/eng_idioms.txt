@@ -1,0 +1,1670 @@
+real estate	real estate
+zip code	zip code
+zip codes	zip code
+et al	et al
+brand new	brand new
+third party	third party
+search engine	search engine
+search engines	search engine
+yellow pages	yellow pages
+breaking news	breaking news
+box office	box office
+golf course	golf course
+golf courses	golf course
+case study	case study
+sheet music	sheet music
+cast iron	cast iron
+bottom line	bottom line
+red carpet	red carpet
+next door	next door
+power steering	power steering
+fly fishing	fly fishing
+in vitro	in vitro
+baby shower	baby shower
+help desk	help desk
+memory lane	memory lane
+per capita	per capita
+license plate	license plate
+lawn mower	lawn mower
+lawn mowers	lawn mower
+shopping list	shopping list
+spark plug	spark plug
+spark plugs	spark plug
+in vivo	in vivo
+common sense	common sense
+good faith	good faith
+subject matter	subject matter
+slow cooker	slow cooker
+slow cookers	slow cooker
+search box	search box
+big data	big data
+vacuum cleaner	vacuum cleaner
+vacuum cleaners	vacuum cleaner
+flip flop	flip flop
+flip flops	flip flop
+human being	human being
+human beings	human being
+power plant	power plant
+power plants	power plant
+roll call	roll call
+sour cream	sour cream
+from scratch	from scratch
+board game	board game
+board games	board game
+closed captioning	closed captioning
+data set	data set
+data sets	data set
+top notch	top notch
+cylinder head	cylinder head
+cylinder heads	cylinder head
+heat map	heat map
+sweet potato	sweet potato
+sweet potatoes	sweet potato
+memory foam	memory foam
+navy blue	navy blue
+doggy style	doggy style
+blue book	blue book
+en suite	en suite
+in situ	in situ
+stained glass	stained glass
+pickup truck	pickup truck
+cross section	cross section
+cold war	cold war
+cover letter	cover letter
+pen name	pen name
+high profile	high profile
+vice versa	vice versa
+standard deviation	standard deviation
+dress code	dress code
+dress codes	dress code
+ad hoc	ad hoc
+seat belt	seat belt
+seat belts	seat belt
+case sensitive	case sensitive
+due diligence	due diligence
+wrought iron	wrought iron
+first hand	first hand
+class action	class action
+hot pink	hot pink
+curb appeal	curb appeal
+check box	check box
+check boxes	check box
+sneak peek	sneak peek
+head start	head start
+round trip	round trip
+let alone	let alone
+dew point	dew point
+aspect ratio	aspect ratio
+aspect ratios	aspect ratio
+microwave oven	microwave oven
+microwave ovens	microwave oven
+feng shui	feng shui
+control arm	control arm
+hot dog	hot dog
+hot dogs	hot dog
+master plan	master plan
+tank top	tank top
+tank tops	tank top
+shelf life	shelf life
+ground beef	ground beef
+rose gold	rose gold
+lead time	lead time
+mint condition	mint condition
+jelly bean	jelly bean
+jelly beans	jelly bean
+fairy tale	fairy tale
+fairy tales	fairy tale
+side dish	side dish
+side dishes	side dish
+money laundering	money laundering
+mind you	mind you
+reference work	reference work
+reference works	reference work
+department store	department store
+department stores	department store
+machine gun	machine gun
+machine guns	machine gun
+tai chi	tai chi
+bridal shower	bridal shower
+many a	many a
+hedge fund	hedge fund
+hedge funds	hedge fund
+en route	en route
+flea market	flea market
+flea markets	flea market
+status quo	status quo
+never mind	never mind
+food processor	food processor
+food processors	food processor
+aloe vera	aloe vera
+form factor	form factor
+form factors	form factor
+roller coaster	roller coaster
+file extension	file extension
+file extensions	file extension
+files extension	file extension
+files extensions	file extension
+data mining	data mining
+short circuit	short circuit
+short circuits	short circuit
+short circuiting	short circuit
+short circuited	short circuit
+jet ski	jet ski
+virtual machine	virtual machine
+virtual machines	virtual machine
+grand opening	grand opening
+roof rack	roof rack
+bit rate	bit rate
+bit rates	bit rate
+cotton candy	cotton candy
+sit back	sit back
+sits back	sit back
+sat back	sit back
+bolt action	bolt action
+per se	per se
+third world	third world
+sight unseen	sight unseen
+check valve	check valve
+dump truck	dump truck
+dump trucks	dump truck
+duct tape	duct tape
+convenience store	convenience store
+convenience stores	convenience store
+french fries	french fries
+outboard motor	outboard motor
+outboard motors	outboard motor
+last resort	last resort
+role model	role model
+guinea pig	guinea pig
+guinea pigs	guinea pig
+extra virgin	extra virgin
+drill bit	drill bit
+drill bits	drill bit
+pro bono	pro bono
+fuse box	fuse box
+fuse boxes	fuse box
+think tank	think tank
+think tanks	think tank
+blue ribbon	blue ribbon
+ironing board	ironing board
+ironing boards	ironing board
+cum laude	cum laude
+gold rush	gold rush
+fast forward	fast forward
+fast forwarding	fast forward
+fast forwarded	fast forward
+fast forwards	fast forward
+motor home	motor home
+motor homes	motor home
+slot machine	slot machine
+slot machines	slot machine
+jigsaw puzzle	jigsaw puzzle
+jigsaw puzzles	jigsaw puzzle
+key fob	key fob
+key fobs	key fob
+ham radio	ham radio
+sick leave	sick leave
+green card	green card
+dust jacket	dust jacket
+dust jackets	dust jacket
+spin off	spin off
+death row	death row
+security deposit	security deposit
+de facto	de facto
+salad dressing	salad dressing
+patent leather	patent leather
+chit chat	chit chat
+chit chats	chit chat
+chit chatted	chit chat
+chit chatting	chit chat
+lorem ipsum	lorem ipsum
+open mic	open mic
+gear ratio	gear ratio
+gear ratios	gear ratio
+art nouveau	art nouveau
+reverse osmosis	reverse osmosis
+blue moon	blue moon
+animal shelter	animal shelter
+animal shelters	animal shelter
+tower defense	tower defense
+comfort food	comfort food
+food court	food court
+food courts	food court
+antique brass	antique brass
+wire rope	wire rope
+wire ropes	wire rope
+bunk bed	bunk bed
+bunk beds	bunk bed
+second opinion	second opinion
+bona fide	bona fide
+ball valve	ball valve
+ball valves	ball valve
+general store	general store
+general stores	general store
+landing gear	landing gear
+boxing day	boxing day
+rush hour	rush hour
+root cause	root cause
+dead end	dead end
+good standing	good standing
+extended family	extended family
+extended families	extended family
+roast beef	roast beef
+pressure cooker	pressure cooker
+pressure cookers	pressure cooker
+at bay	at bay
+full throttle	full throttle
+deja vu	deja vu
+immediate family	immediate family
+immediate families	immediate family
+hot spot	hot spot
+holy grail	holy grail
+air duct	air duct
+air ducts	air duct
+per diem	per diem
+soap opera	soap opera
+soap operas	soap opera
+continental breakfast	continental breakfast
+suggestion box	suggestion box
+festive season	festive season
+behind bars	behind bars
+capital punishment	capital punishment
+of sorts	of sorts
+eye candy	eye candy
+pump action	pump action
+end table	end table
+end tables	end table
+dynamic range	dynamic range
+death toll	death toll
+gated community	gated community
+gated communities	gated community
+cash register	cash register
+cash registers	cash register
+bedside manner	bedside manner
+mild steel	mild steel
+dress shirt	dress shirt
+dress shirts	dress shirt
+learning curve	learning curve
+learning curves	learning curve
+carbon footprint	carbon footprint
+crew neck	crew neck
+common ground	common ground
+cover story	cover story
+boy scout	boy scout
+boy scouts	boy scout
+wind chill	wind chill
+camel toe	camel toe
+banana republic	banana republic
+banana republics	banana republic
+leaf spring	leaf spring
+leaf springs	leaf spring
+curriculum vitae	curriculum vitae
+tummy tuck	tummy tuck
+dream team	dream team
+side note	side note
+messenger bag	messenger bag
+messenger bags	messenger bag
+game changer	game changer
+cottage cheese	cottage cheese
+salwar kameez	salwar kameez
+black tie	black tie
+steak house	steak house
+steak houses	steak house
+floating point	floating point
+man cave	man cave
+block diagram	block diagram
+block diagrams	block diagram
+natural selection	natural selection
+fair enough	fair enough
+master race	master race
+fingers crossed	fingers crossed
+would of	would of
+on par	on par
+on point	on point
+root for	root for
+rooted for	root for
+roots for	root for
+rooting for	root for
+high five	high five
+on end	on end
+two cents	two cents
+ad hominem	ad hominem
+price point	price point
+flip side	flip side
+went missing	went missing
+let down	let down
+hold off	hold off
+holds off	hold off
+held off	hold off
+holding off	hold off
+red pill	red pill
+man up	man up
+way off	way off
+off guard	off guard
+settle down	settle down
+pass out	pass out
+passing out	pass out
+passed out	pass out
+passes out	pass out
+confirmation bias	confirmation bias
+shots fired	shots fired
+far fetched	far fetched
+mutually exclusive	mutually exclusive
+chime in	chime in
+chiming in	chime in
+chimed in	chime in
+chimes in	chime in
+good riddance	good riddance
+light year	light years
+light years	light years
+hot damn	hot damn
+jack shit	jack shit
+small talk	small talk
+conspiracy theorist	conspiracy theory
+conspiracy theorists	conspiracy theory
+conspiracy theory	conspiracy theory
+conspiracy theories	conspiracy theory
+adds up	adds up
+no biggie	no biggie
+click bait	click bait
+click baits	click bait
+partial to	partial to
+straw man	straw man
+political correctness	political correctness
+sure enough	sure enough
+cognitive dissonance	cognitive dissonance
+politically correct	politically correct
+oh snap	oh snap
+live off	live off
+see fit	see fit
+saw fit	see fit
+seeing fit	see fit
+sees fit	see fit
+within reason	within reason
+hang around	hang around
+hangs around	hang around
+hanging around	hang around
+hung around	hang around
+double standard	double standard
+double standards	double standard
+echo chamber	echo chamber
+echo chambers	echo chamber
+middle ground	middle ground
+wishful thinking	wishful thinking
+point blank	point blank
+dirt cheap	dirt cheap
+back story	back story
+god awful	god awful
+think back	think back
+thinking back	think back
+thinks back	think back
+every last	every last
+significant other	significant other
+en masse	en masse
+slippery slope	slippery slope
+go nuts	go nuts
+trickle down	trickle down
+break even	break even
+throw up	throw up
+throws up	throw up
+throwing up	throw up
+threw up	throw up
+thrown up	throw up
+lucked out	lucked out
+wipe out	wipe out
+wiped out	wipe out
+wiping out	wipe out
+wipes out	wipe out
+false flag	false flag
+level headed	level headed
+thin air	thin air
+out of thin air	out of thin air
+assault rifle	assault rifle
+assault rifles	assault rifle
+victim blaming	victim blaming
+talking points	talking points
+collateral damage	collateral damage
+et cetera	et cetera
+wet dream	wet dream
+high horse	high horse
+selling point	selling point
+all caps	all caps
+cop out	cop out
+cops out	cop out
+copping out	cop out
+copped out	cop out
+off chance	off chance
+pepper spray	pepper spray
+pepper sprays	pepper spray
+pepper spraying	pepper spray
+pepper sprayed	pepper spray
+maternity leave	maternity leave
+deal breaker	deal breaker
+key word	key word
+pet peeve	pet peeve
+at odds	at odds
+water down	water down
+watered down	water down
+watering down	water down
+waters down	water down
+witch hunt	witch hunt
+write off	write off
+writes off	write off
+writing off	write off
+written off	write off
+wrote off	write off
+point taken	point taken
+wild card	wild card
+wild cards	wild card
+herd immunity	herd immunity
+melting pot	melting pot
+without fail	without fail
+hive mind	hive mind
+low key	low key
+poor thing	poor thing
+police state	police state
+bounty hunter	bounty hunter
+bounty hunters	bounty hunter
+white noise	white noise
+story arc	story arc
+original sin	original sin
+make room	make room
+double take	double take
+white privilege	white privilege
+pull over	pull over
+pulling over	pull over
+pulled over	pull over
+pulls over	pull over
+holy moly	holy moly
+trigger warning	trigger warning
+common denominator	common denominator
+use case	use case
+tin foil	tin foil
+white trash	white trash
+chin up	chin up
+rabbit hole	rabbit hole
+uncalled for	uncalled for
+average joe	average joe
+narrow minded	narrow minded
+inside joke	inside joke
+inside jokes	inside joke
+bucket list	bucket list
+rock bottom	rock bottom
+rock solid	rock solid
+open relationship	open relationship
+cherry pick	cherry pick
+cherry picking	cherry pick
+cherry picks	cherry pick
+cherry picked	cherry pick
+western world	western world
+inside job	inside job
+root beer	root beer
+hats off	hats off
+big pharma	big pharma
+case hardened	case hardened
+all ears	all ears
+steer clear	steer clear
+steers clear	steer clear
+steering clear	steer clear
+steered clear	steer clear
+good grief	good grief
+take offense	take offense
+takes offense	take offense
+taking offense	take offense
+took offense	take offense
+taken offense	take offense
+scrambled eggs	scrambled eggs
+dead set	dead set
+job security	job security
+medium rare	medium rare
+speak volumes	speak volumes
+speaking volumes	speak volumes
+spoke volumes	speak volumes
+speaks volumes	speak volumes
+diminishing returns	diminishing returns
+sucker punch	sucker punch
+news flash	news flash
+boil down	boil down
+boils down	boil down
+boiling down	boil down
+boiled down	boil down
+index finger	index finger
+index fingers	index finger
+belly button	belly button
+higher power	higher power
+douche bag	douche bag
+easy peasy	easy peasy
+willy nilly	willy nilly
+sous vide	sous vide
+lucid dream	lucid dream
+lucid dreams	lucid dream
+lucid dreaming	lucid dream
+tinfoil hat	tinfoil hat
+tinfoil hats	tinfoil hat
+bat shit	bat shit
+heaven forbid	heaven forbid
+only child	only child
+red herring	red herring
+wiggle room	wiggle room
+gut feeling	gut feeling
+cool beans	cool beans
+cash grab	cash grab
+pulled pork	pulled pork
+as long as	as long as
+all the time	all the time
+as far as	as far as
+in terms of	in terms of
+not to mention	not to mention
+as soon as	as soon as
+at the same time	at the same time
+that being said	that being said
+at the moment	at the moment
+in the first place	in the first place
+by the way	by the way
+at some point	at some point
+all the way	all the way
+most of the time	most of the time
+as opposed to	as opposed to
+some kind of	some kind of
+in a way	in a way
+by the time	by the time
+and so on	and so on
+as a whole	as a whole
+get rid of	get rid of
+not at all	not at all
+for the most part	for the most part
+quite a bit	quite a bit
+over and over	over and over
+the other day	the other day
+take a look	take a look
+thanks a lot	thanks a lot
+as a result	as a result
+in other words	in other words
+first of all	first of all
+more or less	more or less
+to begin with	to begin with
+as good as	as good as
+more and more	more and more
+quite a few	quite a few
+a number of	a number of
+just in case	just in case
+for the sake of	for the sake of
+good for you	good for you
+at the very least	at the very least
+here you go	here you go
+look forward to	look forward to
+point of view	point of view
+where are you	where are you
+at the end of the day	at the end of the day
+in a row	in a row
+keep it up	keep it up
+meant to be	meant to be
+in any case	in any case
+from time to time	from time to time
+in the long run	in the long run
+here and there	here and there
+back and forth	back and forth
+in favor of	in favor of
+not to say	not to say
+and the like	and the like
+freedom of speech	freedom of speech
+around the world	around the world
+all kinds of	all kinds of
+along the lines	along the lines
+needless to say	needless to say
+in the meantime	in the meantime
+for the record	for the record
+once in a while	once in a while
+in the same boat	in the same boat
+over the top	over the top
+in no way	in no way
+in the name of	in the name of
+down the road	down the road
+you never know	you never know
+in and out	in and out
+all the same	all the same
+for the time being	for the time being
+now and then	now and then
+so to speak	so to speak
+by any means	by any means
+time to time	time to time
+if you ask me	if you ask me
+have a look	have a look
+from now on	from now on
+good to go	good to go
+believe it or not	believe it or not
+make fun of	make fun of
+be the case	be the case
+feel sorry for	feel sorry for
+by no means	by no means
+friend of mine	friend of mine
+long story short	long story short
+to say the least	to say the least
+having said that	having said that
+by all means	by all means
+also known as	also known as
+here we go	here we go
+make a difference	make a difference
+could care less	could care less
+the other way around	the other way around
+there you go	there you go
+and so forth	and so forth
+on a regular basis	on a regular basis
+all at once	all at once
+more often than not	more often than not
+for the love of	for the love of
+pain in the ass	pain in the ass
+late to the party	late to the party
+in relation to	in relation to
+to my knowledge	to my knowledge
+among other things	among other things
+on one hand	on one hand
+thanks a bunch	thanks a bunch
+if nothing else	if nothing else
+do you mind	do you mind
+day to day	day to day
+down the line	down the line
+as it stands	as it stands
+in the event	in the event
+keep an eye on	keep an eye on
+one way or another	one way or another
+in the face of	in the face of
+after the fact	after the fact
+by any chance	by any chance
+keep an eye out	keep an eye out
+know for a fact	know for a fact
+on behalf of	on behalf of
+to an extent	to an extent
+at the expense of	at the expense of
+in the wild	in the wild
+plain and simple	plain and simple
+take the time	take the time
+to some extent	to some extent
+across the board	across the board
+rule of thumb	rule of thumb
+take a break	take a break
+in spite of	in spite of
+every so often	every so often
+behind the scenes	behind the scenes
+sense of humor	sense of humor
+sooner or later	sooner or later
+one of those things	one of those things
+in a nutshell	in a nutshell
+first and foremost	first and foremost
+all the while	all the while
+tell the difference	tell the difference
+in no time	in no time
+worst case scenario	worst case scenario
+side by side	side by side
+any and all	any and all
+again and again	again and again
+take into account	take into account
+at any rate	at any rate
+in a heartbeat	in a heartbeat
+case in point	case in point
+in favour of	in favour of
+in and of itself	in and of itself
+just the same	just the same
+one by one	one by one
+just as well	just as well
+each and every	each and every
+as we speak	as we speak
+so be it	so be it
+face to face	face to face
+with a grain of salt	with a grain of salt
+agree to disagree	agree to disagree
+time and time again	time and time again
+in the long term	in the long term
+all the more	all the more
+less and less	less and less
+in light of	in light of
+in the eyes of	in the eyes of
+give or take	give or take
+bear in mind	bear in mind
+course of action	course of action
+around the corner	around the corner
+one at a time	one at a time
+what was that	what was that
+if need be	if need be
+make a point	make a point
+in the mean time	in the mean time
+be a thing	be a thing
+you name it	you name it
+on and on	on and on
+he or she	he or she
+with regard to	with regard to
+getting used to	getting used to
+under the impression	under the impression
+at a loss	at a loss
+better than nothing	better than nothing
+matter of time	matter of time
+as a matter of fact	as a matter of fact
+in the least	in the least
+once upon a time	once upon a time
+wall of text	wall of text
+to a degree	to a degree
+just in time	just in time
+no pun intended	no pun intended
+have been around	have been around
+rest in peace	rest in peace
+to each his own	to each his own
+worth a try	worth a try
+none the less	none the less
+on a whim	on a whim
+in this day and age	in this day and age
+get the hang of	get the hang of
+nothing to see	nothing to see
+what it takes	what it takes
+take it easy	take it easy
+one of these days	one of these days
+easier said than done	easier said than done
+pros and cons	pros and cons
+in a hurry	in a hurry
+state of mind	state of mind
+as they say	as they say
+it is what it is	it is what it is
+way of life	way of life
+let me see	let me see
+off the bat	off the bat
+that was it	that was it
+shame on you	shame on you
+get the point	get the point
+hall of fame	hall of fame
+draw the line	draw the line
+do the trick	do the trick
+time will tell	time will tell
+there we go	there we go
+as you know	as you know
+step by step	step by step
+by and large	by and large
+in the midst of	in the midst of
+trial and error	trial and error
+have a good one	have a good one
+best case scenario	best case scenario
+by virtue of	by virtue of
+all things considered	all things considered
+haters gonna hate	haters gonna hate
+word for word	word for word
+beg to differ	beg to differ
+above and beyond	above and beyond
+by way of	by way of
+no questions asked	no questions asked
+do the math	do the math
+truth be told	truth be told
+not the end of the world	not the end of the world
+here you are	here you are
+now a days	now a days
+as all hell	as all hell
+as it were	as it were
+see the point	see the point
+note to self	note to self
+benefit of the doubt	benefit of the doubt
+in a pinch	in a pinch
+on second thought	on second thought
+now and again	now and again
+come and go	come and go
+half a dozen	half a dozen
+do the right thing	do the right thing
+pick and choose	pick and choose
+if memory serves	if memory serves
+out and about	out and about
+for better or worse	for better or worse
+from the ground up	from the ground up
+make a living	make a living
+like a boss	like a boss
+such is life	such is life
+hit the nail on the head	hit the nail on the head
+apples and oranges	apples and oranges
+burden of proof	burden of proof
+food for thought	food for thought
+what are the odds	what are the odds
+not to worry	not to worry
+peace of mind	peace of mind
+go all the way	go all the way
+through the roof	through the roof
+take issue with	take issue with
+in the making	in the making
+in one sitting	in one sitting
+way back when	way back when
+if and when	if and when
+at the hands of	at the hands of
+word of god	word of god
+get a life	get a life
+in the same vein	in the same vein
+and be done with it	and be done with it
+line of sight	line of sight
+to speak of	to speak of
+word of mouth	word of mouth
+in any event	in any event
+as the next guy	as the next guy
+tongue in cheek	tongue in cheek
+better safe than sorry	better safe than sorry
+look down on	look down on
+free of charge	free of charge
+beside the point	beside the point
+go hand in hand	go hand in hand
+at this point in time	at this point in time
+with all due respect	with all due respect
+once and for all	once and for all
+under the rug	under the rug
+you get what you pay for	you get what you pay for
+cool story bro	cool story bro
+up in arms	up in arms
+down the drain	down the drain
+get the job done	get the job done
+by a long shot	by a long shot
+through and through	through and through
+sick and tired	sick and tired
+be right back	be right back
+one and only	one and only
+upper middle class	upper middle class
+brother in law	brother in law
+under the hood	under the hood
+wear and tear	wear and tear
+fresh out of	fresh out of
+off the hook	off the hook
+against the law	against the law
+under the radar	under the radar
+top of the line	top of the line
+run of the mill	run of the mill
+train of thought	train of thought
+in the wake of	in the wake of
+for a start	for a start
+worth every penny	worth every penny
+mark my words	mark my words
+same to you	same to you
+outside the box	outside the box
+this and that	this and that
+whatever it takes	whatever it takes
+your mileage may vary	your mileage may vary
+make a move	make a move
+slice of life	slice of life
+in the act	in the act
+head to head	head to head
+by all accounts	by all accounts
+state of affairs	state of affairs
+mac and cheese	mac and cheese
+only time will tell	only time will tell
+few and far between	few and far between
+so to say	so to say
+take into consideration	take into consideration
+at the helm	at the helm
+far and away	far and away
+sense of humour	sense of humour
+then and there	then and there
+make no mistake	make no mistake
+a thing or two	a thing or two
+make or break	make or break
+first world problem	first world problem
+slowly but surely	slowly but surely
+top it off	top it off
+have a go	have a go
+toss up	toss up
+clock speed	clock speed
+disc golf	disc golf
+attention whore	attention whore
+attention whores	attention whore
+attention span	attention span
+moral compass	moral compass
+friendly fire	friendly fire
+game engine	game engine
+smart ass	smart ass
+tough love	tough love
+dark ages	dark ages
+double down	double down
+doubled down	double down
+time dilation	time dilation
+personal space	personal space
+gender dysphoria	gender dysphoria
+second nature	second nature
+future proof	future proof
+draw attention	draw attention
+drew attention	draw attention
+drawn attention	draw attention
+drawing attention	draw attention
+drinking game	drinking game
+drinking games	drinking game
+fast lane	fast lane
+event horizon	event horizon
+nuclear war	nuclear war
+nuclear wars	nuclear war
+ethnic cleansing	ethnic cleansing
+alpha male	alpha male
+alpha males	alpha male
+bow down	bow down
+swing by	swing by
+strong suit	strong suit
+rubbing alcohol	rubbing alcohol
+chocolate bar	chocolate bar
+chocolate bars	chocolate bar
+flesh out	flesh out
+dollar store	dollar store
+dollar stores	dollar store
+machine learning	machine learning
+wear off	wear off
+wearing off	wear off
+wore off	wear off
+worn off	wear off
+wears off	wear off
+open beta	open beta
+product placement	product placement
+concentration camp	concentration camp
+concentration camps	concentration camp
+arms race	arms race
+greater good	greater good
+tough luck	tough luck
+before long	before long
+uphill battle	uphill battle
+eye opener	eye opener
+replay value	replay value
+like clockwork	like clockwork
+easy target	easy target
+blood moon	blood moon
+blood work	blood work
+hate crime	hate crime
+fit together	fit together
+fitting together	fit together
+fits together	fit together
+grammar nazi	grammar nazi
+grammar nazis	grammar nazi
+set foot	set foot
+sets foot	set foot
+fine line	fine line
+sit out	sit out
+sits out	sit out
+sat out	sit out
+pubic hair	pubic hair
+litter box	litter box
+white guilt	white guilt
+written out	written out
+scared shitless	scared shitless
+ill will	ill will
+whip out	whip out
+whipped out	whip out
+worth while	worth while
+bare bones	bare bones
+trigger happy	trigger happy
+second coming	second coming
+by trade	by trade
+in unison	in unison
+bar none	bar none
+leg up	leg up
+tough call	tough call
+follow suit	follow suit
+fall short	fall short
+falls short	fall short
+fell short	fall short
+fallen short	fall short
+critical mass	critical mass
+tee hee	tee hee
+white supremacist	white supremacist
+white supremacists	white supremacist
+non sequitur	non sequitur
+protein shake	protein shake
+protein shakes	protein shake
+on tilt	on tilt
+production value	production value
+ad nauseum	ad nauseum
+whole milk	whole milk
+free reign	free reign
+cultural appropriation	cultural appropriation
+work wonders	work wonders
+worked wonders	work wonders
+working wonders	work wonders
+works wonders	work wonders
+bragging rights	bragging rights
+crack down	crack down
+cracked down	crack down
+gloss over	gloss over
+glossed over	gloss over
+dead weight	dead weight
+silver lining	silver lining
+glass cannon	glass cannon
+glass cannons	glass cannon
+last straw	last straw
+roger that	roger that
+blind spot	blind spot
+blind spots	blind spot
+poke fun	poke fun
+poking fun	poke fun
+poked fun	poke fun
+pokes fun	poke fun
+witch doctor	witch doctor
+witch doctors	witch doctor
+false positive	false positive
+false positives	false positive
+tipping point	tipping point
+positive reinforcement	positive reinforcement
+ad infinitum	ad infinitum
+bullet point	bullet point
+bullet points	bullet point
+jump ship	jump ship
+jumped ship	jump ship
+jumps ship	jump ship
+jumping ship	jump ship
+black ice	black ice
+eminent domain	eminent domain
+off brand	off brand
+morning wood	morning wood
+save face	save face
+mean spirited	mean spirited
+boxer briefs	boxer briefs
+red tape	red tape
+mentally challenged	mentally challenged
+bad blood	bad blood
+pass away	pass away
+passed away	pass away
+passing away	pass away
+passes away	pass away
+blue pill	blue pill
+hung over	hung over
+opinion piece	opinion piece
+opinion pieces	opinion piece
+small arms	small arms
+staying power	staying power
+ring finger	ring finger
+ring fingers	ring finger
+traffic light	traffic light
+traffic lights	traffic light
+hold true	hold true
+ true	hold true
+holds true	hold true
+saving grace	saving grace
+le sigh	le sigh
+losing streak	losing streak
+back burner	back burner
+statutory rape	statutory rape
+friend zone	friend zone
+penny arcade	penny arcade
+moot point	moot point
+make believe	make believe
+plot device	plot device
+top hat	top hat
+top hats	top hat
+personal attack	personal attack
+personal attacks	personal attack
+guilt trip	guilt trip
+guilt trips	guilt trip
+alter ego	alter ego
+lost cause	lost cause
+lost causes	lost cause
+for kicks	for kicks
+pray tell	pray tell
+love triangle	love triangle
+love triangles	love triangle
+nuclear waste	nuclear waste
+within reach	within reach
+plausible deniability	plausible deniability
+pipe dream	pipe dream
+pipe dreamed	pipe dream
+pipe dreams	pipe dream
+pipe dreaming	pipe dream
+cash cow	cash cow
+native speaker	native speaker
+aircraft carrier	aircraft carrier
+aircraft carriers	aircraft carrier
+ad nauseam	ad nauseam
+tag along	tag along
+single out	single out
+singled out	single out
+take steps	take steps
+takes steps	take steps
+taking steps	take steps
+took steps	take steps
+taken steps	take steps
+drama queen	drama queen
+drama queens	drama queen
+bubble wrap	bubble wrap
+bigger picture	bigger picture
+identity politics	identity politics
+stay put	stay put
+cool kids	cool kids
+strike up	strike up
+witch hazel	witch hazel
+augmented reality	augmented reality
+uncanny valley	uncanny valley
+prop up	prop up
+light pollution	light pollution
+control freak	control freak
+control freaks	control freak
+comic relief	comic relief
+willful ignorance	willful ignorance
+faux pas	faux pas
+plot hole	plot hole
+plot holes	plot hole
+tu quoque	tu quoque
+space bar	space bar
+barrel roll	barrel roll
+false dichotomy	false dichotomy
+politically incorrect	politically incorrect
+heavy lifting	heavy lifting
+dead last	dead last
+culture shock	culture shock
+in spades	in spades
+educated guess	educated guess
+reverse engineering	reverse engineering
+grand total	grand total
+stepping stone	stepping stone
+et tu	et tu
+alma mater	alma mater
+dirt poor	dirt poor
+wing it	wing it
+winged it	wing it
+squat rack	squat rack
+crash course	crash course
+crash courses	crash course
+downward spiral	downward spiral
+go overboard	go overboard
+went overboard	go overboard
+winning streak	winning streak
+whooping cough	whooping cough
+intelligence agency	intelligence agency
+intelligence agencies	intelligence agency
+fighting words	fighting words
+vantage point	vantage point
+dumpster fire	dumpster fire
+drum up	drum up
+foie gras	foie gras
+social commentary	social commentary
+smooth sailing	smooth sailing
+cat lady	cat lady
+cat ladies	cat lady
+popular vote	popular vote
+barbed wire	barbed wire
+stumble across	stumble across
+stumbled across	stumble across
+inferiority complex	inferiority complex
+face palm	face palm
+on strike	on strike
+mock up	mock up
+mocks up	mock up
+mocked up	mock up
+corporal punishment	corporal punishment
+cut corners	cut corners
+close call	close call
+chord progression	chord progression
+cargo shorts	cargo shorts
+de jure	de jure
+your grace	your grace
+gene pool	gene pool
+scorched earth	scorched earth
+running joke	running joke
+memory leak	memory leak
+bloody mary	bloody mary
+wide awake	wide awake
+shark week	shark week
+pot roast	pot roast
+filthy rich	filthy rich
+loose ends	loose ends
+living thing	living thing
+dash cam	dash cam
+cheat sheet	cheat sheet
+sentimental value	sentimental value
+paper trail	paper trail
+father figure	father figure
+laissez faire	laissez faire
+bronze age	bronze age
+fashion sense	fashion sense
+nail down	nail down
+nailed down	nail down
+nails down	nail down
+nailing down	nail down
+warp drive	warp drive
+thick skin	thick skin
+halfway decent	halfway decent
+white power	white power
+escape velocity	escape velocity
+chicken pox	chicken pox
+inner circle	inner circle
+white supremacy	white supremacy
+sixth sense	sixth sense
+practice makes perfect	practice makes perfect
+less is more	less is more
+ignorance is bliss	ignorance is bliss
+the more the merrier	the more the merrier
+knowledge is power	knowledge is power
+actions speak louder than words	actions speak louder than words
+time is money	time is money
+talk is cheap	talk is cheap
+might makes right	might makes right
+patience is a virtue	patience is a virtue
+you are what you eat	you are what you eat
+mind over matter	mind over matter
+old habits die hard	old habits die hard
+history repeats itself	history repeats itself
+the customer is always right	the customer is always right
+the sky is the limit	the sky is the limit
+misery loves company	misery loves company
+the ends justify the means	the ends justify the means
+beauty is in the eye of the beholder	beauty is in the eye of the beholder
+the enemy of my enemy is my friend	the enemy of my enemy is my friend
+it takes two to tango	it takes two to tango
+use it or lose it	use it or lose it
+variety is the spice of life	variety is the spice of life
+time heals all wounds	time heals all wounds
+honesty is the best policy	honesty is the best policy
+what goes around comes around	what goes around comes around
+the proof is in the pudding	the proof is in the pudding
+timing is everything	timing is everything
+slow and steady wins the race	slow and steady wins the race
+give a man a fish	give a man a fish
+bros before hoes	bros before hoes
+the road to hell is paved with good intentions	the road to hell is paved with good intentions
+stupid is as stupid does	stupid is as stupid does
+what you see is what you get	what you see is what you get
+the pen is mightier than the sword	the pen is mightier than the sword
+blood is thicker than water	blood is thicker than water
+the grass is always greener on the other side	the grass is always greener on the other side
+curiosity killed the cat	curiosity killed the cat
+no time like the present	no time like the present
+each to his own	each to his own
+necessity is the mother of invention	necessity is the mother of invention
+two wrongs make a right	two wrongs make a right
+no man is an island	no man is an island
+desperate times call for desperate measures	desperate times call for desperate measures
+better dead than red	better dead than red
+brevity is the soul of wit	brevity is the soul of wit
+might is right	might is right
+hope springs eternal	hope springs eternal
+the end justifies the means	the end justifies the means
+better the devil you know	better the devil you know
+silence is golden	silence is golden
+a picture is worth a thousand words	a picture is worth a thousand words
+good things come to those who wait	good things come to those who wait
+tomorrow is another day	tomorrow is another day
+strike while the iron is hot	strike while the iron is hot
+love is blind	love is blind
+every little helps	every little helps
+life is like a box of chocolates	life is like a box of chocolates
+no rest for the wicked	no rest for the wicked
+a fool and his money are soon parted	a fool and his money are soon parted
+an eye for an eye makes the whole world blind	an eye for an eye makes the whole world blind
+the heart wants what it wants	the heart wants what it wants
+only the good die young	only the good die young
+it takes one to know one	it takes one to know one
+no news is good news	no news is good news
+fortune favors the bold	fortune favors the bold
+seeing is believing	seeing is believing
+turnabout is fair play	turnabout is fair play
+any port in a storm	any port in a storm
+absence makes the heart grow fonder	absence makes the heart grow fonder
+what has been seen cannot be unseen	what has been seen cannot be unseen
+familiarity breeds contempt	familiarity breeds contempt
+no smoke without fire	no smoke without fire
+laughter is the best medicine	laughter is the best medicine
+in vino veritas	in vino veritas
+devil is in the details	devil is in the details
+speak softly and carry a big stick	speak softly and carry a big stick
+to err is human	to err is human
+what goes up must come down	what goes up must come down
+revenge is a dish best served cold	revenge is a dish best served cold
+bros before hos	bros before hos
+the dose makes the poison	the dose makes the poison
+a bird in the hand is worth two in the bush	a bird in the hand is worth two in the bush
+you snooze you lose	you snooze you lose
+wrap it before you tap it	wrap it before you tap it
+a rising tide lifts all boats	a rising tide lifts all boats
+look before you leap	look before you leap
+hell hath no fury like a woman scorned	hell hath no fury like a woman scorned
+a watched pot never boils	a watched pot never boils
+home is where the heart is	home is where the heart is
+experience is the best teacher	experience is the best teacher
+the map is not the territory	the map is not the territory
+perfect is the enemy of good	perfect is the enemy of good
+any press is good press	any press is good press
+to thine own self be true	to thine own self be true
+all good things come to an end	all good things come to an end
+the early bird gets the worm	the early bird gets the worm
+a penny saved is a penny earned	a penny saved is a penny earned
+discretion is the better part of valor	discretion is the better part of valor
+the good die young	the good die young
+justice is blind	justice is blind
+every cloud has a silver lining	every cloud has a silver lining
+cheaters never prosper	cheaters never prosper
+two heads are better than one	two heads are better than one
+prevention is better than cure	prevention is better than cure
+the proof of the pudding is in the eating	the proof of the pudding is in the eating
+rules are made to be broken	rules are made to be broken
+a stopped clock is right twice a day	a stopped clock is right twice a day
+good fences make good neighbors	good fences make good neighbors
+forewarned is forearmed	forewarned is forearmed
+a journey of a thousand miles begins with a single step	a journey of a thousand miles begins with a single step
+a friend in need is a friend indeed	a friend in need is a friend indeed
+a rolling stone gathers no moss	a rolling stone gathers no moss
+one good turn deserves another	one good turn deserves another
+a chain is only as strong as its weakest link	a chain is only as strong as its weakest link
+why buy the cow when you can get the milk for free	why buy the cow when you can get the milk for free
+measure twice and cut once	measure twice and cut once
+haste makes waste	haste makes waste
+every dog has its day	every dog has its day
+still waters run deep	still waters run deep
+justice delayed is justice denied	justice delayed is justice denied
+every dog has his day	every dog has his day
+a stitch in time saves nine	a stitch in time saves nine
+spare the rod and spoil the child	spare the rod and spoil the child
+fortune favours the bold	fortune favours the bold
+every rule has an exception	every rule has an exception
+as it happens	as it happens
+frame of reference	frame of reference
+make the most of	make the most of
+lo and behold	lo and behold
+matter of fact	matter of fact
+stand a chance	stand a chance
+lowest common denominator	lowest common denominator
+door to door	door to door
+bits and pieces	bits and pieces
+one of a kind	one of a kind
+bite the bullet	bite the bullet
+whatever floats your boat	whatever floats your boat
+what in the world	what in the world
+cause and effect	cause and effect
+to that end	to that end
+behind closed doors	behind closed doors
+sooner than later	sooner than later
+hit the fan	hit the fan
+stick it out	stick it out
+low hanging fruit	low hanging fruit
+time and again	time and again
+in the know	in the know
+last but not least	last but not least
+get a kick out of	get a kick out of
+father in law	father in law
+play it safe	play it safe
+order of magnitude	order of magnitude
+the upper hand	the upper hand
+fit the bill	fit the bill
+one too many	one too many
+have a say	have a say
+err on the side of	err on the side of
+toe to toe	toe to toe
+against the grain	against the grain
+can of worms	can of worms
+tooth and nail	tooth and nail
+jack of all trades	jack of all trades
+in cold blood	in cold blood
+leaps and bounds	leaps and bounds
+rumor has it	rumor has it
+grow a pair	grow a pair
+dime a dozen	dime a dozen
+pure and simple	pure and simple
+with open arms	with open arms
+at the mercy of	at the mercy of
+to say nothing of	to say nothing of
+each to their own	each to their own
+happily ever after	happily ever after
+middle of the road	middle of the road
+better late than never	better late than never
+one step at a time	one step at a time
+well and good	well and good
+half and half	half and half
+off the charts	off the charts
+terms and conditions	terms and conditions
+by any stretch of the imagination	by any stretch of the imagination
+such and such	such and such
+hide and seek	hide and seek
+means of production	means of production
+deus ex machina	deus ex machina
+lost in translation	lost in translation
+live and let live	live and let live
+mom and pop	mom and pop
+middle of nowhere	middle of nowhere
+brick and mortar	brick and mortar
+suspension of disbelief	suspension of disbelief
+eye for an eye	eye for an eye
+fine and dandy	fine and dandy
+coat of arms	coat of arms
+neither here nor there	neither here nor there
+once in a blue moon	once in a blue moon
+shed a tear	shed a tear
+in broad daylight	in broad daylight
+with any luck	with any luck
+here to stay	here to stay
+take it or leave it	take it or leave it
+spell it out	spell it out
+bang for the buck	bang for the buck
+at the drop of a hat	at the drop of a hat
+bait and switch	bait and switch
+call it a day	call it a day
+make ends meet	make ends meet
+state of the art	state of the art
+high and mighty	high and mighty
+here and now	here and now
+off the mark	off the mark
+right of way	right of way
+mix and match	mix and match
+second to last	second to last
+be all about	be all about
+in due time	in due time
+peace be upon him	peace be upon him
+at the ready	at the ready
+school of thought	school of thought
+one and the same	one and the same
+jump to conclusions	jump to conclusions
+suffice it to say	suffice it to say
+play a part	play a part
+never say never	never say never
+something or other	something or other
+set the bar	set the bar
+defeat the purpose	defeat the purpose
+margin of error	margin of error
+head in the sand	head in the sand
+drag and drop	drag and drop
+snap out of	snap out of
+save the day	save the day
+tried and true	tried and true
+go big or go home	go big or go home
+if and only if	if and only if
+here goes nothing	here goes nothing
+all bets are off	all bets are off
+moral high ground	moral high ground
+as the saying goes	as the saying goes
+full metal jacket	full metal jacket
+to a fault	to a fault
+by the same token	by the same token
+insult to injury	insult to injury
+turn of events	turn of events
+head to toe	head to toe
+dream come true	dream come true
+back to square one	back to square one
+the name of the game	the name of the game
+get hold of	get hold of
+sigh of relief	sigh of relief
+the other way round	the other way round
+be the way to go	be the way to go
+take a dump	take a dump
+turn a profit	turn a profit
+fair and square	fair and square
+against all odds	against all odds
+appeal to authority	appeal to authority
+off the cuff	off the cuff
+the icing on the cake	the icing on the cake
+roll the dice	roll the dice
+go both ways	go both ways
+pale in comparison	pale in comparison
+in the same breath	in the same breath
+chain of command	chain of command
+crash and burn	crash and burn
+not in the least	not in the least
+bells and whistles	bells and whistles
+kicking and screaming	kicking and screaming
+somewhere along the line	somewhere along the line
+off the deep end	off the deep end
+forever and ever	forever and ever
+time after time	time after time
+scum of the earth	scum of the earth
+turn the other cheek	turn the other cheek
+loud and clear	loud and clear
+proof of concept	proof of concept
+elephant in the room	elephant in the room
+turn a blind eye	turn a blind eye
+head over heels	head over heels
+next big thing	next big thing
+the story goes	the story goes
+nowhere to be found	nowhere to be found
+there and back	there and back
+back to the drawing board	back to the drawing board
+luck of the draw	luck of the draw
+balls to the wall	balls to the wall
+far and wide	far and wide
+get the ball rolling	get the ball rolling
+bottom of the barrel	bottom of the barrel
+powers that be	powers that be
+above the law	above the law
+make the cut	make the cut
+divide and conquer	divide and conquer
+without a hitch	without a hitch
+the plot thickens	the plot thickens
+read between the lines	read between the lines
+take a stand	take a stand
+rock paper scissors	rock paper scissors
+shot in the dark	shot in the dark
+point of no return	point of no return
+in the ballpark	in the ballpark
+behind the times	behind the times
+boots on the ground	boots on the ground
+lesser of two evils	lesser of two evils
+give and take	give and take
+all things being equal	all things being equal
+spur of the moment	spur of the moment
+pill to swallow	pill to swallow
+breath of fresh air	breath of fresh air
+the rest is history	the rest is history
+play it cool	play it cool
+test the waters	test the waters
+statute of limitations	statute of limitations
+two birds with one stone	two birds with one stone
+resting bitch face	resting bitch face
+on all fours	on all fours
+everyone and their mother	everyone and their mother
+quick and dirty	quick and dirty
+ring a bell	ring a bell
+in the short run	in the short run
+too big to fail	too big to fail
+one in a million	one in a million
+no strings attached	no strings attached
+room and board	room and board
+pat on the back	pat on the back
+first past the post	first past the post
+in the cards	in the cards
+doom and gloom	doom and gloom
+in no uncertain terms	in no uncertain terms
+take the plunge	take the plunge
+do the dishes	do the dishes
+connect the dots	connect the dots
+like a hawk	like a hawk
+arts and crafts	arts and crafts
+stop and frisk	stop and frisk
+in the blink of an eye	in the blink of an eye
+take a stab at	take a stab at
+sorry not sorry	sorry not sorry
+hit a nerve	hit a nerve
+lord of the flies	lord of the flies
+slap on the wrist	slap on the wrist
+give it a whirl	give it a whirl
+off the beaten path	off the beaten path
+keep tabs on	keep tabs on
+bat an eye	bat an eye
+problem of evil	problem of evil
+better part of	better part of
+rough around the edges	rough around the edges
+fact of life	fact of life
+get a handle on	get a handle on
+low and behold	low and behold
+hold a candle	hold a candle
+in good hands	in good hands
+get the word out	get the word out
+beyond reasonable doubt	beyond reasonable doubt
+tit for tat	tit for tat
+on a dime	on a dime
+fog of war	fog of war
+for sake of	for sake of
+smoke and mirrors	smoke and mirrors
+go the way of	go the way of
+when all is said and done	when all is said and done
+get the better of	get the better of
+null and void	null and void
+up a storm	up a storm
+wheel of fortune	wheel of fortune
+cease and desist	cease and desist
+jump through hoops	jump through hoops
+see eye to eye	see eye to eye
+learn the hard way	learn the hard way
+worst comes to worst	worst comes to worst
+one trick pony	one trick pony
+ins and outs	ins and outs
+figure of speech	figure of speech
+keep it real	keep it real
+in so far as	in so far as
+all else being equal	all else being equal
+rub one out	rub one out
+leap of faith	leap of faith
+cult of personality	cult of personality
+safe and sound	safe and sound
+at the best of times	at the best of times
+as all get out	as all get out
+well and truly	well and truly
+take the cake	take the cake
+around the clock	around the clock
+point of reference	point of reference
+field of vision	field of vision
+in the shoes of	in the shoes of
+word on the street	word on the street
+skin in the game	skin in the game
+lost and found	lost and found
+zero dark thirty	zero dark thirty
+tug of war	tug of war
+by the by	by the by
+throw a fit	throw a fit
+put two and two together	put two and two together
+call it quits	call it quits
+pump and dump	pump and dump
+in the thick of	in the thick of
+cherry on top	cherry on top
+tough as nails	tough as nails
+at your service	at your service
+to a tee	to a tee
+if you please	if you please
+the whole nine yards	the whole nine yards
+go the extra mile	go the extra mile
+your guess is as good as mine	your guess is as good as mine
+meet and greet	meet and greet
+fight fire with fire	fight fire with fire
+it goes to show	it goes to show
+fall from grace	fall from grace
+be that as it may	be that as it may
+show and tell	show and tell
+light at the end of the tunnel	light at the end of the tunnel
+change of heart	change of heart
+shed light on	shed light on
+second to none	second to none
+fight the good fight	fight the good fight
+dead in the water	dead in the water
+take a crack at	take a crack at
+reductio ad absurdum	reductio ad absurdum
+give credit where credit is due	give credit where credit is due
+walk in the park	walk in the park
+neck of the woods	neck of the woods
+a whole nother	a whole nother
+quid pro quo	quid pro quo
+cream of the crop	cream of the crop
+at no time	at no time
+next of kin	next of kin
+truth or dare	truth or dare
+thanks for nothing	thanks for nothing
+off the radar	off the radar
+odds and ends	odds and ends
+no holds barred	no holds barred
+lend a hand	lend a hand
+behind the curve	behind the curve
+neck and neck	neck and neck
+no can do	no can do
+larger than life	larger than life
+take one for the team	take one for the team
+level playing field	level playing field
+lest we forget	lest we forget
+blast from the past	blast from the past
+hard of hearing	hard of hearing
+call a spade a spade	call a spade a spade
+letter of the law	letter of the law
+break the ice	break the ice
+veil of ignorance	veil of ignorance

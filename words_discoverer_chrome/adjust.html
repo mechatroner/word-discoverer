@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+    fieldset {
+        background-color: orange;
+        padding: 8px;
+        border: 0;
+        width: 500px;
+    }
+    .cbLabel {
+        vertical-align: middle;
+        font-size: 14px;
+        padding: 2px;
+    }
+    .cbHeaderLabel {
+        vertical-align: middle;
+        padding: 2px;
+        font-size: 14px;
+    }
+    .longButton {
+        width: 150px;
+        background-color: #4CAF50; /* Green */
+        border: 1px solid white;
+        color: white;
+        padding: 4px 6px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .longButton:hover {
+        background-color: #3e8e41;
+    }
+    .hlExample {
+        font-size: 16px;
+        margin: 4px 2px;
+    }
+    #wordsBlock {
+        margin: 4px 18px;
+    }
+    #idiomsBlock {
+        margin: 4px 18px;
+    }
+    .radioBlock {
+        margin: 4px 18px;
+    }
+    </style>
+    <title>Adjust highlighting</title>
+    <script src="adjust.js"></script>
+  </head>
+  <body>
+  <div id="adjustSection">
+  <fieldset>
+  <input type="checkbox" class="checkbox" id="wordsEnabled"><span class="cbHeaderLabel">__MSG_enableWordsLabel__</span><br>
+  <div id="wordsBlock">
+    <input type="checkbox" class="checkbox" id="wordsBold"><span class="cbLabel">__MSG_useBold__</span><br>
+    <input type="checkbox" class="checkbox" id="wordsColor"><span class="cbLabel">__MSG_useText__</span><br>
+    <div id="wcRadioBlock" class="radioBlock">
+      <form>
+      <input type="radio" name="wordColor" id="wc1"><label for="wc1" style="color:red; background-color:red">___</label>
+      <input type="radio" name="wordColor" id="wc2"><label for="wc2" style="color:green; background-color:green">___</label>
+      <input type="radio" name="wordColor" id="wc3"><label for="wc3" style="color:blue; background-color:blue">___</label>
+      <input type="radio" name="wordColor" id="wc4"><label for="wc4" style="color:yellow; background-color:yellow">___</label>
+      <input type="radio" name="wordColor" id="wc5"><label for="wc5" style="color:black; background-color:black">___</label>
+      </form> 
+    </div>
+    <input type="checkbox" class="checkbox" id="wordsBackground"><span class="cbLabel">__MSG_useBackground__</span><br>
+    <div id="wbRadioBlock" class="radioBlock">
+      <form>
+      <input type="radio" name="wordBackground" id="wb1"><label for="wb1" style="color:#fff8dc; background-color:#fff8dc">___</label>
+      <input type="radio" name="wordBackground" id="wb2"><label for="wb2" style="color:#d2d2ff; background-color:#d2d2ff">___</label>
+      <input type="radio" name="wordBackground" id="wb3"><label for="wb3" style="color:#d2ffd2; background-color:#d2ffd2">___</label>
+      <input type="radio" name="wordBackground" id="wb4"><label for="wb4" style="color:#c8ffff; background-color:#c8ffff">___</label>
+      <input type="radio" name="wordBackground" id="wb5"><label for="wb5" style="color:#ffffff; background-color:#ffffff">___</label>
+      </form> 
+    </div>
+    <br>
+    <br>
+    <span class="hlExample">Example of <span id="wql"></span><span id="wordHlText">highlighted</span><span id="wqr"></span> English word.</span><br>
+    <br>
+  </div>
+  </fieldset>
+  <br>
+  <fieldset>
+  <input type="checkbox" class="checkbox" id="idiomsEnabled"><span class="cbHeaderLabel">__MSG_enableIdiomsLabel__</span><br>
+  <div id="idiomsBlock">
+    <input type="checkbox" class="checkbox" id="idiomsBold"><span class="cbLabel">__MSG_useBold__</span><br>
+    <input type="checkbox" class="checkbox" id="idiomsColor"><span class="cbLabel">__MSG_useText__</span><br>
+    <div id="icRadioBlock" class="radioBlock">
+      <form>
+      <input type="radio" name="idiomColor" id="ic1"><label for="ic1" style="color:red; background-color:red">___</label>
+      <input type="radio" name="idiomColor" id="ic2"><label for="ic2" style="color:green; background-color:green">___</label>
+      <input type="radio" name="idiomColor" id="ic3"><label for="ic3" style="color:blue; background-color:blue">___</label>
+      <input type="radio" name="idiomColor" id="ic4"><label for="ic4" style="color:yellow; background-color:yellow">___</label>
+      <input type="radio" name="idiomColor" id="ic5"><label for="ic5" style="color:black; background-color:black">___</label>
+      </form> 
+    </div>
+    <input type="checkbox" class="checkbox" id="idiomsBackground"><span class="cbLabel">__MSG_useBackground__</span><br>
+    <div id="ibRadioBlock" class="radioBlock">
+      <form>
+      <input type="radio" name="idiomBackground" id="ib1"><label for="ib1" style="color:#fff8dc; background-color:#fff8dc">___</label>
+      <input type="radio" name="idiomBackground" id="ib2"><label for="ib2" style="color:#d2d2ff; background-color:#d2d2ff">___</label>
+      <input type="radio" name="idiomBackground" id="ib3"><label for="ib3" style="color:#d2ffd2; background-color:#d2ffd2">___</label>
+      <input type="radio" name="idiomBackground" id="ib4"><label for="ib4" style="color:#c8ffff; background-color:#c8ffff">___</label>
+      <input type="radio" name="idiomBackground" id="ib5"><label for="ib5" style="color:#ffffff; background-color:#ffffff">___</label>
+      </form> 
+    </div>
+    <br>
+    <br>
+    <span class="hlExample">Example of <span id="iql"></span><span id="idiomHlText">highlighted English</span><span id="iqr"></span> expression.</span><br>
+    <br>
+  </div>
+  </fieldset>
+  <button class="longButton" id="saveVisuals">__MSG_saveVisuals__</button>
+  </div>
+  </body>
+</html>

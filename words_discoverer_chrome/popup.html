@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+    body {
+        background-color: rgb(255,248,220);
+        min-width: 320px;
+    }
+    fieldset {
+        background-color: orange;
+        padding: 8px;
+        border: 0;
+    }
+    .rateButton {
+        width: 40px;
+        background-color: #4CAF50; /* Green */
+        border: 1px solid white;
+        color: white;
+        padding: 4px 6px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .rateButton:hover {
+        background-color: #3e8e41;
+    }
+    .vocabButton {
+        width: 150px;
+        background-color: #4CAF50; /* Green */
+        border: 1px solid white;
+        color: white;
+        padding: 4px 6px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .vocabButton:hover {
+        background-color: #3e8e41;
+    }
+    .addButton {
+        width: 20px;
+        height: 20px;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 0px 0px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .addButton:hover {
+        background-color: #3e8e41;
+    }
+    .indicator {
+        color: green;
+        font-weight: bold;
+    }
+    #rateIndicator2 {
+        width: 40px;
+        font-size: 16px;
+        color: green;
+        font-weight: bold;
+        text-align: center;
+    }
+    .rateInfo {
+        font-size: 14px;
+        margin: 4px 2px;
+    }
+    input[type=text] {
+        box-sizing: border-box;
+        height: 22px;
+        width: 150px;
+        margin: 4px 2px;
+    }
+    .rangeLabel {
+        background-color: purple;
+        display: inline-block;
+        width: 80px;
+        padding: 2px;
+        text-align: center;
+        vertical-align: middle;
+        color: white;
+    }
+    .middleCentered {
+        height: 50px;
+        vertical-align: middle;
+        display: table-cell;
+    }
+    .warningLabel{
+        color: red;
+        padding: 2px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .cbLabel {
+        vertical-align: middle;
+        padding: 2px;
+        font-size: 14px;
+    }
+    .checkbox {
+      width: 14px;
+      height: 14px;
+      vertical-align: middle;
+    }
+
+    .pageCentered {
+        width: 200px;
+        position: fixed;
+        left: 50%;
+        margin-left: -100px;
+        background-color: purple;
+        color: white;
+        padding: 2px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    </style>
+    <title>Words Discoverer</title>
+    <script src="FileSaver.js"></script>
+    <script src="common_lib.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <fieldset>
+    <span class="rateInfo" id="modeHeader"></span>
+    <br>
+    <br>
+    <input type="checkbox" class="checkbox" id="addToList">
+    <span class="cbLabel">
+      <span>__MSG_addVerb__ "</span><span id="addHostName"></span><span>" __MSG_toVerb__ </span><a href="example.com" target="_blank" id="addToListLabel"></a>
+    </span>
+    <br>
+    <button class="vocabButton" id="changeMode">__MSG_switchModeLabel__</button>
+    </fieldset>
+    <br>
+    <fieldset>
+    <div class="rateInfo">__MSG_rateInfo1__ <span class="indicator" id="countIndicator">n/a</span> (<span class="indicator" id="rateIndicator1">n/a</span>) __MSG_rateInfo2__</div>
+    <button class="rateButton" id="rateM10">-10</button>
+    <button class="rateButton" id="rateM1">-1</button>
+    <div style="display: inline-block" id="rateIndicator2">n/a</div>
+    <button class="rateButton" id="rateP1">+1</button>
+    <button class="rateButton" id="rateP10">+10</button>
+    <button class="vocabButton" id="adjust">__MSG_adjust__</button>
+    </fieldset>
+    <br>
+    <fieldset>
+    <div class="rateInfo">__MSG_vocabSizeInfo1__ <span class="indicator" id="vocabIndicator">n/a</span> __MSG_vocabSizeInfo2__</div>
+    <button class="vocabButton" id="showVocab">__MSG_showVocab__</button>
+    <button class="vocabButton" id="saveVocab">__MSG_saveVocab__</button>
+    <button class="vocabButton" id="loadVocab">__MSG_loadVocab__</button>
+    <br>
+    <br>
+    <span class="rateInfo">__MSG_tipInfo__</span>
+    <br>
+    <input type="text" id="addText"><button class="addButton" id="addWord">+</button>
+    <br>
+    <span class="rateInfo" id="addOpResult"></span>
+    </fieldset>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+    fieldset {
+        background-color: orange;
+        padding: 8px;
+        border: 0;
+        width: 500px;
+    }
+    input[type="file"] {
+        display: none;
+    }
+    .infoMsg {
+        padding: 4px;
+        font-size: 16px;
+    }
+    .longButton {
+        width: 180px;
+        background-color: #4CAF50; /* Green */
+        border: 1px solid white;
+        color: white;
+        padding: 4px 6px;
+        text-decoration: none;
+        text-align: center;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .longButton:hover {
+        background-color: #3e8e41;
+    }
+    </style>
+    <title>Words Discoverer: Import vocabulary</title>
+    <script src="import.js"></script>
+  </head>
+  <body>
+    <fieldset>
+    <span class="infoMsg">New words will be added to your current vocabulary.</span>
+    <br>
+    <br>
+    <label for="doLoadVocab" class="longButton">Select File...</label>
+    <input id="doLoadVocab" type="file"/>
+    <span class="infoMsg" id="fnamePreview"></span>
+    <br>
+    <button id="vocabSubmit" class="longButton">Submit</button>
+    <br>
+    <span class="infoMsg" id="addedInfo"></span><br>
+    <span class="infoMsg" id="skippedInfo"></span><br>
+    </fieldset>
+  </body>
+</html>

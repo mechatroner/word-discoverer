@@ -1,0 +1,92 @@
+{
+  "appName": {
+    "message": "Words Discoverer: Expand your vocabulary",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "Highlights rare English dictionary words and idioms on web pages. Facilitates English language learning and expands your vocabulary.",
+    "description":"The description of the application, displayed in the web store."
+  },
+  "menuItem": {
+    "message": "Add expression to vocabulary",
+    "description": "Text in context menu"
+  },
+  "rateInfo1": {
+    "message": "Not spotting"
+  },
+  "rateInfo2": {
+      "message": "most common English words."
+  },
+  "adjust": {
+      "message": "Adjust highlighting..."
+  },
+  "vocabSizeInfo1": {
+      "message": "Your vocabulary size:"
+  },
+  "vocabSizeInfo2": {
+      "message": "words."
+  },
+  "showVocab": {
+      "message": "Show Vocabulary"
+  },
+  "saveVocab": {
+      "message": "Export Vocabulary"
+  },
+  "loadVocab": {
+      "message": "Import Vocabulary"
+  },
+  "tipInfo": {
+      "message": "To add a new word (or expression) to your vocabulary - select the word text, right click and choose the action from context menu. Or use this input field:"
+  },
+  "addErrorDupp": {
+      "message": "Already added."
+  },
+  "addErrorBad": {
+      "message": "Unable to add."
+  },
+  "addSuccess": {
+      "message": "Added."
+  },
+  "saveVisuals": {
+      "message": "Save"
+  },
+  "enableWordsLabel": {
+      "message": "Enable words highlighting"
+  },
+  "enableIdiomsLabel": {
+      "message": "Enable expressions highlighting"
+  },
+  "useQuotes": {
+      "message": "Use quotes (instead of highlighting)"
+  },
+  "useText": {
+      "message": "Use text highlighting"
+  },
+  "useBackground": {
+      "message": "Use background highlighting"
+  },
+  "useBold": {
+      "message": "Use bold font"
+  },
+  "enabledDescription": {
+      "message": "Highlight all Internet except \"Skip List\" sites."
+  },
+  "disabledDescription": {
+      "message": "Highlight only \"Favorites List\" sites."
+  },
+  "addVerb": {
+      "message": "Add"
+  },
+  "toVerb": {
+      "message": "to"
+  },
+  "addFavoritesLabel": {
+      "message": "Favorites List"
+  },
+  "addSkippedLabel": {
+      "message": "Skip List"
+  },
+  "switchModeLabel": {
+      "message": "Switch Mode"
+  }
+}
