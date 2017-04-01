@@ -2,21 +2,6 @@ var dict_size = null;
 var enabled_mode = true;
 
 
-function localizeHtmlPage() {
-    //Localize by replacing __MSG_***__ meta tags
-    var objects = document.getElementsByTagName('html');
-    for (var j = 0; j < objects.length; j++) {
-        var obj = objects[j];
-        var valStrH = obj.innerHTML.toString();
-        var valNewH = valStrH.replace(/__MSG_(\w+)__/g, function(match, v1) {
-            return v1 ? chrome.i18n.getMessage(v1) : "";
-        });
-        if(valNewH != valStrH) {
-            obj.innerHTML = valNewH;
-        }
-    }
-}
-
 function display_mode() {
     chrome.tabs.getSelected(null, function (tab) {
         var url = new URL(tab.url);
@@ -70,23 +55,14 @@ function process_mode_switch() {
     display_mode();
 }
 
-function process_export() {
-    chrome.storage.local.get(['wd_user_vocabulary'], function(result) {
-        var user_vocabulary = result.wd_user_vocabulary;
-        keys = []
-        for (var key in user_vocabulary) {
-            if (user_vocabulary.hasOwnProperty(key)) {
-                keys.push(key);
-            }
-        }
-        var file_content = keys.join('\r\n')
-        var blob = new Blob([file_content], {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "my_vocabulary.txt", true);
+function process_show() {
+    chrome.tabs.create({'url': chrome.extension.getURL('display.html')}, function(tab) {
+      // opens import dialong in new tab
     });
 }
 
-function process_show() {
-    chrome.tabs.create({'url': chrome.extension.getURL('display.html')}, function(tab) {
+function process_help() {
+    chrome.tabs.create({'url': chrome.extension.getURL('help.html')}, function(tab) {
       // opens import dialong in new tab
     });
 }
@@ -94,12 +70,6 @@ function process_show() {
 function process_adjust() {
     chrome.tabs.create({'url': chrome.extension.getURL('adjust.html')}, function(tab) {
       // opens adjust dialong in new tab
-    });
-}
-
-function process_import() {
-    chrome.tabs.create({'url': chrome.extension.getURL('import.html')}, function(tab) {
-      // opens import dialong in new tab
     });
 }
 
@@ -112,12 +82,13 @@ function display_vocabulary_size() {
 }
 
 
-function handle_add_result(op_code) {
-    if (op_code === 1) {
+function popup_handle_add_result(report, lemma) {
+    if (report === "ok") {
+        request_unhighlight(lemma);
         display_vocabulary_size();
         document.getElementById('addText').value = "";
         document.getElementById('addOpResult').textContent = chrome.i18n.getMessage("addSuccess");
-    } else if (op_code === 0) {
+    } else if (report === "exists") {
         document.getElementById('addOpResult').textContent = chrome.i18n.getMessage("addErrorDupp");
     } else {
         document.getElementById('addOpResult').textContent = chrome.i18n.getMessage("addErrorBad");
@@ -126,7 +97,7 @@ function handle_add_result(op_code) {
 
 function process_add_word() {
     lexeme = document.getElementById('addText').value;
-    add_lexeme(lexeme, handle_add_result);
+    add_lexeme(lexeme, popup_handle_add_result);
 }
 
 function process_rate(increase) {
@@ -163,9 +134,8 @@ function init_controls() {
     window.onload=function() {
         document.getElementById("addToList").addEventListener("click", process_checkbox);
         document.getElementById("adjust").addEventListener("click", process_adjust);
-        document.getElementById("saveVocab").addEventListener("click", process_export);
         document.getElementById("showVocab").addEventListener("click", process_show);
-        document.getElementById("loadVocab").addEventListener("click", process_import);
+        document.getElementById("getHelp").addEventListener("click", process_help);
         document.getElementById("addWord").addEventListener("click", process_add_word);
         document.getElementById("rateM10").addEventListener("click", process_rate_m10);
         document.getElementById("rateM1").addEventListener("click", process_rate_m1);

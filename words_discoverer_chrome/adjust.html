@@ -2,11 +2,56 @@
 <html>
   <head>
     <style>
+    body {
+        background-color: rgb(255,248,220);
+    }
     fieldset {
         background-color: orange;
         padding: 8px;
         border: 0;
-        width: 500px;
+        width: 700px;
+    }
+    .dictNameHeader {
+        display: inline-block;
+        margin: 4px 8px;
+        width: 200px;
+        height: 25px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .dictUrlHeader {
+        display: inline-block;
+        margin: 4px 8px;
+        width: 300px;
+        height: 25px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .existingDictName {
+        display: inline-block;
+        background-color: rgb(255,248,220);
+        margin: 4px 8px;
+        width: 200px;
+        line-height: 25px;
+    }
+    .existingDictUrl {
+        background-color: rgb(255,248,220);
+        margin: 4px 8px;
+        width: 300px;
+        line-height: 25px;
+        border: none;
+    }
+    .dictAddName {
+        box-sizing: border-box;
+        margin: 4px 8px;
+        width: 200px;
+        height: 25px;
+    }
+    .dictAddUrl {
+        box-sizing: border-box;
+        margin: 4px 8px;
+        width: 300px;
+        height: 25px;
     }
     .cbLabel {
         vertical-align: middle;
@@ -18,6 +63,13 @@
         padding: 2px;
         font-size: 14px;
     }
+    .imgButton {
+        background-color: orange;
+        border: none;
+        padding: 0px 0px 0px 0px;
+        margin: 0px 4px 0px 10px;
+        cursor: pointer;
+    }
     .longButton {
         width: 150px;
         background-color: #4CAF50; /* Green */
@@ -27,16 +79,37 @@
         text-decoration: none;
         display: inline-block;
         font-size: 14px;
-        margin: 4px 2px;
+        margin: 4px 8px;
         transition-duration: 0.4s;
         cursor: pointer;
     }
     .longButton:hover {
         background-color: #3e8e41;
     }
+    .shortButton {
+        width: 50px;
+        background-color: #4CAF50; /* Green */
+        border: 1px solid white;
+        color: white;
+        padding: 2px 6px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .shortButton:hover {
+        background-color: #3e8e41;
+    }
     .hlExample {
         font-size: 16px;
         margin: 4px 2px;
+    }
+    .smallHeader {
+        font-size: 16px;
+        margin: 4px 2px;
+        font-weight: bold;
     }
     #wordsBlock {
         margin: 4px 18px;
@@ -47,74 +120,122 @@
     .radioBlock {
         margin: 4px 18px;
     }
+    .wdInfo {
+        font-size: 14px;
+        margin: 4px 20px;
+    }
     </style>
     <title>Adjust highlighting</title>
+    <script src="common_lib.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="context_menu_lib.js"></script>
     <script src="adjust.js"></script>
   </head>
   <body>
-  <div id="adjustSection">
   <fieldset>
-  <input type="checkbox" class="checkbox" id="wordsEnabled"><span class="cbHeaderLabel">__MSG_enableWordsLabel__</span><br>
-  <div id="wordsBlock">
-    <input type="checkbox" class="checkbox" id="wordsBold"><span class="cbLabel">__MSG_useBold__</span><br>
-    <input type="checkbox" class="checkbox" id="wordsColor"><span class="cbLabel">__MSG_useText__</span><br>
-    <div id="wcRadioBlock" class="radioBlock">
-      <form>
-      <input type="radio" name="wordColor" id="wc1"><label for="wc1" style="color:red; background-color:red">___</label>
-      <input type="radio" name="wordColor" id="wc2"><label for="wc2" style="color:green; background-color:green">___</label>
-      <input type="radio" name="wordColor" id="wc3"><label for="wc3" style="color:blue; background-color:blue">___</label>
-      <input type="radio" name="wordColor" id="wc4"><label for="wc4" style="color:yellow; background-color:yellow">___</label>
-      <input type="radio" name="wordColor" id="wc5"><label for="wc5" style="color:black; background-color:black">___</label>
-      </form> 
-    </div>
-    <input type="checkbox" class="checkbox" id="wordsBackground"><span class="cbLabel">__MSG_useBackground__</span><br>
-    <div id="wbRadioBlock" class="radioBlock">
-      <form>
-      <input type="radio" name="wordBackground" id="wb1"><label for="wb1" style="color:#fff8dc; background-color:#fff8dc">___</label>
-      <input type="radio" name="wordBackground" id="wb2"><label for="wb2" style="color:#d2d2ff; background-color:#d2d2ff">___</label>
-      <input type="radio" name="wordBackground" id="wb3"><label for="wb3" style="color:#d2ffd2; background-color:#d2ffd2">___</label>
-      <input type="radio" name="wordBackground" id="wb4"><label for="wb4" style="color:#c8ffff; background-color:#c8ffff">___</label>
-      <input type="radio" name="wordBackground" id="wb5"><label for="wb5" style="color:#ffffff; background-color:#ffffff">___</label>
-      </form> 
-    </div>
-    <br>
-    <br>
-    <span class="hlExample">Example of <span id="wql"></span><span id="wordHlText">highlighted</span><span id="wqr"></span> English word.</span><br>
-    <br>
-  </div>
+    <button class="longButton" id="saveVocab">__MSG_saveVocab__</button>
+    <button class="longButton" id="loadVocab">__MSG_loadVocab__</button><br>
   </fieldset>
   <br>
-  <fieldset>
-  <input type="checkbox" class="checkbox" id="idiomsEnabled"><span class="cbHeaderLabel">__MSG_enableIdiomsLabel__</span><br>
-  <div id="idiomsBlock">
-    <input type="checkbox" class="checkbox" id="idiomsBold"><span class="cbLabel">__MSG_useBold__</span><br>
-    <input type="checkbox" class="checkbox" id="idiomsColor"><span class="cbLabel">__MSG_useText__</span><br>
-    <div id="icRadioBlock" class="radioBlock">
-      <form>
-      <input type="radio" name="idiomColor" id="ic1"><label for="ic1" style="color:red; background-color:red">___</label>
-      <input type="radio" name="idiomColor" id="ic2"><label for="ic2" style="color:green; background-color:green">___</label>
-      <input type="radio" name="idiomColor" id="ic3"><label for="ic3" style="color:blue; background-color:blue">___</label>
-      <input type="radio" name="idiomColor" id="ic4"><label for="ic4" style="color:yellow; background-color:yellow">___</label>
-      <input type="radio" name="idiomColor" id="ic5"><label for="ic5" style="color:black; background-color:black">___</label>
-      </form> 
-    </div>
-    <input type="checkbox" class="checkbox" id="idiomsBackground"><span class="cbLabel">__MSG_useBackground__</span><br>
-    <div id="ibRadioBlock" class="radioBlock">
-      <form>
-      <input type="radio" name="idiomBackground" id="ib1"><label for="ib1" style="color:#fff8dc; background-color:#fff8dc">___</label>
-      <input type="radio" name="idiomBackground" id="ib2"><label for="ib2" style="color:#d2d2ff; background-color:#d2d2ff">___</label>
-      <input type="radio" name="idiomBackground" id="ib3"><label for="ib3" style="color:#d2ffd2; background-color:#d2ffd2">___</label>
-      <input type="radio" name="idiomBackground" id="ib4"><label for="ib4" style="color:#c8ffff; background-color:#c8ffff">___</label>
-      <input type="radio" name="idiomBackground" id="ib5"><label for="ib5" style="color:#ffffff; background-color:#ffffff">___</label>
-      </form> 
-    </div>
-    <br>
-    <br>
-    <span class="hlExample">Example of <span id="iql"></span><span id="idiomHlText">highlighted English</span><span id="iqr"></span> expression.</span><br>
-    <br>
+  <div id="adjustBubbleSection">
+    <fieldset>
+          <span class="smallHeader">Adjust popup menu for highlighted expressions</span><br>
+          <br>
+          <form>
+          <input type="radio" name="hlBubble" id="hlb_never"><span class="cbLabel">Do not show popup menu</span><br>
+          <input type="radio" name="hlBubble" id="hlb_key"><span class="cbLabel">Show popup menu on mouse hover and [Ctrl] key</span><br>
+          <input type="radio" name="hlBubble" id="hlb_always"><span class="cbLabel">Show popup menu on mouse hover</span><br>
+          </form> 
+        <br>
+        <br>
+          <span class="smallHeader">Adjust popup menu for other words (not highlighted)</span><br>
+          <br>
+          <form>
+          <input type="radio" name="owBubble" id="owb_never"><span class="cbLabel">Do not show popup menu</span><br>
+          <input type="radio" name="owBubble" id="owb_key"><span class="cbLabel">Show popup menu on mouse hover and [Ctrl] key</span><br>
+          <input type="radio" name="owBubble" id="owb_always"><span class="cbLabel">Show popup menu on mouse hover</span><br>
+          </form> 
+    </fieldset>
   </div>
-  </fieldset>
-  <button class="longButton" id="saveVisuals">__MSG_saveVisuals__</button>
+  <br>
+  <div id="adjustOnlineDictsSection">
+    <fieldset>
+        <span class="smallHeader">Adjust online dictionaries for hover and context menus</span><br>
+        <br>
+        <span class="dictNameHeader">Dictionary Name:</span><span class="dictUrlHeader">Dictionary query URL:</span><br>
+        <div id="existingDictsBlock">
+        </div>
+        <input type="text" id="addDictName" class="dictAddName"><input type="text" id="addDictUrl" class="dictAddUrl"><button class="shortButton" id="testNewDict">Test</button><button class="imgButton" id="addDict"><img src="add.png"></button><br>
+        <button class="longButton" id="defaultDicts">Restore Defaults</button>
+    </fieldset>
+  </div>
+  <br>
+  <div id="adjustSection">
+    <fieldset>
+      <span class="smallHeader">Adjust highlighting color</span><br>
+      <br>
+      <input type="checkbox" class="checkbox" id="wordsEnabled"><span class="cbHeaderLabel">__MSG_enableWordsLabel__</span><br>
+      <div id="wordsBlock">
+        <input type="checkbox" class="checkbox" id="wordsBold"><span class="cbLabel">__MSG_useBold__</span><br>
+        <input type="checkbox" class="checkbox" id="wordsColor"><span class="cbLabel">__MSG_useText__</span><br>
+        <div id="wcRadioBlock" class="radioBlock">
+          <form>
+          <input type="radio" name="wordColor" id="wc1"><label for="wc1" style="color:red; background-color:red">___</label>
+          <input type="radio" name="wordColor" id="wc2"><label for="wc2" style="color:green; background-color:green">___</label>
+          <input type="radio" name="wordColor" id="wc3"><label for="wc3" style="color:blue; background-color:blue">___</label>
+          <input type="radio" name="wordColor" id="wc4"><label for="wc4" style="color:yellow; background-color:yellow">___</label>
+          <input type="radio" name="wordColor" id="wc5"><label for="wc5" style="color:black; background-color:black">___</label>
+          </form> 
+        </div>
+        <input type="checkbox" class="checkbox" id="wordsBackground"><span class="cbLabel">__MSG_useBackground__</span><br>
+        <div id="wbRadioBlock" class="radioBlock">
+          <form>
+          <input type="radio" name="wordBackground" id="wb1"><label for="wb1" style="color:#fff8dc; background-color:#fff8dc">___</label>
+          <input type="radio" name="wordBackground" id="wb2"><label for="wb2" style="color:#d2d2ff; background-color:#d2d2ff">___</label>
+          <input type="radio" name="wordBackground" id="wb3"><label for="wb3" style="color:#d2ffd2; background-color:#d2ffd2">___</label>
+          <input type="radio" name="wordBackground" id="wb4"><label for="wb4" style="color:#c8ffff; background-color:#c8ffff">___</label>
+          <input type="radio" name="wordBackground" id="wb5"><label for="wb5" style="color:#ffffff; background-color:#ffffff">___</label>
+          </form> 
+        </div>
+        <br>
+        <br>
+        <span class="hlExample">Example of <span id="wql"></span><span id="wordHlText">highlighted</span><span id="wqr"></span> English word.</span><br>
+        <br>
+      </div>
+      <br>
+      <br>
+      <br>
+
+      <input type="checkbox" class="checkbox" id="idiomsEnabled"><span class="cbHeaderLabel">__MSG_enableIdiomsLabel__</span><br>
+      <div id="idiomsBlock">
+        <input type="checkbox" class="checkbox" id="idiomsBold"><span class="cbLabel">__MSG_useBold__</span><br>
+        <input type="checkbox" class="checkbox" id="idiomsColor"><span class="cbLabel">__MSG_useText__</span><br>
+        <div id="icRadioBlock" class="radioBlock">
+          <form>
+          <input type="radio" name="idiomColor" id="ic1"><label for="ic1" style="color:red; background-color:red">___</label>
+          <input type="radio" name="idiomColor" id="ic2"><label for="ic2" style="color:green; background-color:green">___</label>
+          <input type="radio" name="idiomColor" id="ic3"><label for="ic3" style="color:blue; background-color:blue">___</label>
+          <input type="radio" name="idiomColor" id="ic4"><label for="ic4" style="color:yellow; background-color:yellow">___</label>
+          <input type="radio" name="idiomColor" id="ic5"><label for="ic5" style="color:black; background-color:black">___</label>
+          </form> 
+        </div>
+        <input type="checkbox" class="checkbox" id="idiomsBackground"><span class="cbLabel">__MSG_useBackground__</span><br>
+        <div id="ibRadioBlock" class="radioBlock">
+          <form>
+          <input type="radio" name="idiomBackground" id="ib1"><label for="ib1" style="color:#fff8dc; background-color:#fff8dc">___</label>
+          <input type="radio" name="idiomBackground" id="ib2"><label for="ib2" style="color:#d2d2ff; background-color:#d2d2ff">___</label>
+          <input type="radio" name="idiomBackground" id="ib3"><label for="ib3" style="color:#d2ffd2; background-color:#d2ffd2">___</label>
+          <input type="radio" name="idiomBackground" id="ib4"><label for="ib4" style="color:#c8ffff; background-color:#c8ffff">___</label>
+          <input type="radio" name="idiomBackground" id="ib5"><label for="ib5" style="color:#ffffff; background-color:#ffffff">___</label>
+          </form> 
+        </div>
+        <br>
+        <br>
+        <span class="hlExample">Example of <span id="iql"></span><span id="idiomHlText">highlighted English</span><span id="iqr"></span> expression.</span><br>
+        <br>
+      </div>
+      <button class="longButton" id="saveVisuals">__MSG_saveVisuals__</button>
+    </fieldset>
   </div>
   </body>
 </html>

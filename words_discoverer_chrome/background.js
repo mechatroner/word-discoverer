@@ -64,17 +64,7 @@ function load_idioms() {
     xhr.send(null);
 }
 
-function onClickHandler(info, tab) {
-    var word = info.selectionText;
-    add_lexeme(word);
-};
-
-
 function initialize_extension() {
-
-    var context = "selection";
-    var title = chrome.i18n.getMessage("menuItem");
-    var id = chrome.contextMenus.create({"title": title, "contexts":[context], "id": "vocab_select_add", "onclick": onClickHandler}); 
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (request.wdm_request == "hostname") {
@@ -85,22 +75,39 @@ function initialize_extension() {
         } else if (request.wdm_verdict) {
             if (request.wdm_verdict == "highlight") {
                 chrome.browserAction.setIcon({path: "result48.png", tabId: sender.tab.id});
+            } else if (request.wdm_verdict == "keyboard") {
+                chrome.browserAction.setIcon({path: "no_dynamic.png", tabId: sender.tab.id});
             } else {
                 chrome.browserAction.setIcon({path: "result48_gray.png", tabId: sender.tab.id});
             }
+        } else if (request.wdm_new_tab_url) {
+            var fullUrl = request.wdm_new_tab_url;
+            chrome.tabs.create({'url': fullUrl}, function(tab) { });
         }
     });
 
-    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_hl_settings', 'wd_idioms', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_black_list', 'wd_white_list'], function(result) {
+    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_hl_settings', 'wd_online_dicts', 'wd_hover_settings', 'wd_idioms', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_black_list', 'wd_white_list'], function(result) {
         load_eng_dictionary();
         load_idioms();
         wd_hl_settings = result.wd_hl_settings;
         if (typeof wd_hl_settings == 'undefined') {
-            word_hl_params = {enabled: true, quoted: false, bold: true, useBackground: true, backgroundColor: "rgb(255, 248, 220)", useColor: true, color: "red"};
+            word_hl_params = {enabled: true, quoted: false, bold: true, useBackground: false, backgroundColor: "rgb(255, 248, 220)", useColor: true, color: "red"};
             idiom_hl_params = {enabled: true, quoted: false, bold: true, useBackground: false, backgroundColor: "rgb(255, 248, 220)", useColor: true, color: "blue"};
             wd_hl_settings = {wordParams: word_hl_params, idiomParams: idiom_hl_params};
             chrome.storage.local.set({"wd_hl_settings": wd_hl_settings});
         }
+        wd_hover_settings = result.wd_hover_settings;
+        if (typeof wd_hover_settings == 'undefined') {
+            wd_hover_settings = {hl_hover: 'always', ow_hover: 'never'};
+            chrome.storage.local.set({"wd_hover_settings": wd_hover_settings});
+        }
+        var wd_online_dicts = result.wd_online_dicts;
+        if (typeof wd_online_dicts == 'undefined') {
+            wd_online_dicts = make_default_online_dicts();
+            chrome.storage.local.set({"wd_online_dicts": wd_online_dicts});
+        }
+        initContextMenus(wd_online_dicts);
+
         show_percents = result.wd_show_percents;
         if (typeof show_percents === 'undefined') {
             chrome.storage.local.set({"wd_show_percents": 15});

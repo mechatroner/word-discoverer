@@ -4,7 +4,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.5.1",
+  "version": "2.9.0",
   "icons": {
    "48": "result48.png"
   },
@@ -18,7 +18,7 @@
    "contextMenus"
   ],
   "background": {
-    "scripts": ["common_lib.js", "background.js"]
+    "scripts": ["common_lib.js", "context_menu_lib.js", "background.js"]
   },
   "web_accessible_resources": [
     "eng_dict.txt", "eng_idioms.txt"
@@ -26,7 +26,8 @@
   "content_scripts": [
    {
     "matches": ["<all_urls>"], 
-    "js": ["content_script.js"],
+    "css": ["content_script.css"],
+    "js": ["common_lib.js", "context_menu_lib.js", "content_script.js"],
     "run_at": "document_start"
    }
   ]

@@ -19,7 +19,7 @@ function add_new_words(new_words) {
         var num_added = 0;
         for (var i = 0; i < new_words.length; ++i) {
             var word = new_words[i];
-            if (!(word in user_vocabulary)) {
+            if (!(user_vocabulary.hasOwnProperty(word))) {
                 user_vocabulary[word] = 1;
                 ++num_added;
             }

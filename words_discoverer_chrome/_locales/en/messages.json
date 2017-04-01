@@ -8,7 +8,7 @@
     "description":"The description of the application, displayed in the web store."
   },
   "menuItem": {
-    "message": "Add expression to vocabulary",
+    "message": "Add to vocabulary",
     "description": "Text in context menu"
   },
   "rateInfo1": {
@@ -18,7 +18,7 @@
       "message": "most common English words."
   },
   "adjust": {
-      "message": "Adjust highlighting..."
+      "message": "More Settings..."
   },
   "vocabSizeInfo1": {
       "message": "Your vocabulary size:"
@@ -36,7 +36,7 @@
       "message": "Import Vocabulary"
   },
   "tipInfo": {
-      "message": "To add a new word (or expression) to your vocabulary - select the word text, right click and choose the action from context menu. Or use this input field:"
+      "message": "To add a new expression to your vocabulary you can use mouse hover menu or browser context menu (select text + right click) or this input field:"
   },
   "addErrorDupp": {
       "message": "Already added."
@@ -49,6 +49,12 @@
   },
   "saveVisuals": {
       "message": "Save"
+  },
+  "disableDictLinks": {
+      "message": "Disable online dictionaries links in browser context menu"
+  },
+  "disableDictLinksInfo": {
+      "message": "Adding words to personal vocabulary will be easier: \"Words Discoverer\" context submenu will be replaced with a single \"Add word\" button. It is recommended to use this option if you have dedicated dictionary app."
   },
   "enableWordsLabel": {
       "message": "Enable words highlighting"
