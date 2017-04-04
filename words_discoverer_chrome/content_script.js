@@ -335,8 +335,8 @@ function onNodeInserted(event) {
 function unhighlight(lemma) {
     var wdclassname = make_class_name(lemma);
     var hlNodes = document.getElementsByClassName(wdclassname);
-    for (var i = 0; i < hlNodes.length; i++) {
-        var span = hlNodes[i];
+    while (hlNodes && hlNodes.length > 0) {
+        var span = hlNodes[0];
         span.setAttribute("style", "font-weight:inherit;color:inherit;font-size:inherit;background-color:inherit;display:inline;");
         span.setAttribute("class", "wdautohl_none_none");
     }
