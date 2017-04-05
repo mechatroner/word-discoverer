@@ -1,6 +1,6 @@
-#Computer Aided Reading tool: Words Discoverer.
+# Computer Aided Reading tool: Words Discoverer.
 
-##Description
+## Description
 
 Main purpose of this project is to improve reading experience for non-native speakers.
 
@@ -10,7 +10,7 @@ To help users spot new words and increase their vocabulary, rare words in text c
 Another way to help users is to highlight idioms, which sometimes can be very hard to recognize and isolate from surrounding text.
 
 
-##Chrome extension
+## Chrome extension
 
 * Highlights English words from eng_dict.txt file
 * Highlights English idioms from eng_idioms.txt file
