@@ -6,6 +6,7 @@
     min-height: 20px !important;
     max-height: 20px !important;
     background-color: #4CAF50 !important; /* Green */
+    background: linear-gradient(to right, #4CAF50, #4CAF50) !important;
     color: white !important;
     display: block !important;
     font-size: 12px !important;
@@ -33,6 +34,7 @@
 }
 .wdAddButton:hover {
     background-color: #102310 !important;
+    background: linear-gradient(to right, #102310, #102310) !important;
     box-shadow: none !important;
     border-style: none !important;
     border-radius: 0px !important;
