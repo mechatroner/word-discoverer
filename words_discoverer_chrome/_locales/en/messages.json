@@ -13,9 +13,11 @@
   },
   "rateInfo1": {
     "message": "Not spotting"
+    "description": "1-st part of 'Not spotting x most common English words' sentence"
   },
   "rateInfo2": {
-      "message": "most common English words."
+    "message": "most common English words."
+    "description": "2-nd part of 'Not spotting x most common English words' sentence"
   },
   "adjust": {
       "message": "More Settings..."
@@ -49,12 +51,6 @@
   },
   "saveVisuals": {
       "message": "Save"
-  },
-  "disableDictLinks": {
-      "message": "Disable online dictionaries links in browser context menu"
-  },
-  "disableDictLinksInfo": {
-      "message": "Adding words to personal vocabulary will be easier: \"Words Discoverer\" context submenu will be replaced with a single \"Add word\" button. It is recommended to use this option if you have dedicated dictionary app."
   },
   "enableWordsLabel": {
       "message": "Enable words highlighting"

@@ -2790,3 +2790,6 @@ life jacket	life jacket
 blinker fluid	blinker fluid
 coat check	coat check
 smooth operator	smooth operator
+smooth operators	smooth operator
+at face value	at face value
+all but certain	all but certain
