@@ -86,6 +86,9 @@
   "addSkippedLabel": {
       "message": "Стоп-список"
   },
+  "emptyListError": {
+      "message": "Этот список пуст ;)"
+  },
   "switchModeLabel": {
       "message": "Переключить режим"
   }

@@ -1,6 +1,5 @@
 var section_name = undefined;
 var list_name = undefined;
-var user_list_name = undefined;
 
 function process_delete(text) {
     chrome.storage.local.get([list_name], function(result) {
@@ -42,7 +41,7 @@ function show_vocabulary(user_vocabulary) {
         div_element.removeChild(div_element.firstChild);
     }
     if (!keys.length) {
-        div_element.appendChild(create_label("Your " + user_list_name + " is empty ;)"));
+        div_element.appendChild(create_label(chrome.i18n.getMessage("emptyListError")));
         div_element.appendChild(document.createElement("br"));
         return;
     }
@@ -62,15 +61,12 @@ function process_display() {
     if (document.getElementById("blackListSection")) {
         section_name = "blackListSection";
         list_name = "wd_black_list";
-        user_list_name = "\"Skip List\"";
     } else if (document.getElementById("whiteListSection")) {
         section_name = "whiteListSection";
         list_name = "wd_white_list";
-        user_list_name = "\"Favorites List\"";
     } else {
         section_name = "vocabularySection";
         list_name = "wd_user_vocabulary";
-        user_list_name = "vocabulary";
     }
 
     chrome.storage.local.get([list_name], function(result) {
