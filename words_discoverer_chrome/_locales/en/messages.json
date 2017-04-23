@@ -97,6 +97,45 @@
     "emptyListError": {
         "message": "The list is empty ;)"
     },
+    "adjustPopupHlHeader": {
+        "message": "Adjust popup menu for highlighted expressions"
+    },
+    "rbNever": {
+        "message": "Do not show popup menu"
+    },
+    "rbKey": {
+        "message": "Show popup menu on mouse hover and [Ctrl] key"
+    },
+    "rbAlways": {
+        "message": "Show popup menu on mouse hover"
+    },
+    "adjustPopupOwHeader": {
+        "message": "Adjust popup menu for not highlighted words"
+    },
+    "adjustOnlineDicts": {
+        "message": "Adjust online dictionaries for hover and context menus"
+    },
+    "dictNameHeader": {
+        "message": "Dictionary Name:"
+    },
+    "dictUrlHeader": {
+        "message": "Dictionary query URL:"
+    },
+    "testBtn": {
+        "message": "Test"
+    },
+    "restoreDefaults": {
+        "message": "Restore Defaults"
+    },
+    "adjustColorsHeader": {
+        "message": "Adjust highlighting color"
+    },
+    "importInfo": {
+        "message": "New words will be added to your current vocabulary."
+    },
+    "selectFile": {
+        "message": "Select File..."
+    },
     "switchModeLabel": {
         "message": "Switch Mode"
     }

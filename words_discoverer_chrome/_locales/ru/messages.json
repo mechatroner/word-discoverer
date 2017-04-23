@@ -89,6 +89,45 @@
   "emptyListError": {
       "message": "Этот список пуст ;)"
   },
+  "adjustPopupHlHeader": {
+      "message": "Настроить всплывающее меню для подсвечиваемыx слов"
+  },
+  "rbNever": {
+      "message": "Не показывать меню"
+  },
+  "rbKey": {
+      "message": "Показывать меню при наведении мышью и нажатии клавиши [Ctrl]"
+  },
+  "rbAlways": {
+      "message": "Показывать меню при наведении мышью"
+  },
+  "adjustPopupOwHeader": {
+      "message": "Настроить всплывающее меню для неподсвечиваемых слов"
+  },
+  "adjustOnlineDicts": {
+      "message": "Настроить онлайн словари"
+  },
+  "dictNameHeader": {
+      "message": "Название словаря:"
+  },
+  "dictUrlHeader": {
+      "message": "URL словаря:"
+  },
+  "testBtn": {
+      "message": "Тест"
+  },
+  "restoreDefaults": {
+      "message": "Восстановить исходные"
+  },
+  "adjustColorsHeader": {
+      "message": "Настроить цвет подсветки"
+  },
+  "importInfo": {
+      "message": "Новые слова будут добавлены в список выученных."
+  },
+  "selectFile": {
+      "message": "Выбрать файл..."
+  },
   "switchModeLabel": {
       "message": "Переключить режим"
   }

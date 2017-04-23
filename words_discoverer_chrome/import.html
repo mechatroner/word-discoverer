@@ -37,18 +37,19 @@
     }
     </style>
     <title>Words Discoverer: Import vocabulary</title>
+    <script src="common_lib.js"></script>
     <script src="import.js"></script>
   </head>
   <body>
     <fieldset>
-    <span class="infoMsg">New words will be added to your current vocabulary.</span>
+    <span class="infoMsg">__MSG_importInfo__</span>
     <br>
     <br>
-    <label for="doLoadVocab" class="longButton">Select File...</label>
+    <label for="doLoadVocab" class="longButton">__MSG_selectFile__</label>
     <input id="doLoadVocab" type="file"/>
     <span class="infoMsg" id="fnamePreview"></span>
     <br>
-    <button id="vocabSubmit" class="longButton">Submit</button>
+    <button id="vocabSubmit" class="longButton">OK</button>
     <br>
     <span class="infoMsg" id="addedInfo"></span><br>
     <span class="infoMsg" id="skippedInfo"></span><br>

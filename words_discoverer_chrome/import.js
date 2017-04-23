@@ -52,6 +52,7 @@ function process_submit() {
 
 function init_controls() {
     window.onload=function() {
+        localizeHtmlPage();
         document.getElementById("vocabSubmit").addEventListener("click", process_submit);
         document.getElementById("doLoadVocab").addEventListener("change", process_change);
     }
