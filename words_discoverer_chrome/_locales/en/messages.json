@@ -11,6 +11,9 @@
         "message": "Add to vocabulary",
         "description": "Text in context menu"
     },
+    "rateTranslateDbg": {
+        "message": "Not highlighting 100 most common English words"
+    },
     "rateInfo1": {
         "message": "Not highlighting",
         "description": "1-st part of \"Not highlighting 100 most common English words\" sentence"
@@ -21,6 +24,9 @@
     },
     "adjust": {
         "message": "More Settings..."
+    },
+    "vocabSizeTranslateDbg": {
+        "message": "Your vocabulary size: 100 words."
     },
     "vocabSizeInfo1": {
         "message": "Your vocabulary size:",
@@ -79,13 +85,14 @@
         "message": "Highlight only \"Favorites List\" sites."
     },
     "addVerb": {
-        "message": "Add"
+        "message": "Add",
+        "description": "part of 'Add example.org to Favorites List' sentence"
     },
     "toVerb": {
         "message": "to",
         "description": "part of 'Add example.org to Favorites List' sentence"
     },
-    "addFull": {
+    "addTranslateDbg": {
         "message": "Add [example.org] to [Favorites List]"
     },
     "addFavoritesLabel": {
