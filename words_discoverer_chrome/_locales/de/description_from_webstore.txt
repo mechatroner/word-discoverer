@@ -1,0 +1,16 @@
+Wort Discoverer markiert auf Webseien seltene Wörter, Redewendungen und Spichwörter aus dem Wörterbuch. 
+Es hilft Lernenden, deren Muttersprache nicht Englisch ist, neue Ausdrücke zu entdecken, während sie im Internet surfen. 
+
+Wörter Discoverer wird immer kostenlos, Open Source und werbefrei bleiben.
+
+
+Einige Merkmale der Erweiterung:
+
+Worte Discoverer ist besser als die Programmart "Wort-des-Tages", weil neue Worte im Kontext des Textes hervorgehoben werden, den Sie gerade lesen, was ein guter Motivationsfaktor ist, um endlich die Definitionen nachzuschlagen und diese Wörter (oder Idiome) zu lernen.
+
+Je nach Ihrer Wortschatz-Größe können Sie die Frequenzschwelle von markierten Worten anpassen, z. B. 25 % der am häufigsten verwendeten englischen Wörterüberspringen den verbleibenden text markieren. Es gibt keine Möglichkeit, einen solchen Schwellewert für Redewendungen und Sprichwörter, die Erweiterung kann entweder alle oder keiner markieren.  
+
+Wenn Ihnen Definition eines markierten Wort bekannt ist, können Sie es zu Ihrem persönlichen Vokabular hinzufügen und es wird nicht mehr hervorgehoben.
+
+
+Interessante Tatsache: die meisten erwachsenen englischen Muttersprachler kennen 20.000 ─ 35.000 Wörter, so ist es durchaus möglich, sie eines Tages alle zu Ihrer Wortschatz-Datei hinzuzufügen.

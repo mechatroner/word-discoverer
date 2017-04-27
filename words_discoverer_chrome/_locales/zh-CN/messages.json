@@ -1,0 +1,149 @@
+{
+  "appName": {
+    "message": "单词发现者：扩大您的词汇",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "突出显示网页上罕见的英语字典词汇和惯用语。促进英语语言学习并扩大词汇量。",
+    "description": "The description of the application, displayed in the web store."
+  },
+  "menuItem": {
+    "message": "添加到词汇",
+    "description": "Text in context menu"
+  },
+  "rateTranslateDbg": {
+    "message": "不突出显示100 最常用的英语单词"
+  },
+  "rateInfo1": {
+    "message": "不突出显示",
+    "description": "1-st part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "rateInfo2": {
+    "message": "最常用的英语单词。",
+    "description": "2-nd part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "adjust": {
+    "message": "更多设置..."
+  },
+  "vocabSizeTranslateDbg": {
+    "message": "您的词汇量：100 单词。"
+  },
+  "vocabSizeInfo1": {
+    "message": "您的词汇量：",
+    "description": "1-st part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "vocabSizeInfo2": {
+    "message": "单词",
+    "description": "2-nd part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "showVocab": {
+    "message": "显示词汇"
+  },
+  "saveVocab": {
+    "message": "导出词汇"
+  },
+  "loadVocab": {
+    "message": "导入词汇"
+  },
+  "tipInfo": {
+    "message": "若要添加新的表达方式到您的词汇，您可以使用鼠标悬停菜单或浏览器右键菜单（选择文本+右键点击）或此输入字段："
+  },
+  "addErrorDupp": {
+    "message": "已经添加。"
+  },
+  "addErrorBad": {
+    "message": "无法添加。"
+  },
+  "addSuccess": {
+    "message": "已添加。"
+  },
+  "saveVisuals": {
+    "message": "保存"
+  },
+  "enableWordsLabel": {
+    "message": "启用单词突出显示"
+  },
+  "enableIdiomsLabel": {
+    "message": "启用表达方式突出显示"
+  },
+  "useQuotes": {
+    "message": "使用引号（而不是突出显示）"
+  },
+  "useText": {
+    "message": "使用文本突出显示"
+  },
+  "useBackground": {
+    "message": "使用背景突出显示"
+  },
+  "useBold": {
+    "message": "使用粗体"
+  },
+  "enabledDescription": {
+    "message": "在所有网站突出显示，除了“跳过列表”中的网站。"
+  },
+  "disabledDescription": {
+    "message": "仅在“收藏列表”中的网站突出显示。"
+  },
+  "addVerb": {
+    "message": "添加",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "toVerb": {
+    "message": "至",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "addTranslateDbg": {
+    "message": "添加 [example.org] 至 [收藏列表]"
+  },
+  "addFavoritesLabel": {
+    "message": "收藏列表"
+  },
+  "addSkippedLabel": {
+    "message": "跳过列表"
+  },
+  "emptyListError": {
+    "message": "该列表是空的;）"
+  },
+  "adjustPopupHlHeader": {
+    "message": "调整突出显示的表达方法的弹出菜单"
+  },
+  "rbNever": {
+    "message": "不显示弹出菜单"
+  },
+  "rbKey": {
+    "message": "在鼠标悬停和[Ctrl]键时显示弹出菜单"
+  },
+  "rbAlways": {
+    "message": "在鼠标悬停时显示弹出菜单"
+  },
+  "adjustPopupOwHeader": {
+    "message": "调整不突出显示的单词的弹出菜单"
+  },
+  "adjustOnlineDicts": {
+    "message": "调整悬停和右键菜单的在线词典"
+  },
+  "dictNameHeader": {
+    "message": "词典名称："
+  },
+  "dictUrlHeader": {
+    "message": "词典查询网址："
+  },
+  "testBtn": {
+    "message": "测试"
+  },
+  "restoreDefaults": {
+    "message": "恢复默认值"
+  },
+  "adjustColorsHeader": {
+    "message": "调整突出显示颜色"
+  },
+  "importInfo": {
+    "message": "新的单词将被添加至您的当前词汇。"
+  },
+  "selectFile": {
+    "message": "选择文件..."
+  },
+  "switchModeLabel": {
+    "message": "切换模式"
+  }
+}
