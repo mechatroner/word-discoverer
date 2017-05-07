@@ -1,7 +1,7 @@
 {
     "appName": {
         "message": "Words Discoverer: Expand your vocabulary",
-        "description": "The title of the application, displayed in the web store."
+        "description": "The title of the application, displayed in the web store. Note to the translator: Do not translate first two words 'Words Discoverer'"
     },
     "appDesc": {
         "message": "Highlights rare English dictionary words and idioms on web pages. Facilitates English language learning and expands your vocabulary.",
