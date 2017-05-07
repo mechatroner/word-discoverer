@@ -11,6 +11,18 @@ var hover_popup_types = ['never', 'key', 'always'];
 var target_types = ['hl', 'ow']
 
 
+function httpPostAsync(theUrl, data, callback) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("POST", theUrl, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(data);
+}
+
+
 function process_export() {
     chrome.storage.local.get(['wd_user_vocabulary'], function(result) {
         var user_vocabulary = result.wd_user_vocabulary;
@@ -28,6 +40,32 @@ function process_export() {
 
 function process_import() {
     chrome.tabs.create({'url': chrome.extension.getURL('import.html')}, function(tab) { });
+}
+
+function log_resp(server_text) {
+    console.log("server_text:" + server_text); //FOR_DEBUG
+}
+
+function get_keys(dict_obj) {
+    var keys = []
+    for (var key in dict_obj) {
+        if (dict_obj.hasOwnProperty(key)) {
+            keys.push(key);
+        }
+    }
+    return keys;
+}
+
+function process_sync() {
+    //FIXME/TODO show "sync" micro icon overlaping WD browser icon
+    chrome.storage.local.get(['wd_user_vocabulary'], function(result) {
+        var user_vocabulary = result.wd_user_vocabulary;
+        var user_words = get_keys(user_vocabulary);
+        var packed_vocabulary = JSON.stringify({"eng_vocabulary": user_words});
+        api_url = "http://" + "localhost:8081" + "/sync";
+        //api_url = "http://" + "example.com" + "/sync";
+        httpPostAsync(api_url, packed_vocabulary, log_resp);
+    });
 }
 
 function highlight_example_text(hl_params, text_id, lq_id, rq_id) {
@@ -272,6 +310,7 @@ function process_display() {
 
             document.getElementById("saveVocab").addEventListener("click", process_export);
             document.getElementById("loadVocab").addEventListener("click", process_import);
+            document.getElementById("syncVocab").addEventListener("click", process_sync);
 
             document.getElementById("addDict").addEventListener("click", process_add_dict);
             document.getElementById("testNewDict").addEventListener("click", process_test_new_dict);
