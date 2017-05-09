@@ -1,6 +1,8 @@
 var wd_hl_settings = null;
 var wd_hover_settings = null;
 var wd_online_dicts = null;
+var wd_sync_point = null;
+var wd_sync_credentials = null;
 
 var wc_rb_ids = ['wc1', 'wc2', 'wc3', 'wc4', 'wc5'];
 var ic_rb_ids = ['ic1', 'ic2', 'ic3', 'ic4', 'ic5'];
@@ -62,10 +64,44 @@ function process_sync() {
         var user_vocabulary = result.wd_user_vocabulary;
         var user_words = get_keys(user_vocabulary);
         var packed_vocabulary = JSON.stringify({"eng_vocabulary": user_words});
-        api_url = "http://" + "localhost:8081" + "/sync";
+        api_url = wd_sync_point + "/sync";
         //api_url = "http://" + "example.com" + "/sync";
         httpPostAsync(api_url, packed_vocabulary, log_resp);
     });
+}
+
+function process_login_response(responseText) {
+    login_info = JSON.parse(responseText);
+    errorField = document.getElementById('signinError');
+    if (login_info && login_info.username && login_info.email && login_info.key) {
+        wd_sync_credentials = login_info;
+        chrome.storage.local.set({"wd_sync_credentials": wd_sync_credentials});
+        errorField.textContent = login_info.username; //FIXME just a temporal display solution
+    } else {
+        error_text = "unknown error";
+        if (login_info && login_info.error) {
+            error_text = login_info.error;
+        }
+        wd_sync_credentials = null;
+        chrome.storage.local.set({"wd_sync_credentials": wd_sync_credentials});
+        errorField.textContent = error_text;
+    }
+}
+
+function process_login() {
+    //FIXME/TODO show "sync" micro icon overlaping WD browser icon
+    var user_email = document.getElementById('setUserEmail').value;
+    var user_password = document.getElementById('setUserPassword').value;
+    var error_field = document.getElementById('signinError');
+    user_email = user_email.trim();
+    user_password = user_password.trim();
+    if (!user_email || !user_password) {
+        error_field.textContent = "Error: email or password is empty";
+        return;
+    }
+    post_data = JSON.stringify({"email": user_email, "password": user_password});
+    api_url = wd_sync_point + "/login";
+    httpPostAsync(api_url, post_data, process_login_response)
 }
 
 function highlight_example_text(hl_params, text_id, lq_id, rq_id) {
@@ -192,6 +228,10 @@ function show_internal_state() {
     document.getElementById("wordsColor").checked = word_hl_params.useColor;
     document.getElementById("idiomsColor").checked = idiom_hl_params.useColor;
 
+    if (wd_sync_credentials && wd_sync_credentials.username) {
+        document.getElementById("signinError").textContent = wd_sync_credentials.username;
+    }
+
 
     document.getElementById("wcRadioBlock").style.display = word_hl_params.useColor ? "block" : "none";
     show_rb_states(wc_rb_ids, word_hl_params.color);
@@ -284,11 +324,13 @@ function add_hover_rb_listeners() {
 
 function process_display() {
     window.onload=function() {
-        chrome.storage.local.get(["wd_hl_settings", "wd_hover_settings", "wd_online_dicts"], function(result) {
+        chrome.storage.local.get(["wd_hl_settings", "wd_hover_settings", "wd_online_dicts", "wd_sync_point", "wd_sync_credentials"], function(result) {
             assign_back_labels();
             wd_hl_settings = result.wd_hl_settings;
             wd_hover_settings = result.wd_hover_settings;
             wd_online_dicts = result.wd_online_dicts;
+            wd_sync_point = result.wd_sync_point;
+            wd_sync_credentials = result.wd_sync_credentials;
 
             //TODO fix this monstrosity using this wrapper-function hack: 
             //http://stackoverflow.com/questions/7053965/when-using-callbacks-inside-a-loop-in-javascript-is-there-any-way-to-save-a-var
@@ -311,6 +353,7 @@ function process_display() {
             document.getElementById("saveVocab").addEventListener("click", process_export);
             document.getElementById("loadVocab").addEventListener("click", process_import);
             document.getElementById("syncVocab").addEventListener("click", process_sync);
+            document.getElementById("loginUser").addEventListener("click", process_login);
 
             document.getElementById("addDict").addEventListener("click", process_add_dict);
             document.getElementById("testNewDict").addEventListener("click", process_test_new_dict);

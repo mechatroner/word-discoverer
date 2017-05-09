@@ -128,6 +128,11 @@
         font-size: 14px;
         margin: 4px 20px;
     }
+    #signinError {
+        font-size: 16px;
+        margin: 4px 8px;
+        background-color: red;
+    }
     </style>
     <title>Advanced Settings</title>
     <script src="common_lib.js"></script>
@@ -143,7 +148,8 @@
   <br>
   <fieldset>
     <button class="longButton" id="syncVocab">sync vocabulary</button><br>
-    <input type="text" id="setUserEmail" class="dictAddName" placeholder="Enter email"><input type="text" id="setUserPassword" class="dictAddName" placeholder="Enter password"><button class="longButton" id="saveUser">Set User</button><br>
+    <input type="text" id="setUserEmail" class="dictAddName" placeholder="Enter email"><input type="text" id="setUserPassword" class="dictAddName" placeholder="Enter password"><button class="longButton" id="loginUser">Login</button><br>
+    <div><span id="signinError"></span><br></div>
   </fieldset>
   <br>
   <div id="adjustBubbleSection">

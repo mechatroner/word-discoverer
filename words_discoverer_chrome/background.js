@@ -86,7 +86,7 @@ function initialize_extension() {
         }
     });
 
-    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_hl_settings', 'wd_online_dicts', 'wd_hover_settings', 'wd_idioms', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_black_list', 'wd_white_list'], function(result) {
+    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_hl_settings', 'wd_online_dicts', 'wd_hover_settings', 'wd_idioms', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_black_list', 'wd_white_list', 'wd_sync_point'], function(result) {
         load_eng_dictionary();
         load_idioms();
         wd_hl_settings = result.wd_hl_settings;
@@ -100,6 +100,11 @@ function initialize_extension() {
         if (typeof wd_hover_settings == 'undefined') {
             wd_hover_settings = {hl_hover: 'always', ow_hover: 'never'};
             chrome.storage.local.set({"wd_hover_settings": wd_hover_settings});
+        }
+        var wd_sync_point = result.wd_sync_point;
+        if (typeof wd_sync_point == 'undefined') {
+            wd_sync_point = "http://localhost:8081";
+            chrome.storage.local.set({"wd_sync_point": wd_sync_point});
         }
         var wd_online_dicts = result.wd_online_dicts;
         if (typeof wd_online_dicts == 'undefined') {
