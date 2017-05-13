@@ -59,11 +59,16 @@ function get_keys(dict_obj) {
 }
 
 function process_sync() {
-    //FIXME/TODO show "sync" micro icon overlaping WD browser icon
-    chrome.storage.local.get(['wd_user_vocabulary'], function(result) {
+    chrome.storage.local.get(['wd_user_vocabulary', 'wd_sync_point', 'wd_sync_credentials'], function(result) {
+        var wd_sync_credentials = result.wd_sync_credentials;
+        var wd_sync_point = result.wd_sync_point;
+        if (!wd_sync_credentials || !wd_sync_point) {
+            console.log("no-credentials-error"); //FOR_DEBUG
+            return;
+        }
         var user_vocabulary = result.wd_user_vocabulary;
         var user_words = get_keys(user_vocabulary);
-        var packed_vocabulary = JSON.stringify({"eng_vocabulary": user_words});
+        var packed_vocabulary = JSON.stringify({"eng_vocabulary": user_words, "email": wd_sync_credentials.email, "key": wd_sync_credentials.key});
         api_url = wd_sync_point + "/sync";
         //api_url = "http://" + "example.com" + "/sync";
         httpPostAsync(api_url, packed_vocabulary, log_resp);
