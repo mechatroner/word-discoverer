@@ -1,0 +1,149 @@
+{
+  "appName": {
+    "message": "Words Discoverer: وسع مفرداتك",
+    "description": "The title of the application, displayed in the web store. Note to the translator: Do not translate first two words 'Words Discoverer'"
+  },
+  "appDesc": {
+    "message": "يظلل الكلمات والعبارات النادرة بالقاموس الموجودة على صفحات الويب ما ييسر تعلم اللغة الإنجليزية ويسوع المفردات.",
+    "description": "The description of the application, displayed in the web store."
+  },
+  "menuItem": {
+    "message": "إضافة إلى المفردات",
+    "description": "Text in context menu"
+  },
+  "rateTranslateDbg": {
+    "message": "عدم تظليل أكثر 100 كلمة شعبية في اللغة الإنجليزية"
+  },
+  "rateInfo1": {
+    "message": "لا تظليل",
+    "description": "1-st part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "rateInfo2": {
+    "message": "أكثر الكلمات الإنجليزية شعبية",
+    "description": "2-nd part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "adjust": {
+    "message": "المزيد من الإعدادات..."
+  },
+  "vocabSizeTranslateDbg": {
+    "message": "حجم مفرداتك: 100 كلمة."
+  },
+  "vocabSizeInfo1": {
+    "message": "حجم مفرداتك:",
+    "description": "1-st part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "vocabSizeInfo2": {
+    "message": "كلمات:",
+    "description": "2-nd part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "showVocab": {
+    "message": "عرض المفردات"
+  },
+  "saveVocab": {
+    "message": "تصدير المفردات"
+  },
+  "loadVocab": {
+    "message": "استيراد المفردات"
+  },
+  "tipInfo": {
+    "message": "لإضافة تعبير جديد إلى مفرداتك يمكنك استخدام قائمة المرور بالفأرة، أو قائمة سياق المتصفح (حدد النص + انقر بالزر الأيمن)، أو المدخل التالي:"
+  },
+  "addErrorDupp": {
+    "message": "تمت الإضافة بالفعل."
+  },
+  "addErrorBad": {
+    "message": "تعذرت الإضافة."
+  },
+  "addSuccess": {
+    "message": "تمت الإضافة."
+  },
+  "saveVisuals": {
+    "message": "حفظ"
+  },
+  "enableWordsLabel": {
+    "message": "تمكين تظليل الكلمات"
+  },
+  "enableIdiomsLabel": {
+    "message": "تمكين تظليل العبارات"
+  },
+  "useQuotes": {
+    "message": "استخدام علامات الاقتباس (بدلا من التظليل)"
+  },
+  "useText": {
+    "message": "استخدام تظليل النص"
+  },
+  "useBackground": {
+    "message": "استخدام تظليل الخلفية"
+  },
+  "useBold": {
+    "message": "استخدام الخط الغامق"
+  },
+  "enabledDescription": {
+    "message": "تظليل كافة المواقع باستثناء الموجودة في \"قائمة التجاهل\"."
+  },
+  "disabledDescription": {
+    "message": "تظليل مواقع \"قائمة المفضلة\" فقط."
+  },
+  "addVerb": {
+    "message": "إضافة",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "toVerb": {
+    "message": "إلى",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "addTranslateDbg": {
+    "message": "إضافة [example.org] إلى [قائمة المفضلة]"
+  },
+  "addFavoritesLabel": {
+    "message": "قائمة المفضلة"
+  },
+  "addSkippedLabel": {
+    "message": "قائمة التجاهل"
+  },
+  "emptyListError": {
+    "message": "هذه القائمة فارغة ;)"
+  },
+  "adjustPopupHlHeader": {
+    "message": "ضبط القائمة المنبثقة للتعبيرات المظللة"
+  },
+  "rbNever": {
+    "message": "لا تظهر القائمة المنبثقة"
+  },
+  "rbKey": {
+    "message": "عرض القائمة المنبثقة عند المرور بالفأرة والضغط بزر [Ctrl]"
+  },
+  "rbAlways": {
+    "message": "عرض القائمة المنبثقة عند المرور بالفأرة"
+  },
+  "adjustPopupOwHeader": {
+    "message": "ضبط القائمة المنبثقة للتعبيرات غير المظللة"
+  },
+  "adjustOnlineDicts": {
+    "message": "ضبط قواميس الإنترنت لقائمة المرور بالفأرة وقائمة السياق"
+  },
+  "dictNameHeader": {
+    "message": "اسم القاموس:"
+  },
+  "dictUrlHeader": {
+    "message": "رابط القاموس:"
+  },
+  "testBtn": {
+    "message": "اختبار"
+  },
+  "restoreDefaults": {
+    "message": "استعادة الضبط الافتراضي"
+  },
+  "adjustColorsHeader": {
+    "message": "ضبط لون التظليل"
+  },
+  "importInfo": {
+    "message": "ستتم إضافة كلمات جديدة إلى المفردات الحالية."
+  },
+  "selectFile": {
+    "message": "اختر الملف..."
+  },
+  "switchModeLabel": {
+    "message": "تغيير النمط"
+  }
+}

@@ -1,0 +1,14 @@
+Word Discoverer highlights rare English dictionary words, idioms and proverbs on web pages. 
+It helps non-native English learners to discover new expressions while they are browsing the Internet. 
+
+Words Discoverer is free forever, open source, and it has no ads.
+
+Some features of the extension:
+
+Words Discoverer is better than "Word-of-the-day" type of programs because new words are highlighted in context of the text that you read, which is a good motivating factor to finally check the definitions and learn these words (or idioms).
+
+Depending on your vocabulary size, you can adjust frequency threshold of highlighted words e.g. skip 25% most common English words, and highlight all the rest. 
+
+If you known definition of a highlighted word, you can add it to your personal vocabulary and it won't be detected any more. 
+
+Interesting fact: most adult native English speakers know 20000-35000 words, so it is totally possible to eventually add them all to your vocabulary file.
