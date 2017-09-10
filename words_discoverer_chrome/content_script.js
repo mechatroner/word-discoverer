@@ -182,6 +182,8 @@ function text_to_hl_nodes(text, dst) {
                     libegin += tokens[lwnum].length + 1;
                     lwnum += 1;
                 } else if (wf && wf != -1 && (!libegin || text[libegin - 1] === " ")) { //idiom found
+                    if (user_vocabulary && user_vocabulary.hasOwnProperty(wf))
+                        break;
                     match = {normalized: wf, kind: "idiom", begin: ibegin, end: ibegin + mwe_prefix.length};
                     ibegin += mwe_prefix.length + 1;
                     num_good += lwnum - wnum + 1;
