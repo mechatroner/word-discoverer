@@ -4,7 +4,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.9.0.4",
+  "version": "2.9.0.5",
   "icons": {
    "48": "result48.png"
   },
@@ -15,6 +15,7 @@
   "permissions": [
    "activeTab",
    "storage",
+   "unlimitedStorage",
    "contextMenus"
   ],
   "background": {
