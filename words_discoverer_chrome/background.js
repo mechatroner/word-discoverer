@@ -1,3 +1,6 @@
+var gapi_loaded = false;
+var gapi_inited = false;
+
 function do_load_dictionary(file_text) {
     var lines = file_text.split('\n');
     var rare_words = {};
@@ -51,6 +54,7 @@ function do_load_idioms(file_text) {
     local_storage.set({"wd_idioms": rare_words});
 }
 
+
 function load_idioms() {
     //FIXME code duplication
     file_path = chrome.extension.getURL("eng_idioms.txt");
@@ -64,8 +68,111 @@ function load_idioms() {
     xhr.send(null);
 }
 
-function initialize_extension() {
 
+function dbg_list_files() {
+    // this function is for debug purposes only
+    console.log("dbg listing files"); //FOR_DEBUG
+    gapi.client.drive.files.list({
+      'pageSize': 10,
+      'fields': "nextPageToken, files(id, name)"
+    }).then(function(response) {
+        console.log('Files:');
+        msg_text = 'Files:'
+        console.log("response:" + response); //FOR_DEBUG
+        console.log("response.result:" + response.result); //FOR_DEBUG
+        var files = response.result.files;
+        if (files && files.length > 0) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                console.log(file.name + ' (' + file.id + ')');
+                msg_text += file.name + ' (' + file.id + ')\n';
+            }
+        } else {
+            msg_text += 'No files found.';
+            console.log('No files found.');
+        }
+        chrome.runtime.sendMessage({sync_status: {message: msg_text}});
+    });
+}
+
+
+function load_script(url, callback_func) {
+  var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+        if(request.readyState !== 4)
+            return;
+        if(request.status !== 200)
+            return;
+        eval(request.responseText);
+        callback_func();
+    };
+    request.open('GET', url);
+    request.send();
+}
+
+
+function authorize_user(interactive_authorization) {
+    console.log("authorize_user started"); //FOR_DEBUG
+    // FIXME so apparently the problem is here. We fail to get the token for some reason (although the sign in menu is shown)
+    //chrome.identity.getAuthToken({interactive: interactive_authorization}, function(token) {
+    // FIXME use interactive_authorization parameter insted of "true"
+    chrome.identity.getAuthToken({interactive: true}, function(token) {
+        //FIXME check for token, if it is undefined then report an error
+        console.log("Got a token!"); //FOR_DEBUG
+        console.log("token:" + token); //FOR_DEBUG
+        // FIXME apparently token is a string so you can store it in local storage!
+        if (token === undefined) {
+            chrome.runtime.sendMessage({'sync_status': {'message': 'Failed to get oauth token'}});
+        } else {
+            gapi.client.setToken({access_token: token});
+            console.log("Token was set!"); //FOR_DEBUG
+            chrome.runtime.sendMessage({'sync_status': {'message': 'Oauth token initialized'}});
+            dbg_list_files();
+        }
+    });
+}
+
+
+function init_gapi(interactive_authorization) {
+    console.log("init_gapi started"); //FOR_DEBUG
+    api_urls = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"]
+    // FIXME handle gapi.client.init errors
+    // FIXME put the key in a special file
+    init_params = {apiKey: '', discoveryDocs: api_urls};
+    gapi.client.init(init_params).then(function() {
+        gapi_inited = true;
+        console.log('gapi inited!');
+        authorize_user(interactive_authorization);
+    }, function(reject_reason) { 
+        var error_msg = 'Client init request was rejected. reason: ' + reject_reason;
+        console.error(error_msg);
+        chrome.runtime.sendMessage({'sync_status': {'message': error_msg}});
+    });
+}
+
+
+function load_and_init_gapi(interactive_authorization) {
+    console.log("load_and_init_gapi"); //FOR_DEBUG
+    load_script('https://apis.google.com/js/api.js', function() {
+        gapi.load('client', function() { 
+            gapi_loaded = true;
+            init_gapi(interactive_authorization);
+        });
+    });
+}
+
+function ensure_authorization(interactive_authorization) {
+    console.log("gapi_loaded:" + gapi_loaded + ", gapi_inited:" + gapi_inited); //FOR_DEBUG
+    if (!gapi_loaded) {
+        load_and_init_gapi(interactive_authorization);
+    } else if (!gapi_inited) {
+        init_gapi(interactive_authorization);
+    } else {
+        authorize_user(interactive_authorization);
+    }
+}
+
+function initialize_extension() {
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (request.wdm_request == "hostname") {
             tab_url = sender.tab.url;
@@ -83,6 +190,9 @@ function initialize_extension() {
         } else if (request.wdm_new_tab_url) {
             var fullUrl = request.wdm_new_tab_url;
             chrome.tabs.create({'url': fullUrl}, function(tab) { });
+        } else if (request.wdm_request == "gd_sync") {
+            //FIXME you also need to setup auth token in non-interactive mode, and if it is failed change the extension icon
+            ensure_authorization(true);
         }
     });
 
@@ -107,6 +217,8 @@ function initialize_extension() {
             chrome.storage.local.set({"wd_online_dicts": wd_online_dicts});
         }
         initContextMenus(wd_online_dicts);
+
+        // FIXME if sync is enabled - initialize the gapi
 
         show_percents = result.wd_show_percents;
         if (typeof show_percents === 'undefined') {
