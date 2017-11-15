@@ -10,6 +10,48 @@ var ib_rb_ids = ['ib1', 'ib2', 'ib3', 'ib4', 'ib5'];
 var hover_popup_types = ['never', 'key', 'always'];
 var target_types = ['hl', 'ow']
 
+const stop_sync_label = 'Stop Sync';
+
+
+function display_sync_button() {
+    chrome.storage.local.get(["wd_gd_sync_enabled", "wd_gd_sync_error"], function(result) {
+        wd_gd_sync_error = result.wd_gd_sync_error;
+        wd_gd_sync_enabled = result.wd_gd_sync_enabled;
+        syncButton = document.getElementById("gdSyncButton");
+        if (!wd_gd_sync_enabled || (wd_gd_sync_enabled && wd_gd_sync_error)) {
+            syncButton.textContent = 'Synchronize';
+            syncButton.setAttribute('class', 'longButton');
+        } else {
+            syncButton.textContent = stop_sync_label;
+            syncButton.setAttribute('class', 'longRedButton');
+        }
+    });
+}
+
+
+function switch_gd_sync() {
+    var stop_sync = document.getElementById("gdSyncButton").textContent === stop_sync_label;
+    if (stop_sync) {
+        chrome.storage.local.set({"wd_gd_sync_enabled": false}, function() {
+            display_sync_button();
+        });
+    } else {
+        chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+            if (request.sync_status) {
+                //FIXME use red font for error messages
+                //sync_status = request.sync_status['status'];
+                sync_message = request.sync_status['message'];
+                document.getElementById("syncStatusFeedback").textContent = sync_message;
+                display_sync_button();
+            }
+        });
+        document.getElementById("syncStatusFeedback").textContent = "Synchronization started...";
+        chrome.storage.local.set({"wd_gd_sync_enabled": true}, function() {
+            chrome.runtime.sendMessage({wdm_request: "gd_sync"});
+        });
+    }
+}
+
 
 function process_export() {
     chrome.storage.local.get(['wd_user_vocabulary'], function(result) {
@@ -270,6 +312,8 @@ function process_display() {
 
             add_hover_rb_listeners();
 
+            document.getElementById("gdSyncButton").addEventListener("click", switch_gd_sync);
+
             document.getElementById("saveVocab").addEventListener("click", process_export);
             document.getElementById("loadVocab").addEventListener("click", process_import);
 
@@ -287,6 +331,7 @@ function process_display() {
                 show_user_dicts();
             });
 
+            display_sync_button();
             show_internal_state();
         });
 

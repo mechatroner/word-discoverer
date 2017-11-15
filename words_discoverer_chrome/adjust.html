@@ -90,6 +90,22 @@
     .longButton:hover {
         background-color: #3e8e41;
     }
+    .longRedButton {
+        width: 150px;
+        background-color: #ce0000; /* Red */
+        border: 1px solid white;
+        color: white;
+        padding: 4px 6px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 8px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .longRedButton:hover {
+        background-color: #930000;
+    }
     .shortButton {
         width: 50px;
         background-color: #4CAF50; /* Green */
@@ -138,7 +154,22 @@
   <body>
   <fieldset>
     <button class="longButton" id="saveVocab">__MSG_saveVocab__</button>
-    <button class="longButton" id="loadVocab">__MSG_loadVocab__</button><br>
+    <button class="longButton" id="loadVocab">__MSG_loadVocab__</button>
+    <br>
+    <br>
+  </fieldset>
+  <br>
+  <fieldset>
+    <span class="smallHeader">Experimental backup and sync with Google Drive</span>
+    <br>
+    <br>
+    <button class="longButton" id="gdSyncButton">Synchronize</button>
+    <br>
+    <br>
+    <div class="radioBlock">
+      <span id="syncStatusFeedback"></span>
+    </div>
+    <br>
   </fieldset>
   <br>
   <div id="adjustBubbleSection">

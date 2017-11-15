@@ -88,7 +88,7 @@ function dbg_list_files() {
             msg_text += 'No files found.';
             console.log('No files found.');
         }
-        chrome.runtime.sendMessage({sync_status: {message: msg_text}});
+        //chrome.runtime.sendMessage({sync_status: {message: msg_text}});
     });
 }
 
@@ -114,10 +114,11 @@ function authorize_user(interactive_authorization) {
             chrome.runtime.sendMessage({'sync_status': {'message': 'Failed to get oauth token'}});
         } else {
             gapi.client.setToken({access_token: token});
-            chrome.runtime.sendMessage({'sync_status': {'message': 'Oauth token initialized'}});
             dbg_list_files();
             //FIXME set on sync sucess, this was only initialization success
-            chrome.storage.local.set({"wd_gd_sync_active": true});
+            chrome.storage.local.set({"wd_gd_sync_error": false}, function() {
+                chrome.runtime.sendMessage({'sync_status': {'message': 'Success!'}});
+            });
         }
     });
 }
@@ -127,7 +128,7 @@ function init_gapi(interactive_authorization) {
     console.log("init_gapi started");
     api_urls = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
     // FIXME create a client-tied key or put the key in a special file 
-    init_params = {apiKey: '', discoveryDocs: api_urls};
+    init_params = {apiKey: api_key, discoveryDocs: api_urls};
     gapi.client.init(init_params).then(function() {
         gapi_inited = true;
         console.log('gapi initialization complete');
@@ -151,7 +152,7 @@ function load_and_init_gapi(interactive_authorization) {
 }
 
 function start_sync_sequence(interactive_authorization) {
-    chrome.storage.local.set({"wd_gd_sync_active": false}, function() {
+    chrome.storage.local.set({"wd_gd_sync_error": true}, function() {
         if (!gapi_loaded) {
             load_and_init_gapi(interactive_authorization);
         } else if (!gapi_inited) {
@@ -171,14 +172,18 @@ function initialize_extension() {
             sendResponse({wdm_hostname: domain});
         } else if (request.wdm_verdict) {
             if (request.wdm_verdict == "highlight") {
-                chrome.storage.local.get(['wd_gd_sync_enabled', 'wd_gd_sync_active'], function(result) {
-                    if (result.wd_gd_sync_enabled && result.wd_gd_sync_active) {
-                        chrome.browserAction.setIcon({path: "result_sync48.png", tabId: sender.tab.id});
-                    } else if (result.wd_gd_sync_enabled && !result.wd_gd_sync_active) {
-                        chrome.browserAction.setIcon({path: "result_nosync48.png", tabId: sender.tab.id});
-                    } else {
-                        chrome.browserAction.setIcon({path: "result48.png", tabId: sender.tab.id});
-                    }
+                chrome.storage.local.get(['wd_gd_sync_enabled', 'wd_gd_sync_error'], function(result) {
+                    chrome.browserAction.setIcon({path: "result48.png", tabId: sender.tab.id}, function() {
+                        if (result.wd_gd_sync_enabled) {
+                            if (result.wd_gd_sync_error) {
+                                chrome.browserAction.setBadgeText({text: 'err', tabId: sender.tab.id});
+                                chrome.browserAction.setBadgeBackgroundColor({color: [137, 0, 0, 255], tabId: sender.tab.id});
+                            } else {
+                                chrome.browserAction.setBadgeText({text: 'sync', tabId: sender.tab.id});
+                                chrome.browserAction.setBadgeBackgroundColor({color: [25, 137, 0, 255], tabId: sender.tab.id});
+                            }
+                        }
+                    });
                 });
             } else if (request.wdm_verdict == "keyboard") {
                 chrome.browserAction.setIcon({path: "no_dynamic.png", tabId: sender.tab.id});
@@ -193,7 +198,7 @@ function initialize_extension() {
         }
     });
 
-    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_hl_settings', 'wd_online_dicts', 'wd_hover_settings', 'wd_idioms', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_black_list', 'wd_white_list', 'wd_gd_sync_enabled', 'wd_gd_sync_active'], function(result) {
+    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_hl_settings', 'wd_online_dicts', 'wd_hover_settings', 'wd_idioms', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_black_list', 'wd_white_list', 'wd_gd_sync_enabled'], function(result) {
         load_eng_dictionary();
         load_idioms();
         wd_hl_settings = result.wd_hl_settings;
