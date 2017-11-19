@@ -98,7 +98,7 @@
 
 
       function create_new_dir(dir_name, fail_cb, success_cb) {
-          var body= {"name": dir_name, "mimeType": "application/vnd.google-apps.folder"};
+          var body= {"name": dir_name, "mimeType": "application/vnd.google-apps.folder", "appProperties": {"wdfile": '1'}};
           var req_params = {'path': 'https://www.googleapis.com/drive/v3/files/', 'method': 'POST', 'body': body};
           gapi.client.request(req_params).then(function(jsonResp, rawResp) {
               console.log(jsonResp);
@@ -112,8 +112,14 @@
 
 
       function create_new_file(fname, parent_dir_id, success_cb, fail_cb) {
-          var body= {"name": fname, "mimeType": "application/vnd.google-apps.file", "parents": [parent_dir_id]};
-          var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media', 'method': 'POST', 'body': body};
+          //var params = {"name": fname, "mimeType": "text/plain", "parents": [parent_dir_id], "uploadType": "media"};
+          //var params = {"name": fname, "mimeType": "application/vnd.google-apps.file", "parents": [parent_dir_id], "uploadType": "media"};
+          //var body = {"name": fname, "parents": [parent_dir_id], "mimeType": "text/plain"};
+          var body = {"name": fname, "parents": [parent_dir_id], "appProperties": {"wdfile": '1'}, "mimeType": "text/plain"};
+          //var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media', 'method': 'POST', 'body': body};
+          //var params = 'params': {"uploadType": "media"};
+          //var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files', 'method': 'POST', 'body': body, "params": params};
+          var req_params = {'path': 'https://www.googleapis.com/drive/v3/files', 'method': 'POST', 'body': body};
           gapi.client.request(req_params).then(function(jsonResp, rawResp) {
               console.log(jsonResp);
               if (jsonResp.status == 200) {
@@ -158,9 +164,10 @@
 
 
       function do_sync_vocabulary(dir_id, vocab, success_cb, fail_cb) {
-          var file_query = "name = '" + vocab.name + ".txt' and trashed = false and '" + dir_id + "' in parents";
+          var vocab_file_name = vocab.name + ".txt";
+          var file_query = "name = '" + vocab_file_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' } and '" + dir_id + "' in parents";
           create_new_file_wrap = function() {
-              create_new_file(vocab.name, dir_id, success_cb, fail_cb);
+              create_new_file(vocab_file_name, dir_id, success_cb, fail_cb);
           }
           find_gdrive_id(file_query, fail_cb, success_cb, create_new_file_wrap);
       }
@@ -168,7 +175,7 @@
 
       function sync_vocabulary(vocab, success_cb, fail_cb) {
           var dir_name = "Words Discoverer Sync";
-          var dir_query = "name = '" + dir_name + "' and trashed = false";
+          var dir_query = "name = '" + dir_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' }";
           do_sync_vocabulary_wrap = function(dir_id) {
               do_sync_vocabulary(dir_id, vocab, success_cb, fail_cb);
           }
