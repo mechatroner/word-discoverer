@@ -65,7 +65,7 @@
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          ensure_wd_dir(simple_success, simple_failure);
+          test_sync();
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
@@ -113,7 +113,7 @@
 
       function create_new_file(fname, parent_dir_id, success_cb, fail_cb) {
           var body= {"name": fname, "mimeType": "application/vnd.google-apps.file", "parents": [parent_dir_id]};
-          var req_params = {'path': 'https://www.googleapis.com/drive/v3/files?uploadType=media', 'method': 'POST', 'body': body};
+          var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media', 'method': 'POST', 'body': body};
           gapi.client.request(req_params).then(function(jsonResp, rawResp) {
               console.log(jsonResp);
               if (jsonResp.status == 200) {
@@ -134,12 +134,12 @@
                   fail_cb('Bad status: ' + jsonResp.status + ' for query: ' + query);
                   return;
               }
-              if (list_response.result.files.length > 1) {
+              if (jsonResp.result.files.length > 1) {
                   fail_cb('More than one object found for query: ' + query);
                   return;
-              } else if (list_response.result.files.length == 1) {
-                  var drive_id = list_response.result.files[0].id
-                  success_cb(drive_id);
+              } else if (jsonResp.result.files.length == 1) {
+                  var drive_id = jsonResp.result.files[0].id
+                  found_cb(drive_id);
                   return;
               }
               not_found_cb();
@@ -147,22 +147,22 @@
       }
     
 
-      function ensure_wd_dir(success_cb, fail_cb) {
-          var dir_name = "Words Discoverer Sync";
-          var query = "name = '" + dir_name + "' and trashed = false";
-          create_new_dir_wrap = function() {
-              create_new_dir(dir_name, fail_cb, success_cb);
-          }
-          find_gdrive_id(query, fail_cb, success_cb, create_new_dir_wrap); 
-      }
+      //function ensure_wd_dir(success_cb, fail_cb) {
+      //    var dir_name = "Words Discoverer Sync";
+      //    var dir_query = "name = '" + dir_name + "' and trashed = false";
+      //    create_new_dir_wrap = function() {
+      //        create_new_dir(dir_name, fail_cb, success_cb);
+      //    }
+      //    find_gdrive_id(dir_query, fail_cb, success_cb, create_new_dir_wrap); 
+      //}
 
 
       function do_sync_vocabulary(dir_id, vocab, success_cb, fail_cb) {
-          var query = "name = '" + vocab.name + ".txt' and trashed = false and '" + dir_id + "' in parents";
+          var file_query = "name = '" + vocab.name + ".txt' and trashed = false and '" + dir_id + "' in parents";
           create_new_file_wrap = function() {
               create_new_file(vocab.name, dir_id, success_cb, fail_cb);
           }
-          find_gdrive_id(query, fail_cb, success_cb, create_new_file_wrap);
+          find_gdrive_id(file_query, fail_cb, success_cb, create_new_file_wrap);
       }
 
 
