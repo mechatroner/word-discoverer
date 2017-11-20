@@ -97,6 +97,43 @@
       }
 
 
+      function list_to_set(src_list) {
+          result = {};
+          for (var i = 0; i < src_list.length; ++i) {
+              result[src_list[i]] = 1;
+          }
+          return result;
+      }
+
+
+      function substract_from_set(lhs_set, rhs_set) {
+          for (var key in rhs_set) {
+              if (rhs_set.hasOwnProperty(key) && lhs_set.hasOwnProperty(key)) {
+                  delete lhs_set[key];
+              }
+          }
+      }
+
+      function add_to_set(lhs_set, rhs_set) {
+          for (var key in rhs_set) {
+              if (rhs_set.hasOwnProperty(key)) {
+                  lhs_set[key] = 1;
+              }
+          }
+      }
+
+      
+      function serialize_vocabulary(entries) {
+          keys = [];
+          for (var key in entries) {
+              if (entries.hasOwnProperty(key)) {
+                  keys.push(key);
+              }
+          }
+          return keys.join('\r\n');
+      }
+
+
       function create_new_dir(dir_name, fail_cb, success_cb) {
           var body= {"name": dir_name, "mimeType": "application/vnd.google-apps.folder", "appProperties": {"wdfile": '1'}};
           var req_params = {'path': 'https://www.googleapis.com/drive/v3/files/', 'method': 'POST', 'body': body};
@@ -131,6 +168,34 @@
       }
 
 
+      function upload_file_content(file_id, file_content, fail_cb, success_cb) {
+          var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files/' + file_id, 'method': 'PATCH', 'body': file_content};
+          gapi.client.request(req_params).then(function(jsonResp, rawResp) {
+              console.log(jsonResp);
+              if (jsonResp.status == 200) {
+                  success_cb();
+              } else {
+                  fail_cb('Bad upload content status: ' + jsonResp.status);
+              }
+          });
+      }
+
+
+      function fetch_file_content(file_id, success_cb) {
+          // https://developers.google.com/drive/v3/web/manage-downloads
+          var full_query_url = 'https://www.googleapis.com/drive/v3/files/' + file_id + '?alt=media';
+          gapi.client.request({'path': full_query_url, 'method': 'GET'}).then(function(jsonResp, rawResp) {
+              console.log(jsonResp);
+              if (jsonResp.status != 200) {
+                  fail_cb('Bad status: ' + jsonResp.status + ' for getting content of file: ' + file_id);
+                  return;
+              }
+              var file_content = jsonResp.body; // let's pretend that we have content in this variable...
+              success_cb(file_id, file_content);
+          });
+      }
+
+
       function find_gdrive_id(query, fail_cb, found_cb, not_found_cb) {
           //generic function to find single object id
           var full_query_url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(query);
@@ -153,23 +218,44 @@
       }
     
 
-      //function ensure_wd_dir(success_cb, fail_cb) {
-      //    var dir_name = "Words Discoverer Sync";
-      //    var dir_query = "name = '" + dir_name + "' and trashed = false";
-      //    create_new_dir_wrap = function() {
-      //        create_new_dir(dir_name, fail_cb, success_cb);
-      //    }
-      //    find_gdrive_id(dir_query, fail_cb, success_cb, create_new_dir_wrap); 
-      //}
-
-
       function do_sync_vocabulary(dir_id, vocab, success_cb, fail_cb) {
           var vocab_file_name = vocab.name + ".txt";
           var file_query = "name = '" + vocab_file_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' } and '" + dir_id + "' in parents";
-          create_new_file_wrap = function() {
-              create_new_file(vocab_file_name, dir_id, success_cb, fail_cb);
+
+          //download_and_set_vocab = function(file_id) {
+          //    fetch_file_content(file_id, function() {
+          //        var entries = list_to_set(file_content.split('\r\n'));
+          //        for (var i = 0; i < entries.length; ++i) {
+          //           console.log('entry to set: ' + entries[i]);
+          //        }
+          //        success_cb(file_id);
+          //    });
+          //}
+
+          merge_and_upload = function(file_id, file_content) {
+              var entries = list_to_set(file_content.split('\r\n'));
+              substract_from_set(entries, vocab.deleted);
+              add_to_set(entries, vocab.added);
+              merged_content = serialize_vocabulary(entries);
+
+              set_merged_vocab = function() {
+                  for (var i = 0; i < entries.length; ++i) {
+                     console.log('entry to set: ' + entries[i]);
+                  }
+                  success_cb('fake-file-id');
+              }
+              upload_file_content(file_id, merged_content, fail_cb, set_merged_vocab);
           }
-          find_gdrive_id(file_query, fail_cb, success_cb, create_new_file_wrap);
+
+          merge_to_cloud = function(file_id) {
+              fetch_file_content(file_id, merge_and_upload);
+          }
+
+          create_new_file_wrap = function() {
+              create_new_file(vocab_file_name, dir_id, merge_to_cloud, fail_cb);
+          }
+
+          find_gdrive_id(file_query, fail_cb, merge_to_cloud, create_new_file_wrap);
       }
 
 
