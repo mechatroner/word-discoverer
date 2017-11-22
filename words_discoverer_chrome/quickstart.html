@@ -133,6 +133,21 @@
           return keys.join('\r\n');
       }
 
+      function parse_vocabulary(text) {
+          var lines = text.split('\n');
+          var found = [];
+          for (var i = 0; i < lines.length; ++i) {
+              var word = lines[i];
+              if (i + 1 === lines.length && word.length <= 1)
+                  break;
+              if (word.slice(-1) === '\r') {
+                  word = word.slice(0, -1);
+              }
+              found.push(word);
+          }
+          return found;
+      }
+
 
       function create_new_dir(dir_name, fail_cb, success_cb) {
           var body= {"name": dir_name, "mimeType": "application/vnd.google-apps.folder", "appProperties": {"wdfile": '1'}};
@@ -218,71 +233,91 @@
       }
     
 
-      function do_sync_vocabulary(dir_id, vocab, success_cb, fail_cb) {
-          var vocab_file_name = vocab.name + ".txt";
-          var file_query = "name = '" + vocab_file_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' } and '" + dir_id + "' in parents";
-
-          //download_and_set_vocab = function(file_id) {
-          //    fetch_file_content(file_id, function() {
-          //        var entries = list_to_set(file_content.split('\r\n'));
-          //        for (var i = 0; i < entries.length; ++i) {
-          //           console.log('entry to set: ' + entries[i]);
-          //        }
-          //        success_cb(file_id);
-          //    });
-          //}
-
-          merge_and_upload = function(file_id, file_content) {
-              var entries = list_to_set(file_content.split('\r\n'));
+      function sync_vocabulary(dir_id, vocab, success_cb, fail_cb) {
+          merge_and_upload_vocab = function(file_id, file_content) {
+              vocab_list = parse_vocabulary(file_content);
+              var entries = list_to_set(vocab_list);
               substract_from_set(entries, vocab.deleted);
               add_to_set(entries, vocab.added);
               merged_content = serialize_vocabulary(entries);
 
               set_merged_vocab = function() {
-                  for (var i = 0; i < entries.length; ++i) {
-                     console.log('entry to set: ' + entries[i]);
+                  for (var key in entries) {
+                     if (entries.hasOwnProperty(key)) {
+                         console.log('adding entry to set: ' + key);
+                     }
                   }
                   success_cb('fake-file-id');
               }
               upload_file_content(file_id, merged_content, fail_cb, set_merged_vocab);
           }
 
-          merge_to_cloud = function(file_id) {
-              fetch_file_content(file_id, merge_and_upload);
+          merge_vocab_to_cloud = function(file_id) {
+              fetch_file_content(file_id, merge_and_upload_vocab);
           }
 
+          var vocab_file_name = vocab.name + ".txt";
+          var file_query = "name = '" + vocab_file_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' } and '" + dir_id + "' in parents";
           create_new_file_wrap = function() {
-              create_new_file(vocab_file_name, dir_id, merge_to_cloud, fail_cb);
+              create_new_file(vocab_file_name, dir_id, merge_vocab_to_cloud, fail_cb);
+              var new_added = {};
+              add_to_set(new_added, vocab.all);
+              add_to_set(new_added, vocab.added);
+              vocab.added = new_added;
           }
-
-          find_gdrive_id(file_query, fail_cb, merge_to_cloud, create_new_file_wrap);
+          find_gdrive_id(file_query, fail_cb, merge_vocab_to_cloud, create_new_file_wrap);
       }
 
 
-      function sync_vocabulary(vocab, success_cb, fail_cb) {
+      function backup_vocabulary(dir_id, vocab, success_cb, fail_cb) {
+          merge_and_upload_backup = function(file_id, file_content) {
+              vocab_list = parse_vocabulary(file_content);
+              var entries = list_to_set(vocab_list);
+              add_to_set(entries, vocab.all);
+              add_to_set(entries, vocab.deleted);
+              add_to_set(entries, vocab.added);
+              merged_content = serialize_vocabulary(entries);
+              upload_file_content(file_id, merged_content, fail_cb, success_cb);
+          }
+          merge_backup_to_cloud = function(file_id) {
+              fetch_file_content(file_id, merge_and_upload_backup);
+          }
+
+          var backup_file_name = "." + vocab.name + ".backup";
+          var backup_query = "name = '" + backup_file_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' } and '" + dir_id + "' in parents";
+          create_new_backup_file_wrap = function() {
+              create_new_file(backup_file_name, dir_id, merge_backup_to_cloud, fail_cb);
+          }
+          find_gdrive_id(backup_query, fail_cb, merge_backup_to_cloud, create_new_backup_file_wrap);
+      }
+
+
+      function perform_full_sync(vocab, success_cb, fail_cb) {
           var dir_name = "Words Discoverer Sync";
           var dir_query = "name = '" + dir_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' }";
-          do_sync_vocabulary_wrap = function(dir_id) {
-              do_sync_vocabulary(dir_id, vocab, success_cb, fail_cb);
+          backup_and_sync_vocabulary = function(dir_id) {
+              sync_vocabulary_wrap = function() {
+                  sync_vocabulary(dir_id, vocab, success_cb, fail_cb);
+              }
+              backup_vocabulary(dir_id, vocab, sync_vocabulary_wrap, fail_cb);
           }
           create_new_dir_wrap = function() {
-              create_new_dir(dir_name, fail_cb, do_sync_vocabulary_wrap);
+              create_new_dir(dir_name, fail_cb, backup_and_sync_vocabulary);
           }
-          find_gdrive_id(dir_query, fail_cb, do_sync_vocabulary_wrap, create_new_dir_wrap); 
+          find_gdrive_id(dir_query, fail_cb, backup_and_sync_vocabulary, create_new_dir_wrap); 
       }
 
       
       function test_sync() {
-          var words = {"hello": 1, "world": 1, "industry": 1};
-          var added = {};
-          var deleted = {};
-          //var vocabularies = [{"name": "main", "all": words, "added": added, "deleted": deleted, "first_sync": true}];
+          var words = {"world": 1, "industry": 1, "leather": 1, "member": 1};
+          var added = {"destiny": 1};
+          //var deleted = {};
+          var deleted = {"hello": 1, "stack": 1};
 
           // just use all words for added instead of first_sync flag
-          // so, you just need "name", "added" and "deleted" params for sync.
           // on first sync deleted is empty and added is the whole vocabulary
-          var vocabulary = {"name": "main", "added": words, "deleted": {}};
-          sync_vocabulary(vocabulary, simple_success, simple_failure);
+          var vocab = {"name": "main", "all": words, "added": added, "deleted": deleted};
+          perform_full_sync(vocab, simple_success, simple_failure);
       }
 
 
