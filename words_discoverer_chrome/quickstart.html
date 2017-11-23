@@ -14,7 +14,22 @@
     <pre id="content"></pre>
 
     <script type="text/javascript">
+
+      function transform_key(src_key) {
+          var dc = window.atob(src_key);
+          dc = dc.substring(3);
+          dc = dc.substring(0, dc.length - 6);
+          return dc;
+      }
+
+      function generate_key() {
+          var protokey = 'b2ZCQUl6YVN5Q2hqM2xvZkJPWnV2TUt2TGNCSlVaa0RDTUhZa25NWktBa25NWktB';
+          return transform_key(protokey);
+      }
+
       // Client ID and API key from the Developer Console
+      var CLIENT_ID = '1093363650045-0000ikfc85410alaenkrmmiuhfqr66k0.apps.googleusercontent.com';
+      var API_KEY = generate_key();
 
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
@@ -173,13 +188,7 @@
 
 
       function create_new_file(fname, parent_dir_id, success_cb, fail_cb) {
-          //var params = {"name": fname, "mimeType": "text/plain", "parents": [parent_dir_id], "uploadType": "media"};
-          //var params = {"name": fname, "mimeType": "application/vnd.google-apps.file", "parents": [parent_dir_id], "uploadType": "media"};
-          //var body = {"name": fname, "parents": [parent_dir_id], "mimeType": "text/plain"};
           var body = {"name": fname, "parents": [parent_dir_id], "appProperties": {"wdfile": '1'}, "mimeType": "text/plain"};
-          //var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media', 'method': 'POST', 'body': body};
-          //var params = 'params': {"uploadType": "media"};
-          //var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files', 'method': 'POST', 'body': body, "params": params};
           var req_params = {'path': 'https://www.googleapis.com/drive/v3/files', 'method': 'POST', 'body': body};
           gapi.client.request(req_params).then(function(jsonResp, rawResp) {
               console.log(jsonResp);
