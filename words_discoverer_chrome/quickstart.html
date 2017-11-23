@@ -43,7 +43,7 @@
         gapi.client.init({
           apiKey: API_KEY,
           clientId: CLIENT_ID,
-          discoveryDocs: DISCOVERY_DOCS,
+          //discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES
         }).then(function () {
           console.log("client inited!");
@@ -87,8 +87,17 @@
       }
 
 
-      function simple_success(drive_obj_id) {
+      function object_id_success(drive_obj_id) {
           console.log('Object exists! Object id: ' + drive_obj_id);
+      }
+
+    
+      function sync_success_cb(synced_vocab_entries) {
+          for (var key in synced_vocab_entries) {
+             if (synced_vocab_entries.hasOwnProperty(key)) {
+                 console.log('adding entry to set: ' + key);
+             }
+          }
       }
 
 
@@ -242,12 +251,7 @@
               merged_content = serialize_vocabulary(entries);
 
               set_merged_vocab = function() {
-                  for (var key in entries) {
-                     if (entries.hasOwnProperty(key)) {
-                         console.log('adding entry to set: ' + key);
-                     }
-                  }
-                  success_cb('fake-file-id');
+                  success_cb(entries);
               }
               upload_file_content(file_id, merged_content, fail_cb, set_merged_vocab);
           }
@@ -317,7 +321,7 @@
           // just use all words for added instead of first_sync flag
           // on first sync deleted is empty and added is the whole vocabulary
           var vocab = {"name": "main", "all": words, "added": added, "deleted": deleted};
-          perform_full_sync(vocab, simple_success, simple_failure);
+          perform_full_sync(vocab, sync_success_cb, simple_failure);
       }
 
 
