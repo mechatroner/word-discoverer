@@ -97,7 +97,7 @@
         color: white;
         padding: 4px 6px;
         text-decoration: none;
-        display: inline-block;
+        display: none;
         font-size: 14px;
         margin: 4px 8px;
         transition-duration: 0.4s;
@@ -137,6 +137,13 @@
     #idiomsBlock {
         margin: 4px 18px;
     }
+    #syncStatusFeedback {
+        display: none;
+        color: red;
+    }
+    #lastSyncDate {
+        display: none;
+    }
     .radioBlock {
         margin: 4px 18px;
     }
@@ -164,9 +171,12 @@
     <br>
     <br>
     <button class="longButton" id="gdSyncButton">Synchronize</button>
+    <button class="longRedButton" id="gdStopSyncButton">Stop Sync</button>
     <br>
     <br>
     <div class="radioBlock">
+      <span id="lastSyncDate"></span>
+      <br>
       <span id="syncStatusFeedback"></span>
     </div>
     <br>

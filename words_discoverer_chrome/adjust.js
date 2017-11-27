@@ -10,46 +10,62 @@ var ib_rb_ids = ['ib1', 'ib2', 'ib3', 'ib4', 'ib5'];
 var hover_popup_types = ['never', 'key', 'always'];
 var target_types = ['hl', 'ow']
 
-const stop_sync_label = 'Stop Sync';
 
-
-function display_sync_button() {
-    chrome.storage.local.get(["wd_gd_sync_enabled", "wd_gd_sync_error"], function(result) {
-        wd_gd_sync_error = result.wd_gd_sync_error;
+function display_sync_interface() {
+    chrome.storage.local.get(["wd_gd_sync_enabled", "wd_last_sync_error", "wd_last_sync"], function(result) {
+        wd_last_sync_error = result.wd_last_sync_error;
         wd_gd_sync_enabled = result.wd_gd_sync_enabled;
-        syncButton = document.getElementById("gdSyncButton");
-        if (!wd_gd_sync_enabled || (wd_gd_sync_enabled && wd_gd_sync_error)) {
-            syncButton.textContent = 'Synchronize';
-            syncButton.setAttribute('class', 'longButton');
+        wd_last_sync = result.wd_last_sync;
+        if (wd_gd_sync_enabled) {
+            document.getElementById("gdStopSyncButton").style.display = 'inline-block';
+            document.getElementById("syncStatusFeedback").style.display = 'inline';
+        }
+        if (wd_last_sync_error != null) {
+            document.getElementById("syncStatusFeedback").textContent = 'Error: ' + wd_last_sync_error;
         } else {
-            syncButton.textContent = stop_sync_label;
-            syncButton.setAttribute('class', 'longRedButton');
+            document.getElementById("syncStatusFeedback").textContent = "Synchronized.";
+        }
+        if (wd_gd_sync_enabled && typeof wd_last_sync !== 'undefined') {
+            var cur_date = new Date();
+            var seconds_passed = (cur_date.getTime() - wd_last_sync) / 1000;
+            var p_days = Math.floor(seconds_passed / (3600 * 24));
+            seconds_passed %= (3600 * 24);
+            var p_hours = Math.floor(seconds_passed / 3600);
+            seconds_passed %= 3600;
+            var p_minutes = Math.floor(seconds_passed / 60);
+            var p_seconds = Math.floor(seconds_passed % 60);
+            passed_time_msg = '';
+            if (p_days > 0)
+                passed_time_msg += p_days + ' days, ';
+            if (p_hours > 0)
+                passed_time_msg += p_hours + ' hours, ';
+            if (p_minutes > 0)
+                passed_time_msg += p_minutes + ' minutes, ';
+            passed_time_msg += p_seconds + ' seconds since the last sync.';
+            syncDateLabel = document.getElementById("lastSyncDate");
+            syncDateLabel.style.display = 'inline';
+            syncDateLabel.textContent = passed_time_msg;
         }
     });
 }
 
+function synchronize_now() {
+    //FIXME show instruction notes with "Cancel" and "Continue" buttons 
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        if (request.sync_feedback) {
+            display_sync_interface();
+        }
+    });
+    document.getElementById("syncStatusFeedback").style.display = 'inline';
+    document.getElementById("syncStatusFeedback").textContent = "Synchronization started...";
+    chrome.storage.local.set({"wd_gd_sync_enabled": true}, function() {
+        chrome.runtime.sendMessage({wdm_request: "gd_sync", interactive_mode: true});
+    });
+}
 
-function switch_gd_sync() {
-    var stop_sync = document.getElementById("gdSyncButton").textContent === stop_sync_label;
-    if (stop_sync) {
-        chrome.storage.local.set({"wd_gd_sync_enabled": false}, function() {
-            display_sync_button();
-        });
-    } else {
-        chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-            if (request.sync_status) {
-                //FIXME use red font for error messages
-                //sync_status = request.sync_status['status'];
-                sync_message = request.sync_status['message'];
-                document.getElementById("syncStatusFeedback").textContent = sync_message;
-                display_sync_button();
-            }
-        });
-        document.getElementById("syncStatusFeedback").textContent = "Synchronization started...";
-        chrome.storage.local.set({"wd_gd_sync_enabled": true}, function() {
-            chrome.runtime.sendMessage({wdm_request: "gd_sync"});
-        });
-    }
+
+function stop_synchronization() {
+    chrome.storage.local.set({"wd_gd_sync_enabled": false}, display_sync_interface);
 }
 
 
@@ -312,7 +328,8 @@ function process_display() {
 
             add_hover_rb_listeners();
 
-            document.getElementById("gdSyncButton").addEventListener("click", switch_gd_sync);
+            document.getElementById("gdSyncButton").addEventListener("click", synchronize_now);
+            document.getElementById("gdStopSyncButton").addEventListener("click", stop_synchronization);
 
             document.getElementById("saveVocab").addEventListener("click", process_export);
             document.getElementById("loadVocab").addEventListener("click", process_import);
@@ -331,7 +348,7 @@ function process_display() {
                 show_user_dicts();
             });
 
-            display_sync_button();
+            display_sync_interface();
             show_internal_state();
         });
 

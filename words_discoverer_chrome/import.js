@@ -14,6 +14,7 @@ function parse_vocabulary(text) {
 }
 
 function add_new_words(new_words) {
+    // FIXME modify wd_user_vocab_added and wd_user_vocab_deleted
     chrome.storage.local.get(['wd_user_vocabulary'], function(result) {
         var user_vocabulary = result.wd_user_vocabulary;
         var num_added = 0;
@@ -40,6 +41,7 @@ function process_change() {
 }
 
 function process_submit() {
+    //TODO add a radio button with two options: 1. merge vocabulary [default]; 2. replace vocabulary
     var inputElem = document.getElementById("doLoadVocab");
     var file = inputElem.files[0];
     var reader = new FileReader();

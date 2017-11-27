@@ -4,18 +4,40 @@ function request_unhighlight(lemma) {
     });
 }
 
+//FIXME make manifest production-ready
+
 function make_id_suffix(text) {
     var before = btoa(text);
     var after = before.replace(/\+/g, '_').replace(/\//g, '-').replace(/=/g, '_')
     return after;
 }
 
+function sync_if_needed() {
+    var req_keys = ['wd_last_sync', 'wd_gd_sync_enabled', 'wd_last_sync_error'];
+    chrome.storage.local.get(req_keys, function(result) {
+        var wd_last_sync = result.wd_last_sync;
+        var wd_gd_sync_enabled = result.wd_gd_sync_enabled;
+        var wd_last_sync_error = result.wd_last_sync_error;
+        if (!wd_gd_sync_enabled || wd_last_sync_error != null) {
+            return;
+        }
+        var cur_date = new Date();
+        var mins_passed = (cur_date.getTime() - wd_last_sync) / (60 * 1000);
+        var sync_period_mins = 5; //FIXME increase
+        if (mins_passed >= sync_period_mins) {
+            chrome.runtime.sendMessage({wdm_request: "gd_sync", interactive_mode: false});
+        }
+    });
+}
+
 function add_lexeme(lexeme, result_handler) {
-    //we have to use a callback because local.get() is async
-    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_idioms', 'wd_user_vocabulary'], function(result) {
+    var req_keys = ['words_discoverer_eng_dict', 'wd_idioms', 'wd_user_vocabulary', 'wd_user_vocab_added', 'wd_user_vocab_deleted'];
+    chrome.storage.local.get(req_keys, function(result) {
         var dict_words = result.words_discoverer_eng_dict;
         var dict_idioms = result.wd_idioms;
         var user_vocabulary = result.wd_user_vocabulary;
+        var wd_user_vocab_added = result.wd_user_vocab_added;
+        var wd_user_vocab_deleted = result.wd_user_vocab_deleted;
         if (lexeme.length > 100) {
             result_handler("bad", undefined);
             return;
@@ -26,6 +48,7 @@ function add_lexeme(lexeme, result_handler) {
             result_handler("bad", undefined);
             return;
         }
+
         var key = lexeme;
         if (dict_words.hasOwnProperty(lexeme)) {
             var wf = dict_words[lexeme];
@@ -43,8 +66,20 @@ function add_lexeme(lexeme, result_handler) {
             result_handler("exists", key);
             return;
         }
+
+        var new_state = {'wd_user_vocabulary': user_vocabulary};
+
         user_vocabulary[key] = 1;
-        chrome.storage.local.set({'wd_user_vocabulary': user_vocabulary});
+        if (typeof wd_user_vocab_added !== 'undefined') {
+            wd_user_vocab_added[key] = 1;
+            new_state['wd_user_vocab_added'] = wd_user_vocab_added;
+        }
+        if (typeof wd_user_vocab_deleted !== 'undefined') {
+            delete wd_user_vocab_deleted[key];
+            new_state['wd_user_vocab_deleted'] = wd_user_vocab_deleted;
+        }
+
+        chrome.storage.local.set(new_state, sync_if_needed);
         result_handler("ok", key);
     });
 }

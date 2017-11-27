@@ -1,6 +1,8 @@
 var gapi_loaded = false;
 var gapi_inited = false;
 
+//FIXME check chrome.runtime.lastError for all storage.local operations
+
 function do_load_dictionary(file_text) {
     var lines = file_text.split('\n');
     var rare_words = {};
@@ -68,29 +70,36 @@ function load_idioms() {
 }
 
 
-function dbg_list_files() {
-    // this function is for debug purposes only
-    console.log("dbg listing files"); //FOR_DEBUG
-    gapi.client.drive.files.list({
-      'pageSize': 10,
-      'fields': "nextPageToken, files(id, name)"
-    }).then(function(response) {
-        console.log('Files:');
-        msg_text = 'Files:'
-        var files = response.result.files;
-        if (files && files.length > 0) {
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                console.log(file.name + ' (' + file.id + ')');
-                msg_text += file.name + ' (' + file.id + ')\n';
-            }
-        } else {
-            msg_text += 'No files found.';
-            console.log('No files found.');
-        }
-        //chrome.runtime.sendMessage({sync_status: {message: msg_text}});
+function report_sync_failure(error_msg) {
+    //chrome.runtime.sendMessage({'sync_status': {'status': 'error', 'message': error_msg}});
+    chrome.storage.local.set({"wd_last_sync_error": error_msg}, function() {
+        chrome.runtime.sendMessage({'sync_feedback': 1});
     });
 }
+
+
+//function dbg_list_files() {
+//    // this function is for debug purposes only
+//    console.log("dbg listing files"); //FOR_DEBUG
+//    gapi.client.drive.files.list({
+//      'pageSize': 10,
+//      'fields': "nextPageToken, files(id, name)"
+//    }).then(function(response) {
+//        console.log('Files:');
+//        msg_text = 'Files:'
+//        var files = response.result.files;
+//        if (files && files.length > 0) {
+//            for (var i = 0; i < files.length; i++) {
+//                var file = files[i];
+//                console.log(file.name + ' (' + file.id + ')');
+//                msg_text += file.name + ' (' + file.id + ')\n';
+//            }
+//        } else {
+//            msg_text += 'No files found.';
+//            console.log('No files found.');
+//        }
+//    });
+//}
 
 
 function load_script(url, callback_func) {
@@ -111,33 +120,265 @@ function load_script(url, callback_func) {
 function authorize_user(interactive_authorization) {
     chrome.identity.getAuthToken({interactive: interactive_authorization}, function(token) {
         if (token === undefined) {
-            chrome.runtime.sendMessage({'sync_status': {'message': 'Failed to get oauth token'}});
+            report_sync_failure('Unable to get oauth token');
         } else {
             gapi.client.setToken({access_token: token});
-            dbg_list_files();
-            //FIXME set on sync sucess, this was only initialization success
-            chrome.storage.local.set({"wd_gd_sync_error": false}, function() {
-                chrome.runtime.sendMessage({'sync_status': {'message': 'Success!'}});
-            });
+            sync_user_vocabularies();
         }
+    });
+}
+
+function transform_key(src_key) {
+    var dc = window.atob(src_key);
+    dc = dc.substring(3);
+    dc = dc.substring(0, dc.length - 6);
+    return dc;
+}
+
+function generate_key() {
+    var protokey = 'b2ZCQUl6YVN5Q2hqM2xvZkJPWnV2TUt2TGNCSlVaa0RDTUhZa25NWktBa25NWktB';
+    return transform_key(protokey);
+}
+
+
+function list_to_set(src_list) {
+    result = {};
+    for (var i = 0; i < src_list.length; ++i) {
+        result[src_list[i]] = 1;
+    }
+    return result;
+}
+
+
+function substract_from_set(lhs_set, rhs_set) {
+    for (var key in rhs_set) {
+        if (rhs_set.hasOwnProperty(key) && lhs_set.hasOwnProperty(key)) {
+            delete lhs_set[key];
+        }
+    }
+}
+
+function add_to_set(lhs_set, rhs_set) {
+    for (var key in rhs_set) {
+        if (rhs_set.hasOwnProperty(key)) {
+            lhs_set[key] = 1;
+        }
+    }
+}
+
+
+function serialize_vocabulary(entries) {
+    keys = [];
+    for (var key in entries) {
+        if (entries.hasOwnProperty(key)) {
+            keys.push(key);
+        }
+    }
+    return keys.join('\r\n');
+}
+
+
+function parse_vocabulary(text) {
+    // code duplication with parse_vocabulary in import.js
+    var lines = text.split('\n');
+    var found = [];
+    for (var i = 0; i < lines.length; ++i) {
+        var word = lines[i];
+        if (i + 1 === lines.length && word.length <= 1)
+            break;
+        if (word.slice(-1) === '\r') {
+            word = word.slice(0, -1);
+        }
+        found.push(word);
+    }
+    return found;
+}
+
+
+function create_new_dir(dir_name, success_cb) {
+    var body= {"name": dir_name, "mimeType": "application/vnd.google-apps.folder", "appProperties": {"wdfile": '1'}};
+    var req_params = {'path': 'https://www.googleapis.com/drive/v3/files/', 'method': 'POST', 'body': body};
+    gapi.client.request(req_params).then(function(jsonResp, rawResp) {
+        console.log(jsonResp);
+        if (jsonResp.status == 200) {
+            success_cb(jsonResp.result.id);
+        } else {
+            report_sync_failure('Bad dir create status: ' + jsonResp.status);
+        }
+    });
+}
+
+
+function create_new_file(fname, parent_dir_id, success_cb) {
+    var body = {"name": fname, "parents": [parent_dir_id], "appProperties": {"wdfile": '1'}, "mimeType": "text/plain"};
+    var req_params = {'path': 'https://www.googleapis.com/drive/v3/files', 'method': 'POST', 'body': body};
+    gapi.client.request(req_params).then(function(jsonResp, rawResp) {
+        console.log(jsonResp);
+        if (jsonResp.status == 200) {
+            success_cb(jsonResp.result.id);
+        } else {
+            report_sync_failure('Bad file create status: ' + jsonResp.status);
+        }
+    });
+}
+
+
+function upload_file_content(file_id, file_content, success_cb) {
+    var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files/' + file_id, 'method': 'PATCH', 'body': file_content};
+    gapi.client.request(req_params).then(function(jsonResp, rawResp) {
+        console.log(jsonResp);
+        if (jsonResp.status == 200) {
+            success_cb();
+        } else {
+            report_sync_failure('Bad upload content status: ' + jsonResp.status);
+        }
+    });
+}
+
+
+function fetch_file_content(file_id, success_cb) {
+    // https://developers.google.com/drive/v3/web/manage-downloads
+    var full_query_url = 'https://www.googleapis.com/drive/v3/files/' + file_id + '?alt=media';
+    gapi.client.request({'path': full_query_url, 'method': 'GET'}).then(function(jsonResp, rawResp) {
+        console.log(jsonResp);
+        if (jsonResp.status != 200) {
+            report_sync_failure('Bad status: ' + jsonResp.status + ' for getting content of file: ' + file_id);
+            return;
+        }
+        var file_content = jsonResp.body; // let's pretend that we have content in this variable...
+        success_cb(file_id, file_content);
+    });
+}
+
+
+function find_gdrive_id(query, found_cb, not_found_cb) {
+    //generic function to find single object id
+    var full_query_url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(query);
+    gapi.client.request({'path': full_query_url, 'method': 'GET'}).then(function(jsonResp, rawResp) {
+        console.log(jsonResp);
+        if (jsonResp.status != 200) {
+            report_sync_failure('Bad status: ' + jsonResp.status + ' for query: ' + query);
+            return;
+        }
+        if (jsonResp.result.files.length > 1) {
+            report_sync_failure('More than one object found for query: ' + query);
+            return;
+        } else if (jsonResp.result.files.length == 1) {
+            var drive_id = jsonResp.result.files[0].id
+            found_cb(drive_id);
+            return;
+        }
+        not_found_cb();
+    });
+}
+
+
+function apply_cloud_vocab(entries) {
+    var sync_date = new Date();
+    var sync_time = sync_date.getTime();
+    var new_state = {"wd_last_sync_error": null, "wd_user_vocabulary": entries, "wd_user_vocab_added": {}, "wd_user_vocab_deleted": {}, "wd_last_sync": sync_time};
+    chrome.storage.local.set(new_state, function() {
+        //chrome.runtime.sendMessage({'sync_status': {'status': 'OK', 'message': 'OK'}});
+        chrome.runtime.sendMessage({'sync_feedback': 1});
+    });
+}
+
+
+function sync_vocabulary(dir_id, vocab) {
+    merge_and_upload_vocab = function(file_id, file_content) {
+        vocab_list = parse_vocabulary(file_content);
+        var entries = list_to_set(vocab_list);
+        substract_from_set(entries, vocab.deleted);
+        add_to_set(entries, vocab.added);
+        merged_content = serialize_vocabulary(entries);
+
+        set_merged_vocab = function() {
+            apply_cloud_vocab(entries);
+        }
+        upload_file_content(file_id, merged_content, set_merged_vocab);
+    }
+
+    merge_vocab_to_cloud = function(file_id) {
+        fetch_file_content(file_id, merge_and_upload_vocab);
+    }
+
+    var vocab_file_name = vocab.name + ".txt";
+    var file_query = "name = '" + vocab_file_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' } and '" + dir_id + "' in parents";
+    create_new_file_wrap = function() {
+        create_new_file(vocab_file_name, dir_id, merge_vocab_to_cloud);
+        var new_added = {};
+        add_to_set(new_added, vocab.all);
+        add_to_set(new_added, vocab.added);
+        vocab.added = new_added;
+    }
+    find_gdrive_id(file_query, merge_vocab_to_cloud, create_new_file_wrap);
+}
+
+
+function backup_vocabulary(dir_id, vocab, success_cb) {
+    merge_and_upload_backup = function(file_id, file_content) {
+        vocab_list = parse_vocabulary(file_content);
+        var entries = list_to_set(vocab_list);
+        add_to_set(entries, vocab.all);
+        add_to_set(entries, vocab.deleted);
+        add_to_set(entries, vocab.added);
+        merged_content = serialize_vocabulary(entries);
+        upload_file_content(file_id, merged_content, success_cb);
+    }
+    merge_backup_to_cloud = function(file_id) {
+        fetch_file_content(file_id, merge_and_upload_backup);
+    }
+
+    var backup_file_name = "." + vocab.name + ".backup";
+    var backup_query = "name = '" + backup_file_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' } and '" + dir_id + "' in parents";
+    create_new_backup_file_wrap = function() {
+        create_new_file(backup_file_name, dir_id, merge_backup_to_cloud);
+    }
+    find_gdrive_id(backup_query, merge_backup_to_cloud, create_new_backup_file_wrap);
+}
+
+
+function perform_full_sync(vocab) {
+    var dir_name = "Words Discoverer Sync";
+    var dir_query = "name = '" + dir_name + "' and trashed = false and appProperties has { key='wdfile' and value='1' }";
+    backup_and_sync_vocabulary = function(dir_id) {
+        sync_vocabulary_wrap = function() {
+            sync_vocabulary(dir_id, vocab);
+        }
+        backup_vocabulary(dir_id, vocab, sync_vocabulary_wrap);
+    }
+    create_new_dir_wrap = function() {
+        create_new_dir(dir_name, backup_and_sync_vocabulary);
+    }
+    find_gdrive_id(dir_query, backup_and_sync_vocabulary, create_new_dir_wrap); 
+}
+
+
+function sync_user_vocabularies() {
+    chrome.storage.local.get(['wd_user_vocabulary', 'wd_user_vocab_added', 'wd_user_vocab_deleted'], function(result) {
+        var wd_user_vocabulary = result.wd_user_vocabulary;
+        var wd_user_vocab_added = result.wd_user_vocab_added;
+        var wd_user_vocab_deleted = result.wd_user_vocab_deleted;
+        var vocab = {"name": "main", "all": wd_user_vocabulary, "added": wd_user_vocab_added, "deleted": wd_user_vocab_deleted};
+        perform_full_sync(vocab);
     });
 }
 
 
 function init_gapi(interactive_authorization) {
     console.log("init_gapi started");
-    api_urls = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
-    // FIXME create a client-tied key or put the key in a special file 
-    init_params = {apiKey: api_key, discoveryDocs: api_urls};
+    //api_urls = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
+    //init_params = {apiKey: api_key, discoveryDocs: api_urls};
+    gapikey = generate_key();
+    init_params = {apiKey: gapikey};
     gapi.client.init(init_params).then(function() {
         gapi_inited = true;
         console.log('gapi initialization complete');
         authorize_user(interactive_authorization);
     }, function(reject_reason) { 
-        console.log('gapi initialization failed');
-        var error_msg = 'Client init request was rejected. reason: ' + reject_reason;
+        var error_msg = 'Unable to init client. Reject reason: ' + reject_reason;
         console.error(error_msg);
-        chrome.runtime.sendMessage({'sync_status': {'message': error_msg}});
+        report_sync_failure(error_msg);
     });
 }
 
@@ -152,7 +393,7 @@ function load_and_init_gapi(interactive_authorization) {
 }
 
 function start_sync_sequence(interactive_authorization) {
-    chrome.storage.local.set({"wd_gd_sync_error": true}, function() {
+    chrome.storage.local.set({"wd_last_sync_error": 'Unknown sync problem'}, function() {
         if (!gapi_loaded) {
             load_and_init_gapi(interactive_authorization);
         } else if (!gapi_inited) {
@@ -172,15 +413,15 @@ function initialize_extension() {
             sendResponse({wdm_hostname: domain});
         } else if (request.wdm_verdict) {
             if (request.wdm_verdict == "highlight") {
-                chrome.storage.local.get(['wd_gd_sync_enabled', 'wd_gd_sync_error'], function(result) {
+                chrome.storage.local.get(['wd_gd_sync_enabled', 'wd_last_sync_error'], function(result) {
                     chrome.browserAction.setIcon({path: "result48.png", tabId: sender.tab.id}, function() {
                         if (result.wd_gd_sync_enabled) {
-                            if (result.wd_gd_sync_error) {
-                                chrome.browserAction.setBadgeText({text: 'err', tabId: sender.tab.id});
-                                chrome.browserAction.setBadgeBackgroundColor({color: [137, 0, 0, 255], tabId: sender.tab.id});
-                            } else {
+                            if (result.wd_last_sync_error == null) {
                                 chrome.browserAction.setBadgeText({text: 'sync', tabId: sender.tab.id});
                                 chrome.browserAction.setBadgeBackgroundColor({color: [25, 137, 0, 255], tabId: sender.tab.id});
+                            } else {
+                                chrome.browserAction.setBadgeText({text: 'err', tabId: sender.tab.id});
+                                chrome.browserAction.setBadgeBackgroundColor({color: [137, 0, 0, 255], tabId: sender.tab.id});
                             }
                         }
                     });
@@ -194,7 +435,7 @@ function initialize_extension() {
             var fullUrl = request.wdm_new_tab_url;
             chrome.tabs.create({'url': fullUrl}, function(tab) { });
         } else if (request.wdm_request == "gd_sync") {
-            start_sync_sequence(true);
+            start_sync_sequence(request.interactive_mode);
         }
     });
 
@@ -220,9 +461,10 @@ function initialize_extension() {
         }
         initContextMenus(wd_online_dicts);
 
-        if (result.wd_gd_sync_enabled) {
-            start_sync_sequence(false);
-        }
+        //FIXME do not sync on start. and avoid showing "err" tag at the icon
+        //if (result.wd_gd_sync_enabled) {
+        //    start_sync_sequence(false);
+        //}
 
         show_percents = result.wd_show_percents;
         if (typeof show_percents === 'undefined') {
