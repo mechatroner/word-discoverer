@@ -16,16 +16,19 @@ function display_sync_interface() {
         wd_last_sync_error = result.wd_last_sync_error;
         wd_gd_sync_enabled = result.wd_gd_sync_enabled;
         wd_last_sync = result.wd_last_sync;
-        if (wd_gd_sync_enabled) {
-            document.getElementById("gdStopSyncButton").style.display = 'inline-block';
-            document.getElementById("syncStatusFeedback").style.display = 'inline';
+        if (!wd_gd_sync_enabled) {
+            document.getElementById("gdStopSyncButton").style.display = 'none';
+            document.getElementById("syncStatusFeedback").style.display = 'none';
+            return;
         }
+        document.getElementById("gdStopSyncButton").style.display = 'inline-block';
+        document.getElementById("syncStatusFeedback").style.display = 'inline';
         if (wd_last_sync_error != null) {
             document.getElementById("syncStatusFeedback").textContent = 'Error: ' + wd_last_sync_error;
         } else {
             document.getElementById("syncStatusFeedback").textContent = "Synchronized.";
         }
-        if (wd_gd_sync_enabled && typeof wd_last_sync !== 'undefined') {
+        if (typeof wd_last_sync !== 'undefined') {
             var cur_date = new Date();
             var seconds_passed = (cur_date.getTime() - wd_last_sync) / 1000;
             var p_days = Math.floor(seconds_passed / (3600 * 24));
@@ -37,9 +40,9 @@ function display_sync_interface() {
             passed_time_msg = '';
             if (p_days > 0)
                 passed_time_msg += p_days + ' days, ';
-            if (p_hours > 0)
+            if (p_hours > 0 || p_days > 0)
                 passed_time_msg += p_hours + ' hours, ';
-            if (p_minutes > 0)
+            if (p_minutes > 0 || p_hours > 0 || p_days > 0)
                 passed_time_msg += p_minutes + ' minutes, ';
             passed_time_msg += p_seconds + ' seconds since the last sync.';
             syncDateLabel = document.getElementById("lastSyncDate");
@@ -66,6 +69,33 @@ function synchronize_now() {
 
 function stop_synchronization() {
     chrome.storage.local.set({"wd_gd_sync_enabled": false}, display_sync_interface);
+}
+
+
+function process_get_dbg() {
+    var storage_key = document.getElementById("getFromStorageKey").value;
+    chrome.storage.local.get([storage_key], function(result) {
+        storage_value = result[storage_key];
+        console.log('key: ' + storage_key + '; value: ' + JSON.stringify(storage_value));
+    });
+}
+
+
+function process_set_dbg() {
+    console.log('processing dbg');
+    var storage_key = document.getElementById("setToStorageKey").value;
+    var storage_value = document.getElementById("setToStorageVal").value;
+    if (storage_value === 'undefined') {
+        storage_value = undefined;
+    } else {
+        storage_value = JSON.parse(storage_value);
+    }
+    console.log("storage_key:" + storage_key + ", storage_value:" + storage_value); //FOR_DEBUG
+    chrome.storage.local.set({[storage_key]: storage_value}, function() {
+        var last_error = chrome.runtime.lastError;
+        console.log("last_error:" + last_error); //FOR_DEBUG
+        console.log('finished setting value');
+    });
 }
 
 
@@ -333,6 +363,9 @@ function process_display() {
 
             document.getElementById("saveVocab").addEventListener("click", process_export);
             document.getElementById("loadVocab").addEventListener("click", process_import);
+
+            document.getElementById("getFromStorageBtn").addEventListener("click", process_get_dbg);
+            document.getElementById("setToStorageBtn").addEventListener("click", process_set_dbg);
 
             document.getElementById("addDict").addEventListener("click", process_add_dict);
             document.getElementById("testNewDict").addEventListener("click", process_test_new_dict);

@@ -137,6 +137,9 @@
     #idiomsBlock {
         margin: 4px 18px;
     }
+    #debugControl {
+        margin: 4px 18px;
+    }
     #syncStatusFeedback {
         display: none;
         color: red;
@@ -159,6 +162,12 @@
     <script src="adjust.js"></script>
   </head>
   <body>
+  <!--FIXME make control block invisible-->
+  <div id="debugControl" class="debugControlBlock">
+    <input type="text" id="setToStorageKey" class="dictAddUrl"><input type="text" id="setToStorageVal" class="dictAddUrl"><button class="longButton" id="setToStorageBtn">storage set dbg</button>
+    <br>
+    <input type="text" id="getFromStorageKey" class="dictAddUrl"><button class="longButton" id="getFromStorageBtn">storage get dbg</button>
+  </div>
   <fieldset>
     <button class="longButton" id="saveVocab">__MSG_saveVocab__</button>
     <button class="longButton" id="loadVocab">__MSG_loadVocab__</button>
@@ -170,7 +179,7 @@
     <span class="smallHeader">Experimental backup and sync with Google Drive</span>
     <br>
     <br>
-    <button class="longButton" id="gdSyncButton">Synchronize</button>
+    <button class="longButton" id="gdSyncButton">Synchronize Now</button>
     <button class="longRedButton" id="gdStopSyncButton">Stop Sync</button>
     <br>
     <br>

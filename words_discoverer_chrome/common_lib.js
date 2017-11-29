@@ -23,7 +23,7 @@ function sync_if_needed() {
         }
         var cur_date = new Date();
         var mins_passed = (cur_date.getTime() - wd_last_sync) / (60 * 1000);
-        var sync_period_mins = 5; //FIXME increase
+        var sync_period_mins = 2; //FIXME increase
         if (mins_passed >= sync_period_mins) {
             chrome.runtime.sendMessage({wdm_request: "gd_sync", interactive_mode: false});
         }
@@ -79,8 +79,10 @@ function add_lexeme(lexeme, result_handler) {
             new_state['wd_user_vocab_deleted'] = wd_user_vocab_deleted;
         }
 
-        chrome.storage.local.set(new_state, sync_if_needed);
-        result_handler("ok", key);
+        chrome.storage.local.set(new_state, function() { 
+            sync_if_needed();
+            result_handler("ok", key);
+        });
     });
 }
 

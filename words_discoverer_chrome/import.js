@@ -14,19 +14,29 @@ function parse_vocabulary(text) {
 }
 
 function add_new_words(new_words) {
-    // FIXME modify wd_user_vocab_added and wd_user_vocab_deleted
-    chrome.storage.local.get(['wd_user_vocabulary'], function(result) {
+    chrome.storage.local.get(['wd_user_vocabulary', 'wd_user_vocab_added', 'wd_user_vocab_deleted'], function(result) {
         var user_vocabulary = result.wd_user_vocabulary;
+        var wd_user_vocab_added = result.wd_user_vocab_added;
+        var wd_user_vocab_deleted = result.wd_user_vocab_deleted;
         var num_added = 0;
+        var new_state = {"wd_user_vocabulary": user_vocabulary};
         for (var i = 0; i < new_words.length; ++i) {
             var word = new_words[i];
             if (!(user_vocabulary.hasOwnProperty(word))) {
                 user_vocabulary[word] = 1;
                 ++num_added;
+                if (typeof wd_user_vocab_added !== 'undefined') {
+                    wd_user_vocab_added[word] = 1;
+                    new_state['wd_user_vocab_added'] = wd_user_vocab_added;
+                }
+                if (typeof wd_user_vocab_deleted !== 'undefined') {
+                    delete wd_user_vocab_deleted[word];
+                    new_state['wd_user_vocab_deleted'] = wd_user_vocab_deleted;
+                }
             }
         }
         if (num_added) {
-            chrome.storage.local.set({"wd_user_vocabulary": user_vocabulary});
+            chrome.storage.local.set(new_state, sync_if_needed);
         }
         var num_skipped = new_words.length - num_added;
         document.getElementById("addedInfo").textContent = "Added " + num_added + " new words.";

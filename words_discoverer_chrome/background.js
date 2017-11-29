@@ -25,6 +25,7 @@ function do_load_dictionary(file_text) {
     local_storage.set({"wd_word_max_rank": rank});
 }
 
+
 function load_eng_dictionary() {
     var file_path = chrome.extension.getURL("eng_dict.txt");
     var xhr = new XMLHttpRequest();
@@ -36,6 +37,7 @@ function load_eng_dictionary() {
     xhr.open('GET', file_path, true);
     xhr.send(null);
 }
+
 
 function do_load_idioms(file_text) {
     var lines = file_text.split('\n');
@@ -71,35 +73,10 @@ function load_idioms() {
 
 
 function report_sync_failure(error_msg) {
-    //chrome.runtime.sendMessage({'sync_status': {'status': 'error', 'message': error_msg}});
     chrome.storage.local.set({"wd_last_sync_error": error_msg}, function() {
         chrome.runtime.sendMessage({'sync_feedback': 1});
     });
 }
-
-
-//function dbg_list_files() {
-//    // this function is for debug purposes only
-//    console.log("dbg listing files"); //FOR_DEBUG
-//    gapi.client.drive.files.list({
-//      'pageSize': 10,
-//      'fields': "nextPageToken, files(id, name)"
-//    }).then(function(response) {
-//        console.log('Files:');
-//        msg_text = 'Files:'
-//        var files = response.result.files;
-//        if (files && files.length > 0) {
-//            for (var i = 0; i < files.length; i++) {
-//                var file = files[i];
-//                console.log(file.name + ' (' + file.id + ')');
-//                msg_text += file.name + ' (' + file.id + ')\n';
-//            }
-//        } else {
-//            msg_text += 'No files found.';
-//            console.log('No files found.');
-//        }
-//    });
-//}
 
 
 function load_script(url, callback_func) {
@@ -128,12 +105,14 @@ function authorize_user(interactive_authorization) {
     });
 }
 
+
 function transform_key(src_key) {
     var dc = window.atob(src_key);
     dc = dc.substring(3);
     dc = dc.substring(0, dc.length - 6);
     return dc;
 }
+
 
 function generate_key() {
     var protokey = 'b2ZCQUl6YVN5Q2hqM2xvZkJPWnV2TUt2TGNCSlVaa0RDTUhZa25NWktBa25NWktB';
@@ -158,6 +137,7 @@ function substract_from_set(lhs_set, rhs_set) {
     }
 }
 
+
 function add_to_set(lhs_set, rhs_set) {
     for (var key in rhs_set) {
         if (rhs_set.hasOwnProperty(key)) {
@@ -168,6 +148,7 @@ function add_to_set(lhs_set, rhs_set) {
 
 
 function serialize_vocabulary(entries) {
+    // FIXME sort?
     keys = [];
     for (var key in entries) {
         if (entries.hasOwnProperty(key)) {
@@ -278,7 +259,6 @@ function apply_cloud_vocab(entries) {
     var sync_time = sync_date.getTime();
     var new_state = {"wd_last_sync_error": null, "wd_user_vocabulary": entries, "wd_user_vocab_added": {}, "wd_user_vocab_deleted": {}, "wd_last_sync": sync_time};
     chrome.storage.local.set(new_state, function() {
-        //chrome.runtime.sendMessage({'sync_status': {'status': 'OK', 'message': 'OK'}});
         chrome.runtime.sendMessage({'sync_feedback': 1});
     });
 }
@@ -359,6 +339,12 @@ function sync_user_vocabularies() {
         var wd_user_vocabulary = result.wd_user_vocabulary;
         var wd_user_vocab_added = result.wd_user_vocab_added;
         var wd_user_vocab_deleted = result.wd_user_vocab_deleted;
+        if (typeof wd_user_vocab_added === 'undefined') {
+            wd_user_vocab_added = Object.assign({}, result.wd_user_vocabulary);
+        }
+        if (typeof wd_user_vocab_deleted === 'undefined') {
+            wd_user_vocab_deleted = {};
+        }
         var vocab = {"name": "main", "all": wd_user_vocabulary, "added": wd_user_vocab_added, "deleted": wd_user_vocab_deleted};
         perform_full_sync(vocab);
     });
@@ -367,8 +353,6 @@ function sync_user_vocabularies() {
 
 function init_gapi(interactive_authorization) {
     console.log("init_gapi started");
-    //api_urls = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
-    //init_params = {apiKey: api_key, discoveryDocs: api_urls};
     gapikey = generate_key();
     init_params = {apiKey: gapikey};
     gapi.client.init(init_params).then(function() {
@@ -392,6 +376,7 @@ function load_and_init_gapi(interactive_authorization) {
     });
 }
 
+
 function start_sync_sequence(interactive_authorization) {
     chrome.storage.local.set({"wd_last_sync_error": 'Unknown sync problem'}, function() {
         if (!gapi_loaded) {
@@ -403,6 +388,7 @@ function start_sync_sequence(interactive_authorization) {
         }
     });
 }
+
 
 function initialize_extension() {
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
