@@ -53,7 +53,7 @@ function display_sync_interface() {
 }
 
 function synchronize_now() {
-    //FIXME show instruction notes with "Cancel" and "Continue" buttons 
+    //FIXME add little help info link with description
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (request.sync_feedback) {
             display_sync_interface();

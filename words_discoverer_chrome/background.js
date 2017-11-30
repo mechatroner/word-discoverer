@@ -148,13 +148,13 @@ function add_to_set(lhs_set, rhs_set) {
 
 
 function serialize_vocabulary(entries) {
-    // FIXME sort?
     keys = [];
     for (var key in entries) {
         if (entries.hasOwnProperty(key)) {
             keys.push(key);
         }
     }
+    keys.sort();
     return keys.join('\r\n');
 }
 
@@ -180,7 +180,6 @@ function create_new_dir(dir_name, success_cb) {
     var body= {"name": dir_name, "mimeType": "application/vnd.google-apps.folder", "appProperties": {"wdfile": '1'}};
     var req_params = {'path': 'https://www.googleapis.com/drive/v3/files/', 'method': 'POST', 'body': body};
     gapi.client.request(req_params).then(function(jsonResp, rawResp) {
-        console.log(jsonResp);
         if (jsonResp.status == 200) {
             success_cb(jsonResp.result.id);
         } else {
@@ -194,7 +193,6 @@ function create_new_file(fname, parent_dir_id, success_cb) {
     var body = {"name": fname, "parents": [parent_dir_id], "appProperties": {"wdfile": '1'}, "mimeType": "text/plain"};
     var req_params = {'path': 'https://www.googleapis.com/drive/v3/files', 'method': 'POST', 'body': body};
     gapi.client.request(req_params).then(function(jsonResp, rawResp) {
-        console.log(jsonResp);
         if (jsonResp.status == 200) {
             success_cb(jsonResp.result.id);
         } else {
@@ -207,7 +205,6 @@ function create_new_file(fname, parent_dir_id, success_cb) {
 function upload_file_content(file_id, file_content, success_cb) {
     var req_params = {'path': 'https://www.googleapis.com/upload/drive/v3/files/' + file_id, 'method': 'PATCH', 'body': file_content};
     gapi.client.request(req_params).then(function(jsonResp, rawResp) {
-        console.log(jsonResp);
         if (jsonResp.status == 200) {
             success_cb();
         } else {
@@ -221,7 +218,6 @@ function fetch_file_content(file_id, success_cb) {
     // https://developers.google.com/drive/v3/web/manage-downloads
     var full_query_url = 'https://www.googleapis.com/drive/v3/files/' + file_id + '?alt=media';
     gapi.client.request({'path': full_query_url, 'method': 'GET'}).then(function(jsonResp, rawResp) {
-        console.log(jsonResp);
         if (jsonResp.status != 200) {
             report_sync_failure('Bad status: ' + jsonResp.status + ' for getting content of file: ' + file_id);
             return;
@@ -236,7 +232,6 @@ function find_gdrive_id(query, found_cb, not_found_cb) {
     //generic function to find single object id
     var full_query_url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(query);
     gapi.client.request({'path': full_query_url, 'method': 'GET'}).then(function(jsonResp, rawResp) {
-        console.log(jsonResp);
         if (jsonResp.status != 200) {
             report_sync_failure('Bad status: ' + jsonResp.status + ' for query: ' + query);
             return;
@@ -352,12 +347,10 @@ function sync_user_vocabularies() {
 
 
 function init_gapi(interactive_authorization) {
-    console.log("init_gapi started");
     gapikey = generate_key();
     init_params = {apiKey: gapikey};
     gapi.client.init(init_params).then(function() {
         gapi_inited = true;
-        console.log('gapi initialization complete');
         authorize_user(interactive_authorization);
     }, function(reject_reason) { 
         var error_msg = 'Unable to init client. Reject reason: ' + reject_reason;
