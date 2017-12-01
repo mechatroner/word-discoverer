@@ -53,7 +53,6 @@ function display_sync_interface() {
 }
 
 function synchronize_now() {
-    //FIXME add little help info link with description
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (request.sync_feedback) {
             display_sync_interface();
@@ -369,6 +368,8 @@ function process_display() {
 
             document.getElementById("addDict").addEventListener("click", process_add_dict);
             document.getElementById("testNewDict").addEventListener("click", process_test_new_dict);
+
+            document.getElementById("moreInfoLink").href = chrome.extension.getURL('sync_help.html');
 
             document.getElementById("saveVisuals").addEventListener("click", function() {
                 chrome.storage.local.set({'wd_hl_settings': wd_hl_settings});

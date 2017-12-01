@@ -11,6 +11,10 @@
         border: 0;
         width: 700px;
     }
+    a {
+        font-size: 16px;
+        margin: 4px 10px;
+    }
     .dictNameHeader {
         display: inline-block;
         margin: 4px 8px;
@@ -138,11 +142,12 @@
         margin: 4px 18px;
     }
     #debugControl {
+        display: none;
         margin: 4px 18px;
     }
     #syncStatusFeedback {
         display: none;
-        color: red;
+        color: #ce0000;
     }
     #lastSyncDate {
         display: none;
@@ -162,7 +167,6 @@
     <script src="adjust.js"></script>
   </head>
   <body>
-  <!--FIXME make control block invisible-->
   <div id="debugControl" class="debugControlBlock">
     <input type="text" id="setToStorageKey" class="dictAddUrl"><input type="text" id="setToStorageVal" class="dictAddUrl"><button class="longButton" id="setToStorageBtn">storage set dbg</button>
     <br>
@@ -176,7 +180,7 @@
   </fieldset>
   <br>
   <fieldset>
-    <span class="smallHeader">Experimental backup and sync with Google Drive</span>
+    <span class="smallHeader">Experimental backup and sync with Google Drive.</span><a href="example.com" target="_blank" id="moreInfoLink">More Info</a>
     <br>
     <br>
     <button class="longButton" id="gdSyncButton">Synchronize Now</button>

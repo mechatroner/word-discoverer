@@ -23,7 +23,7 @@ function sync_if_needed() {
         }
         var cur_date = new Date();
         var mins_passed = (cur_date.getTime() - wd_last_sync) / (60 * 1000);
-        var sync_period_mins = 2; //FIXME increase
+        var sync_period_mins = 30;
         if (mins_passed >= sync_period_mins) {
             chrome.runtime.sendMessage({wdm_request: "gd_sync", interactive_mode: false});
         }

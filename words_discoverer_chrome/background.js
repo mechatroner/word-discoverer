@@ -1,7 +1,7 @@
 var gapi_loaded = false;
 var gapi_inited = false;
 
-//FIXME check chrome.runtime.lastError for all storage.local operations
+//TODO check chrome.runtime.lastError for all storage.local operations
 
 function do_load_dictionary(file_text) {
     var lines = file_text.split('\n');
@@ -222,14 +222,14 @@ function fetch_file_content(file_id, success_cb) {
             report_sync_failure('Bad status: ' + jsonResp.status + ' for getting content of file: ' + file_id);
             return;
         }
-        var file_content = jsonResp.body; // let's pretend that we have content in this variable...
+        var file_content = jsonResp.body;
         success_cb(file_id, file_content);
     });
 }
 
 
 function find_gdrive_id(query, found_cb, not_found_cb) {
-    //generic function to find single object id
+    // generic function to find single object id
     var full_query_url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(query);
     gapi.client.request({'path': full_query_url, 'method': 'GET'}).then(function(jsonResp, rawResp) {
         if (jsonResp.status != 200) {
@@ -439,11 +439,6 @@ function initialize_extension() {
             chrome.storage.local.set({"wd_online_dicts": wd_online_dicts});
         }
         initContextMenus(wd_online_dicts);
-
-        //FIXME do not sync on start. and avoid showing "err" tag at the icon
-        //if (result.wd_gd_sync_enabled) {
-        //    start_sync_sequence(false);
-        //}
 
         show_percents = result.wd_show_percents;
         if (typeof show_percents === 'undefined') {
