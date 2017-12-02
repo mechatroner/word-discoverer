@@ -333,11 +333,13 @@ function add_hover_rb_listeners() {
 
 function process_display() {
     window.onload=function() {
-        chrome.storage.local.get(["wd_hl_settings", "wd_hover_settings", "wd_online_dicts"], function(result) {
+        chrome.storage.local.get(["wd_hl_settings", "wd_hover_settings", "wd_online_dicts", "wd_developer_mode"], function(result) {
             assign_back_labels();
             wd_hl_settings = result.wd_hl_settings;
             wd_hover_settings = result.wd_hover_settings;
             wd_online_dicts = result.wd_online_dicts;
+
+            var wd_developer_mode = result.wd_developer_mode;
 
             //TODO fix this monstrosity using this wrapper-function hack: 
             //http://stackoverflow.com/questions/7053965/when-using-callbacks-inside-a-loop-in-javascript-is-there-any-way-to-save-a-var
@@ -356,6 +358,11 @@ function process_display() {
             add_cb_event_listener("idiomsColor", wd_hl_settings.idiomParams, "useColor");
 
             add_hover_rb_listeners();
+
+            if (wd_developer_mode) {
+                document.getElementById("syncSection").style.display = 'block';
+                document.getElementById("debugControl").style.display = 'block';
+            }
 
             document.getElementById("gdSyncButton").addEventListener("click", synchronize_now);
             document.getElementById("gdStopSyncButton").addEventListener("click", stop_synchronization);

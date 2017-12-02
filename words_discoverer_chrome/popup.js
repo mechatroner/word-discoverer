@@ -97,6 +97,16 @@ function popup_handle_add_result(report, lemma) {
 
 function process_add_word() {
     lexeme = document.getElementById('addText').value;
+    if (lexeme === 'dev-mode-on') {
+        chrome.storage.local.set({"wd_developer_mode": true});
+        document.getElementById('addText').value = "";
+        return;
+    }
+    if (lexeme === 'dev-mode-off') {
+        chrome.storage.local.set({"wd_developer_mode": false});
+        document.getElementById('addText').value = "";
+        return;
+    }
     add_lexeme(lexeme, popup_handle_add_result);
 }
 
