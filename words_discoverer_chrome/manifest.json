@@ -19,6 +19,7 @@
    "contextMenus",
    "identity"
   ],
+  "optional_permissions": ["https://*/"],
   "background": {
     "scripts": ["common_lib.js", "context_menu_lib.js", "background.js"]
   },

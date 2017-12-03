@@ -65,6 +65,14 @@ function synchronize_now() {
     });
 }
 
+function request_permissions_and_sync() {
+    chrome.permissions.request({origins: ['https://*/']}, function(granted) {
+        if (!granted)
+            return;
+        synchronize_now();
+    });
+}
+
 
 function stop_synchronization() {
     chrome.storage.local.set({"wd_gd_sync_enabled": false}, display_sync_interface);
@@ -364,7 +372,7 @@ function process_display() {
                 document.getElementById("debugControl").style.display = 'block';
             }
 
-            document.getElementById("gdSyncButton").addEventListener("click", synchronize_now);
+            document.getElementById("gdSyncButton").addEventListener("click", request_permissions_and_sync);
             document.getElementById("gdStopSyncButton").addEventListener("click", stop_synchronization);
 
             document.getElementById("saveVocab").addEventListener("click", process_export);
