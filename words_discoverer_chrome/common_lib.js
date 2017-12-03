@@ -4,13 +4,13 @@ function request_unhighlight(lemma) {
     });
 }
 
-//FIXME make manifest production-ready
 
 function make_id_suffix(text) {
     var before = btoa(text);
     var after = before.replace(/\+/g, '_').replace(/\//g, '-').replace(/=/g, '_')
     return after;
 }
+
 
 function sync_if_needed() {
     var req_keys = ['wd_last_sync', 'wd_gd_sync_enabled', 'wd_last_sync_error'];
@@ -29,6 +29,7 @@ function sync_if_needed() {
         }
     });
 }
+
 
 function add_lexeme(lexeme, result_handler) {
     var req_keys = ['words_discoverer_eng_dict', 'wd_idioms', 'wd_user_vocabulary', 'wd_user_vocab_added', 'wd_user_vocab_deleted'];
@@ -103,6 +104,7 @@ function make_hl_style(hl_params) {
     return result;
 }
 
+
 function localizeHtmlPage() {
     //Localize by replacing __MSG_***__ meta tags
     var objects = document.getElementsByTagName('html');
@@ -117,6 +119,7 @@ function localizeHtmlPage() {
         }
     }
 }
+
 
 function spformat(src) {
     var args = Array.prototype.slice.call(arguments, 1);
