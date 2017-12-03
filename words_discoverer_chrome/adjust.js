@@ -66,7 +66,7 @@ function synchronize_now() {
 }
 
 function request_permissions_and_sync() {
-    chrome.permissions.request({origins: ['https://*/']}, function(granted) {
+    chrome.permissions.request({origins: ['https://*/*']}, function(granted) {
         if (!granted)
             return;
         synchronize_now();
