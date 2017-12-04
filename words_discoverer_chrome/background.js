@@ -334,8 +334,11 @@ function sync_user_vocabularies() {
         var wd_user_vocabulary = result.wd_user_vocabulary;
         var wd_user_vocab_added = result.wd_user_vocab_added;
         var wd_user_vocab_deleted = result.wd_user_vocab_deleted;
+        if (typeof wd_user_vocabulary === 'undefined') {
+            wd_user_vocabulary = {};
+        }
         if (typeof wd_user_vocab_added === 'undefined') {
-            wd_user_vocab_added = Object.assign({}, result.wd_user_vocabulary);
+            wd_user_vocab_added = Object.assign({}, wd_user_vocabulary);
         }
         if (typeof wd_user_vocab_deleted === 'undefined') {
             wd_user_vocab_deleted = {};
