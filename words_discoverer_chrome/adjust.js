@@ -368,7 +368,6 @@ function process_display() {
             add_hover_rb_listeners();
 
             if (wd_developer_mode) {
-                document.getElementById("syncSection").style.display = 'block';
                 document.getElementById("debugControl").style.display = 'block';
             }
 
