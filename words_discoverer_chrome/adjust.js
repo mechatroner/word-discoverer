@@ -52,6 +52,7 @@ function display_sync_interface() {
     });
 }
 
+
 function synchronize_now() {
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (request.sync_feedback) {
@@ -65,6 +66,7 @@ function synchronize_now() {
     });
 }
 
+
 function request_permissions_and_sync() {
     chrome.permissions.request({origins: ['https://*/*']}, function(granted) {
         if (!granted)
@@ -76,6 +78,11 @@ function request_permissions_and_sync() {
 
 function stop_synchronization() {
     chrome.storage.local.set({"wd_gd_sync_enabled": false}, display_sync_interface);
+}
+
+
+function process_test_warnings() {
+    chrome.management.getPermissionWarningsByManifest(prompt(), console.log);
 }
 
 
@@ -121,9 +128,11 @@ function process_export() {
     });
 }
 
+
 function process_import() {
     chrome.tabs.create({'url': chrome.extension.getURL('import.html')}, function(tab) { });
 }
+
 
 function highlight_example_text(hl_params, text_id, lq_id, rq_id) {
     document.getElementById(lq_id).textContent = "";
@@ -132,6 +141,7 @@ function highlight_example_text(hl_params, text_id, lq_id, rq_id) {
     document.getElementById(rq_id).style = undefined;
     document.getElementById(text_id).style = make_hl_style(hl_params);
 }
+
 
 function show_rb_states(ids, color) {
     for (var i = 0; i < ids.length; i++) {
@@ -179,6 +189,7 @@ function process_test_old_dict(e) {
     chrome.tabs.create({'url': url}, function(tab) { });
 }
 
+
 function process_delete_old_dict(e) {
     var button = e.target;
     var btn_id = button.id;
@@ -190,6 +201,7 @@ function process_delete_old_dict(e) {
     initContextMenus(wd_online_dicts);
     show_user_dicts();
 }
+
 
 function show_user_dicts() {
     var dicts_block = document.getElementById("existingDictsBlock");
@@ -230,6 +242,7 @@ function show_user_dicts() {
         dicts_block.appendChild(document.createElement("br"));
     }
 }
+
 
 function show_internal_state() {
     var word_hl_params = wd_hl_settings.wordParams;
@@ -285,6 +298,7 @@ function add_cb_event_listener(id, dst_params, dst_key) {
     });
 }
 
+
 function process_rb(dst_params, dst_key, ids) {
     for (var i = 0; i < ids.length; i++) {
         doc_element = document.getElementById(ids[i]);
@@ -295,6 +309,7 @@ function process_rb(dst_params, dst_key, ids) {
     show_internal_state();
 }
 
+
 function handle_rb_loop(ids, dst_params, dst_key) {
     for (var i = 0; i < ids.length; i++) {
         document.getElementById(ids[i]).addEventListener("click", function() {
@@ -302,6 +317,7 @@ function handle_rb_loop(ids, dst_params, dst_key) {
         });
     }
 }
+
 
 function assign_back_labels() {
     var labels = document.getElementsByTagName('LABEL');
@@ -313,6 +329,7 @@ function assign_back_labels() {
         }
     }
 }
+
 
 function hover_rb_handler() {
     for (var t = 0; t < target_types.length; t++) {
@@ -338,6 +355,7 @@ function add_hover_rb_listeners() {
         }
     }
 }
+
 
 function process_display() {
     window.onload=function() {
@@ -380,6 +398,8 @@ function process_display() {
             document.getElementById("getFromStorageBtn").addEventListener("click", process_get_dbg);
             document.getElementById("setToStorageBtn").addEventListener("click", process_set_dbg);
 
+            document.getElementById("testManifestWarningsBtn").addEventListener("click", process_test_warnings);
+
             document.getElementById("addDict").addEventListener("click", process_add_dict);
             document.getElementById("testNewDict").addEventListener("click", process_test_new_dict);
 
@@ -402,6 +422,7 @@ function process_display() {
 
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
     localizeHtmlPage();
