@@ -343,7 +343,7 @@ function sync_user_vocabularies() {
         if (typeof wd_user_vocab_deleted === 'undefined') {
             wd_user_vocab_deleted = {};
         }
-        var vocab = {"name": "main", "all": wd_user_vocabulary, "added": wd_user_vocab_added, "deleted": wd_user_vocab_deleted};
+        var vocab = {"name": "my_vocabulary", "all": wd_user_vocabulary, "added": wd_user_vocab_added, "deleted": wd_user_vocab_deleted};
         perform_full_sync(vocab);
     });
 }
