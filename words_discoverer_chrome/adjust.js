@@ -104,10 +104,10 @@ function process_set_dbg() {
     } else {
         storage_value = JSON.parse(storage_value);
     }
-    console.log("storage_key:" + storage_key + ", storage_value:" + storage_value); //FOR_DEBUG
+    console.log("storage_key:" + storage_key + ", storage_value:" + storage_value);
     chrome.storage.local.set({[storage_key]: storage_value}, function() {
         var last_error = chrome.runtime.lastError;
-        console.log("last_error:" + last_error); //FOR_DEBUG
+        console.log("last_error:" + last_error);
         console.log('finished setting value');
     });
 }
