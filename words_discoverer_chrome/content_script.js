@@ -441,6 +441,8 @@ function initForPage() {
 
         //TODO simultaneously send page language request here
         chrome.runtime.sendMessage({wdm_request: "hostname"}, function(response) {
+            if (!response)
+                return;
             var hostname = response.wdm_hostname;
             var verdict = get_verdict(is_enabled, black_list, white_list, hostname);
             chrome.runtime.sendMessage({wdm_verdict: verdict});
