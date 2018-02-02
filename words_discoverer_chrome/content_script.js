@@ -446,43 +446,44 @@ function initForPage() {
             var hostname = response.wdm_hostname;
             var verdict = get_verdict(is_enabled, black_list, white_list, hostname);
             chrome.runtime.sendMessage({wdm_verdict: verdict});
+            if (verdict !== "highlight") 
+                return;
 
-            if (verdict == "highlight") {
-                document.addEventListener("keydown", function(event) {
-                    if (event.keyCode == 17) {
-                        function_key_is_pressed = true;
-                        renderBubble();
-                        return;
-                    }
-                    var elementTagName = event.target.tagName;
-                    if (!disable_by_keypress && elementTagName != 'BODY') {
-                        //workaround to prevent highlighting in facebook messages
-                        //this logic can also be helpful in other situations, it's better play safe and stop highlighting when user enters data.
-                        disable_by_keypress = true;
-                        chrome.runtime.sendMessage({wdm_verdict: "keyboard"});
-                    }
-                });
+            document.addEventListener("keydown", function(event) {
+                if (event.keyCode == 17) {
+                    function_key_is_pressed = true;
+                    renderBubble();
+                    return;
+                }
+                var elementTagName = event.target.tagName;
+                if (!disable_by_keypress && elementTagName != 'BODY') {
+                    //workaround to prevent highlighting in facebook messages
+                    //this logic can also be helpful in other situations, it's better play safe and stop highlighting when user enters data.
+                    disable_by_keypress = true;
+                    chrome.runtime.sendMessage({wdm_verdict: "keyboard"});
+                }
+            });
 
-                document.addEventListener("keyup", function(event) {
-                    if (event.keyCode == 17) {
-                        function_key_is_pressed = false;
-                        return;
-                    }
-                });
+            document.addEventListener("keyup", function(event) {
+                if (event.keyCode == 17) {
+                    function_key_is_pressed = false;
+                    return;
+                }
+            });
 
-                var textNodes = textNodesUnder(document.body);
-                doHighlightText(textNodes);
+            var textNodes = textNodesUnder(document.body);
+            doHighlightText(textNodes);
 
-                var bubbleDOM = create_bubble();
-                document.body.appendChild(bubbleDOM);
-                document.addEventListener('mousedown', hideBubble(true), false);
-                document.addEventListener('mousemove', processMouse, false);
-                document.addEventListener("DOMNodeInserted", onNodeInserted, false);
-                window.addEventListener('scroll', function() {
-                    node_to_render_id = null;
-                    hideBubble(true);
-                });
-            }
+            var bubbleDOM = create_bubble();
+            document.body.appendChild(bubbleDOM);
+            document.addEventListener('mousedown', hideBubble(true), false);
+            document.addEventListener('mousemove', processMouse, false);
+            document.addEventListener("DOMNodeInserted", onNodeInserted, false);
+            window.addEventListener('scroll', function() {
+                node_to_render_id = null;
+                hideBubble(true);
+            });
+            
         });
     });
 }
