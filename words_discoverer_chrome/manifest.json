@@ -6,37 +6,57 @@
   "default_locale": "en",
   "version": "2.9.3",
   "icons": {
-   "48": "result48.png"
+    "48": "result48.png"
   },
   "browser_action": {
-   "default_popup": "popup.html"
+    "default_popup": "popup.html"
   },
   "author": "Dmitry Ignatovich",
   "permissions": [
-   "activeTab",
-   "storage",
-   "unlimitedStorage",
-   "contextMenus",
-   "identity"
+    "activeTab",
+    "storage",
+    "unlimitedStorage",
+    "contextMenus",
+    "tts",
+    "webRequest",
+    "identity"
   ],
-  "optional_permissions": ["https://*/*"],
+  "optional_permissions": [
+    "https://*/*"
+  ],
   "background": {
-    "scripts": ["common_lib.js", "context_menu_lib.js", "background.js"]
+    "scripts": [
+      "common_lib.js",
+      "context_menu_lib.js",
+      "background.js"
+    ]
   },
   "content_security_policy": "script-src https://*.google.com 'unsafe-eval'; object-src 'self'",
   "oauth2": {
     "client_id": "1093363650045-qndvaqnh5ma7mabluj3arkmta53lubo5.apps.googleusercontent.com",
-    "scopes": ["https://www.googleapis.com/auth/drive.metadata.readonly", "https://www.googleapis.com/auth/drive.file"]
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.metadata.readonly",
+      "https://www.googleapis.com/auth/drive.file"
+    ]
   },
   "web_accessible_resources": [
-    "eng_dict.txt", "eng_idioms.txt"
+    "eng_dict.txt",
+    "eng_idioms.txt"
   ],
   "content_scripts": [
-   {
-    "matches": ["<all_urls>"], 
-    "css": ["content_script.css"],
-    "js": ["common_lib.js", "context_menu_lib.js", "content_script.js"],
-    "run_at": "document_start"
-   }
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "css": [
+        "content_script.css"
+      ],
+      "js": [
+        "common_lib.js",
+        "context_menu_lib.js",
+        "content_script.js"
+      ],
+      "run_at": "document_start"
+    }
   ]
 }

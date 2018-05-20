@@ -21,6 +21,9 @@ var function_key_is_pressed = false;
 var rendered_node_id = null;
 var node_to_render_id = null;
 
+//the translate target language
+var targetLang = chrome.i18n.getUILanguage().split('-')[0];
+
 function make_class_name(lemma) {
     if (lemma) {
         return 'wdautohl_' + make_id_suffix(lemma);
@@ -106,6 +109,31 @@ function renderBubble() {
     bubbleDOM.style.left = Math.max(5, Math.floor((bcr.left + bcr.right) / 2) - 100) + 'px';
     bubbleDOM.style.display = 'block';
     rendered_node_id = node_to_render_id;
+
+    //request play the pronunciation
+    if (wd_hl_settings.wordPronunciationParams.enabled) {
+        chrome.runtime.sendMessage({type: "tts_speak", word: wdSpanText});
+    }
+
+    //send translate request
+    var xhr = new XMLHttpRequest();
+    //the server are in America that visit it will be slow in some country(like china)
+    //the server translate api source code is in https://github.com/XQDD/mul_trans_api
+    xhr.open('post', 'https://xqddin.cn/multitransapi/translate');
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify({
+        originLang: "en",
+        targetLang: targetLang,
+        word: wdSpanText
+    }));
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.code) {
+                document.getElementById("wd_selection_bubble_trans").textContent = response.data[0]
+            }
+        }
+    };
 }
 
 function hideBubble(force) {
@@ -113,12 +141,17 @@ function hideBubble(force) {
     if (force || (!bubbleDOM.wdMouseOn && (node_to_render_id != rendered_node_id))) {
         bubbleDOM.style.display = 'none';
         rendered_node_id = null;
+
+        //clean the translate session
+        document.getElementById("wd_selection_bubble_trans").textContent = ""
     }
 }
 
 function process_hl_leave() {
     node_to_render_id = null;
-    setTimeout(function() { hideBubble(false); }, 100);
+    setTimeout(function () {
+        hideBubble(false);
+    }, 100);
 }
 
 function processMouse(e) {
@@ -139,7 +172,9 @@ function processMouse(e) {
         return;
     }
     node_to_render_id = hitNode.id;
-    setTimeout(function() { renderBubble(); }, 200);
+    setTimeout(function () {
+        renderBubble();
+    }, 200);
 }
 
 
@@ -147,7 +182,7 @@ function text_to_hl_nodes(text, dst) {
     var lc_text = text.toLowerCase();
     var ws_text = lc_text.replace(/[,;()?!`:"'.\s\-\u2013\u2014\u201C\u201D\u2019]/g, " ");
     var ws_text = ws_text.replace(/[^\w ]/g, ".");
-    
+
     var tokens = ws_text.split(" ");
 
     var num_good = 0; //number of found dictionary words
@@ -187,7 +222,7 @@ function text_to_hl_nodes(text, dst) {
                     match = {normalized: wf, kind: "idiom", begin: ibegin, end: ibegin + mwe_prefix.length};
                     ibegin += mwe_prefix.length + 1;
                     num_good += lwnum - wnum + 1;
-                    wnum = lwnum + 1; 
+                    wnum = lwnum + 1;
                 } else { //idiom not found
                     break;
                 }
@@ -246,7 +281,7 @@ function text_to_hl_nodes(text, dst) {
             span = document.createElement("wdautohl-customtag");
             span.textContent = text.slice(match.begin, last_hl_end_pos);
             span.setAttribute("style", text_style);
-            span.id = 'wdautohl_id_' + cur_wd_node_id; 
+            span.id = 'wdautohl_id_' + cur_wd_node_id;
             cur_wd_node_id += 1;
             var wdclassname = make_class_name(match.normalized);
             span.setAttribute("class", wdclassname);
@@ -264,16 +299,16 @@ function text_to_hl_nodes(text, dst) {
 
 var good_tags_list = ["P", "H1", "H2", "H3", "H4", "H5", "H6", "B", "SMALL", "STRONG", "Q", "DIV", "SPAN"];
 
-mygoodfilter=function(node) {
+mygoodfilter = function (node) {
     if (good_tags_list.indexOf(node.parentNode.tagName) !== -1)
         return NodeFilter.FILTER_ACCEPT;
     return NodeFilter.FILTER_SKIP;
 }
 
 
-function textNodesUnder(el){
-    var n, a=[], walk=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,mygoodfilter,false);
-    while(n=walk.nextNode())  {
+function textNodesUnder(el) {
+    var n, a = [], walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, mygoodfilter, false);
+    while (n = walk.nextNode()) {
         a.push(n);
     }
     return a;
@@ -377,11 +412,18 @@ function create_bubble() {
     freqSpan.textContent = "n/a";
     bubbleDOM.appendChild(freqSpan);
 
+    //translate info
+    var tranSpan = document.createElement('span');
+    tranSpan.setAttribute("id", "wd_selection_bubble_trans")
+    tranSpan.setAttribute('class', 'wdInfoSpan');
+    bubbleDOM.appendChild(tranSpan);
+
+
     var addButton = document.createElement('button');
     addButton.setAttribute('class', 'wdAddButton');
     addButton.textContent = chrome.i18n.getMessage("menuItem");
     addButton.style.marginBottom = "4px";
-    addButton.addEventListener("click", function() {
+    addButton.addEventListener("click", function () {
         add_lexeme(current_lexeme, bubble_handle_add_result);
     });
     bubbleDOM.appendChild(addButton);
@@ -393,7 +435,7 @@ function create_bubble() {
         dictButton.setAttribute('class', 'wdAddButton');
         dictButton.textContent = dictPairs[i].title;
         dictButton.setAttribute('wdDictRefUrl', dictPairs[i].url);
-        dictButton.addEventListener("click", function(e) {
+        dictButton.addEventListener("click", function (e) {
             target = e.target;
             dictUrl = target.getAttribute('wdDictRefUrl');
             var newTabUrl = get_dict_definition_url(dictUrl, current_lexeme);
@@ -402,11 +444,11 @@ function create_bubble() {
         bubbleDOM.appendChild(dictButton);
     }
 
-    bubbleDOM.addEventListener('mouseleave', function(e) {
+    bubbleDOM.addEventListener('mouseleave', function (e) {
         bubbleDOM.wdMouseOn = false;
         hideBubble(false);
     });
-    bubbleDOM.addEventListener('mouseenter', function(e) {
+    bubbleDOM.addEventListener('mouseenter', function (e) {
         bubbleDOM.wdMouseOn = true;
     });
 
@@ -418,14 +460,14 @@ function initForPage() {
     if (!document.body)
         return;
 
-    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.wdm_unhighlight) {
             var lemma = request.wdm_unhighlight;
             unhighlight(lemma);
         }
     });
 
-    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_online_dicts', 'wd_idioms', 'wd_hover_settings', 'wd_word_max_rank', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_hl_settings', 'wd_black_list', 'wd_white_list'], function(result) {
+    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_online_dicts', 'wd_idioms', 'wd_hover_settings', 'wd_word_max_rank', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_hl_settings', 'wd_black_list', 'wd_white_list'], function (result) {
         dict_words = result.words_discoverer_eng_dict;
         dict_idioms = result.wd_idioms;
         wd_online_dicts = result.wd_online_dicts;
@@ -440,7 +482,7 @@ function initForPage() {
         var white_list = result.wd_white_list;
 
         //TODO simultaneously send page language request here
-        chrome.runtime.sendMessage({wdm_request: "hostname"}, function(response) {
+        chrome.runtime.sendMessage({wdm_request: "hostname"}, function (response) {
             if (!response) {
                 chrome.runtime.sendMessage({wdm_verdict: 'unknown error'});
                 return;
@@ -448,10 +490,10 @@ function initForPage() {
             var hostname = response.wdm_hostname;
             var verdict = get_verdict(is_enabled, black_list, white_list, hostname);
             chrome.runtime.sendMessage({wdm_verdict: verdict});
-            if (verdict !== "highlight") 
+            if (verdict !== "highlight")
                 return;
 
-            document.addEventListener("keydown", function(event) {
+            document.addEventListener("keydown", function (event) {
                 if (event.keyCode == 17) {
                     function_key_is_pressed = true;
                     renderBubble();
@@ -466,7 +508,7 @@ function initForPage() {
                 }
             });
 
-            document.addEventListener("keyup", function(event) {
+            document.addEventListener("keyup", function (event) {
                 if (event.keyCode == 17) {
                     function_key_is_pressed = false;
                     return;
@@ -481,17 +523,17 @@ function initForPage() {
             document.addEventListener('mousedown', hideBubble(true), false);
             document.addEventListener('mousemove', processMouse, false);
             document.addEventListener("DOMNodeInserted", onNodeInserted, false);
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 node_to_render_id = null;
                 hideBubble(true);
             });
-            
+
         });
     });
 }
 
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function (event) {
     initForPage();
 });
 

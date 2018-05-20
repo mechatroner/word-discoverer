@@ -12,7 +12,7 @@ var target_types = ['hl', 'ow']
 
 
 function display_sync_interface() {
-    chrome.storage.local.get(["wd_gd_sync_enabled", "wd_last_sync_error", "wd_last_sync"], function(result) {
+    chrome.storage.local.get(["wd_gd_sync_enabled", "wd_last_sync_error", "wd_last_sync"], function (result) {
         wd_last_sync_error = result.wd_last_sync_error;
         wd_gd_sync_enabled = result.wd_gd_sync_enabled;
         wd_last_sync = result.wd_last_sync;
@@ -54,21 +54,21 @@ function display_sync_interface() {
 
 
 function synchronize_now() {
-    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.sync_feedback) {
             display_sync_interface();
         }
     });
     document.getElementById("syncStatusFeedback").style.display = 'inline';
     document.getElementById("syncStatusFeedback").textContent = "Synchronization started...";
-    chrome.storage.local.set({"wd_gd_sync_enabled": true}, function() {
+    chrome.storage.local.set({"wd_gd_sync_enabled": true}, function () {
         chrome.runtime.sendMessage({wdm_request: "gd_sync", interactive_mode: true});
     });
 }
 
 
 function request_permissions_and_sync() {
-    chrome.permissions.request({origins: ['https://*/*']}, function(granted) {
+    chrome.permissions.request({origins: ['https://*/*']}, function (granted) {
         if (!granted)
             return;
         synchronize_now();
@@ -88,7 +88,7 @@ function process_test_warnings() {
 
 function process_get_dbg() {
     var storage_key = document.getElementById("getFromStorageKey").value;
-    chrome.storage.local.get([storage_key], function(result) {
+    chrome.storage.local.get([storage_key], function (result) {
         storage_value = result[storage_key];
         console.log('key: ' + storage_key + '; value: ' + JSON.stringify(storage_value));
     });
@@ -105,7 +105,7 @@ function process_set_dbg() {
         storage_value = JSON.parse(storage_value);
     }
     console.log("storage_key:" + storage_key + ", storage_value:" + storage_value);
-    chrome.storage.local.set({[storage_key]: storage_value}, function() {
+    chrome.storage.local.set({[storage_key]: storage_value}, function () {
         var last_error = chrome.runtime.lastError;
         console.log("last_error:" + last_error);
         console.log('finished setting value');
@@ -114,7 +114,7 @@ function process_set_dbg() {
 
 
 function process_export() {
-    chrome.storage.local.get(['wd_user_vocabulary'], function(result) {
+    chrome.storage.local.get(['wd_user_vocabulary'], function (result) {
         var user_vocabulary = result.wd_user_vocabulary;
         keys = []
         for (var key in user_vocabulary) {
@@ -130,7 +130,8 @@ function process_export() {
 
 
 function process_import() {
-    chrome.tabs.create({'url': chrome.extension.getURL('import.html')}, function(tab) { });
+    chrome.tabs.create({'url': chrome.extension.getURL('import.html')}, function (tab) {
+    });
 }
 
 
@@ -175,7 +176,8 @@ function process_test_new_dict() {
     if (!dictUrl)
         return;
     url = dictUrl + 'test';
-    chrome.tabs.create({'url': url}, function(tab) { });
+    chrome.tabs.create({'url': url}, function (tab) {
+    });
 }
 
 
@@ -186,7 +188,8 @@ function process_test_old_dict(e) {
         return;
     var btn_no = parseInt(btn_id.split('_')[1]);
     url = wd_online_dicts[btn_no].url + 'test';
-    chrome.tabs.create({'url': url}, function(tab) { });
+    chrome.tabs.create({'url': url}, function (tab) {
+    });
 }
 
 
@@ -248,6 +251,7 @@ function show_internal_state() {
     var word_hl_params = wd_hl_settings.wordParams;
     var idiom_hl_params = wd_hl_settings.idiomParams;
 
+
     document.getElementById("wordsEnabled").checked = word_hl_params.enabled;
     document.getElementById("idiomsEnabled").checked = idiom_hl_params.enabled;
     document.getElementById("wordsBlock").style.display = word_hl_params.enabled ? "block" : "none";
@@ -261,6 +265,10 @@ function show_internal_state() {
 
     document.getElementById("wordsColor").checked = word_hl_params.useColor;
     document.getElementById("idiomsColor").checked = idiom_hl_params.useColor;
+
+    //pronunciation section
+    var word_pronunciation_params = wd_hl_settings.wordPronunciationParams;
+    document.getElementById("pronunciationEnabled").checked = word_pronunciation_params.enabled;
 
 
     document.getElementById("wcRadioBlock").style.display = word_hl_params.useColor ? "block" : "none";
@@ -287,7 +295,7 @@ function show_internal_state() {
 
 
 function add_cb_event_listener(id, dst_params, dst_key) {
-    document.getElementById(id).addEventListener("click", function() {
+    document.getElementById(id).addEventListener("click", function () {
         checkboxElem = document.getElementById(id);
         if (checkboxElem.checked) {
             dst_params[dst_key] = true;
@@ -312,7 +320,7 @@ function process_rb(dst_params, dst_key, ids) {
 
 function handle_rb_loop(ids, dst_params, dst_key) {
     for (var i = 0; i < ids.length; i++) {
-        document.getElementById(ids[i]).addEventListener("click", function() {
+        document.getElementById(ids[i]).addEventListener("click", function () {
             process_rb(dst_params, dst_key, ids);
         });
     }
@@ -323,9 +331,9 @@ function assign_back_labels() {
     var labels = document.getElementsByTagName('LABEL');
     for (var i = 0; i < labels.length; i++) {
         if (labels[i].htmlFor != '') {
-             var elem = document.getElementById(labels[i].htmlFor);
-             if (elem)
-                elem.label = labels[i];         
+            var elem = document.getElementById(labels[i].htmlFor);
+            if (elem)
+                elem.label = labels[i];
         }
     }
 }
@@ -358,8 +366,8 @@ function add_hover_rb_listeners() {
 
 
 function process_display() {
-    window.onload=function() {
-        chrome.storage.local.get(["wd_hl_settings", "wd_hover_settings", "wd_online_dicts", "wd_developer_mode"], function(result) {
+    window.onload = function () {
+        chrome.storage.local.get(["wd_hl_settings", "wd_hover_settings", "wd_online_dicts", "wd_developer_mode"], function (result) {
             assign_back_labels();
             wd_hl_settings = result.wd_hl_settings;
             wd_hover_settings = result.wd_hover_settings;
@@ -405,15 +413,20 @@ function process_display() {
 
             document.getElementById("moreInfoLink").href = chrome.extension.getURL('sync_help.html');
 
-            document.getElementById("saveVisuals").addEventListener("click", function() {
+            document.getElementById("saveVisuals").addEventListener("click", function () {
                 chrome.storage.local.set({'wd_hl_settings': wd_hl_settings});
             });
 
-            document.getElementById("defaultDicts").addEventListener("click", function() {
+            document.getElementById("defaultDicts").addEventListener("click", function () {
                 wd_online_dicts = make_default_online_dicts();
                 chrome.storage.local.set({"wd_online_dicts": wd_online_dicts});
                 initContextMenus(wd_online_dicts);
                 show_user_dicts();
+            });
+
+            //pronunciation section
+            document.getElementById("pronunciationEnabled").addEventListener("click", function (e) {
+                wd_hl_settings.wordPronunciationParams.enabled = e.target.checked;
             });
 
             display_sync_interface();
@@ -424,7 +437,7 @@ function process_display() {
 }
 
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function (event) {
     localizeHtmlPage();
     process_display();
 });
