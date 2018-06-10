@@ -18,7 +18,6 @@
     "unlimitedStorage",
     "contextMenus",
     "tts",
-    "webRequest",
     "identity"
   ],
   "optional_permissions": [

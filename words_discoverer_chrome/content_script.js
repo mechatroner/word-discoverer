@@ -8,6 +8,7 @@ var is_enabled = null;
 var wd_hl_settings = null;
 var wd_hover_settings = null;
 var wd_online_dicts = null;
+var wd_enable_tts = null;
 
 var disable_by_keypress = false;
 
@@ -20,9 +21,6 @@ var word_re = new RegExp("^[a-z][a-z]*$");
 var function_key_is_pressed = false;
 var rendered_node_id = null;
 var node_to_render_id = null;
-
-//the translate target language
-var targetLang = chrome.i18n.getUILanguage().split('-')[0];
 
 function make_class_name(lemma) {
     if (lemma) {
@@ -110,30 +108,9 @@ function renderBubble() {
     bubbleDOM.style.display = 'block';
     rendered_node_id = node_to_render_id;
 
-    //request play the pronunciation
-    if (wd_hl_settings.wordPronunciationParams.enabled) {
+    if (wd_enable_tts) {
         chrome.runtime.sendMessage({type: "tts_speak", word: wdSpanText});
     }
-
-    //send translate request
-    var xhr = new XMLHttpRequest();
-    //the server are in America that visit it will be slow in some country(like china)
-    //the server translate api source code is in https://github.com/XQDD/mul_trans_api
-    xhr.open('post', 'https://xqddin.cn/multitransapi/translate');
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send(JSON.stringify({
-        originLang: "en",
-        targetLang: targetLang,
-        word: wdSpanText
-    }));
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            if (response.code) {
-                document.getElementById("wd_selection_bubble_trans").textContent = response.data[0]
-            }
-        }
-    };
 }
 
 function hideBubble(force) {
@@ -141,9 +118,6 @@ function hideBubble(force) {
     if (force || (!bubbleDOM.wdMouseOn && (node_to_render_id != rendered_node_id))) {
         bubbleDOM.style.display = 'none';
         rendered_node_id = null;
-
-        //clean the translate session
-        document.getElementById("wd_selection_bubble_trans").textContent = ""
     }
 }
 
@@ -412,13 +386,6 @@ function create_bubble() {
     freqSpan.textContent = "n/a";
     bubbleDOM.appendChild(freqSpan);
 
-    //translate info
-    var tranSpan = document.createElement('span');
-    tranSpan.setAttribute("id", "wd_selection_bubble_trans")
-    tranSpan.setAttribute('class', 'wdInfoSpan');
-    bubbleDOM.appendChild(tranSpan);
-
-
     var addButton = document.createElement('button');
     addButton.setAttribute('class', 'wdAddButton');
     addButton.textContent = chrome.i18n.getMessage("menuItem");
@@ -467,10 +434,11 @@ function initForPage() {
         }
     });
 
-    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_online_dicts', 'wd_idioms', 'wd_hover_settings', 'wd_word_max_rank', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_hl_settings', 'wd_black_list', 'wd_white_list'], function (result) {
+    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_online_dicts', 'wd_idioms', 'wd_hover_settings', 'wd_word_max_rank', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_hl_settings', 'wd_black_list', 'wd_white_list', 'wd_enable_tts'], function (result) {
         dict_words = result.words_discoverer_eng_dict;
         dict_idioms = result.wd_idioms;
         wd_online_dicts = result.wd_online_dicts;
+        wd_enable_tts = result.wd_enable_tts;
         user_vocabulary = result.wd_user_vocabulary;
         wd_hover_settings = result.wd_hover_settings;
         word_max_rank = result.wd_word_max_rank;

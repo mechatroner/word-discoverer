@@ -1,6 +1,7 @@
 var wd_hl_settings = null;
 var wd_hover_settings = null;
 var wd_online_dicts = null;
+var wd_enable_tts = false;
 
 var wc_rb_ids = ['wc1', 'wc2', 'wc3', 'wc4', 'wc5'];
 var ic_rb_ids = ['ic1', 'ic2', 'ic3', 'ic4', 'ic5'];
@@ -266,10 +267,7 @@ function show_internal_state() {
     document.getElementById("wordsColor").checked = word_hl_params.useColor;
     document.getElementById("idiomsColor").checked = idiom_hl_params.useColor;
 
-    //pronunciation section
-    var word_pronunciation_params = wd_hl_settings.wordPronunciationParams;
-    document.getElementById("pronunciationEnabled").checked = word_pronunciation_params.enabled;
-
+    document.getElementById("pronunciationEnabled").checked = wd_enable_tts;
 
     document.getElementById("wcRadioBlock").style.display = word_hl_params.useColor ? "block" : "none";
     show_rb_states(wc_rb_ids, word_hl_params.color);
@@ -367,11 +365,12 @@ function add_hover_rb_listeners() {
 
 function process_display() {
     window.onload = function () {
-        chrome.storage.local.get(["wd_hl_settings", "wd_hover_settings", "wd_online_dicts", "wd_developer_mode"], function (result) {
+        chrome.storage.local.get(["wd_hl_settings", "wd_hover_settings", "wd_online_dicts", "wd_developer_mode", "wd_enable_tts"], function (result) {
             assign_back_labels();
             wd_hl_settings = result.wd_hl_settings;
             wd_hover_settings = result.wd_hover_settings;
             wd_online_dicts = result.wd_online_dicts;
+            wd_enable_tts = result.wd_enable_tts ? true : false;
 
             var wd_developer_mode = result.wd_developer_mode;
 
@@ -424,9 +423,9 @@ function process_display() {
                 show_user_dicts();
             });
 
-            //pronunciation section
             document.getElementById("pronunciationEnabled").addEventListener("click", function (e) {
-                wd_hl_settings.wordPronunciationParams.enabled = e.target.checked;
+                wd_enable_tts = e.target.checked;
+                chrome.storage.local.set({"wd_enable_tts": wd_enable_tts});
             });
 
             display_sync_interface();

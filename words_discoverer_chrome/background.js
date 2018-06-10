@@ -443,7 +443,7 @@ function initialize_extension() {
         }
     });
 
-    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_hl_settings', 'wd_online_dicts', 'wd_hover_settings', 'wd_idioms', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_black_list', 'wd_white_list', 'wd_gd_sync_enabled'], function (result) {
+    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_hl_settings', 'wd_online_dicts', 'wd_hover_settings', 'wd_idioms', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_black_list', 'wd_white_list', 'wd_gd_sync_enabled', 'wd_enable_tts'], function (result) {
         load_eng_dictionary();
         load_idioms();
         wd_hl_settings = result.wd_hl_settings;
@@ -466,16 +466,15 @@ function initialize_extension() {
                 useColor: true,
                 color: "blue"
             };
-            //pronunciation section
-            word_pronunciation_params = {
-                enabled: true,
-            };
             wd_hl_settings = {
                 wordParams: word_hl_params,
                 idiomParams: idiom_hl_params,
-                wordPronunciationParams: word_pronunciation_params
             };
             chrome.storage.local.set({"wd_hl_settings": wd_hl_settings});
+        }
+        wd_enable_tts = result.wd_enable_tts;
+        if (typeof wd_enable_tts == 'undefined') {
+            chrome.storage.local.set({"wd_enable_tts": false});
         }
         wd_hover_settings = result.wd_hover_settings;
         if (typeof wd_hover_settings == 'undefined') {
@@ -512,7 +511,6 @@ function initialize_extension() {
     });
 
 
-    //word pronunciation
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.type = "tts_speak") {
             if (!!request.word && typeof request.word === "string") {
