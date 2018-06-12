@@ -364,6 +364,11 @@ function get_verdict(is_enabled, black_list, white_list, hostname) {
     return is_enabled ? "highlight" : "site is not in \"Favorites List\"";
 }
 
+function bubble_handle_tts(lexeme) {
+    chrome.runtime.sendMessage({type: "tts_speak", word: lexeme});
+}
+
+
 function bubble_handle_add_result(report, lemma) {
     if (report === "ok") {
         unhighlight(lemma);
@@ -394,6 +399,15 @@ function create_bubble() {
         add_lexeme(current_lexeme, bubble_handle_add_result);
     });
     bubbleDOM.appendChild(addButton);
+
+    var speakButton = document.createElement('button');
+    speakButton.setAttribute('class', 'wdAddButton');
+    speakButton.textContent = 'Audio';
+    speakButton.style.marginBottom = "4px";
+    speakButton.addEventListener("click", function () {
+        bubble_handle_tts(current_lexeme);
+    });
+    bubbleDOM.appendChild(speakButton);
 
     //dictPairs = makeDictionaryPairs();
     var dictPairs = wd_online_dicts;
