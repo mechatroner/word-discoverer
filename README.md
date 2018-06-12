@@ -16,3 +16,8 @@ Another way to help users is to highlight idioms, which sometimes can be very ha
 * Highlights English idioms from eng_idioms.txt file
 
 [Words Discoverer in Chrome webstore](https://chrome.google.com/webstore/detail/words-discoverer-expand-y/noncaeikjgpbdeoocblijjgegnobogib)
+
+## Contributors
+
+[mechatroner](https://github.com/mechatroner) - Core functionality
+[XQDD](https://github.com/XQDD) - Text-To-Speech idea and implementation
