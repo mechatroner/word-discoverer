@@ -382,6 +382,7 @@ function process_display() {
             handle_rb_loop(ib_rb_ids, wd_hl_settings.idiomParams, "backgroundColor");
 
             add_cb_event_listener("wordsEnabled", wd_hl_settings.wordParams, "enabled");
+            add_cb_event_listener("userWordsEnabled", wd_hl_settings.userWordParams, "enabled");
             add_cb_event_listener("idiomsEnabled", wd_hl_settings.idiomParams, "enabled");
             add_cb_event_listener("wordsBold", wd_hl_settings.wordParams, "bold");
             add_cb_event_listener("idiomsBold", wd_hl_settings.idiomParams, "bold");
