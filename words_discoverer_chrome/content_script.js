@@ -22,12 +22,14 @@ var function_key_is_pressed = false;
 var rendered_node_id = null;
 var node_to_render_id = null;
 
+
 function make_class_name(lemma) {
     if (lemma) {
         return 'wdautohl_' + make_id_suffix(lemma);
     }
     return 'wdautohl_none_none';
 }
+
 
 function get_rare_lemma(word) {
     if (word.length < 3)
@@ -51,11 +53,13 @@ function get_word_percentile(word) {
     return result;
 }
 
+
 function assert(condition, message) {
     if (!condition) {
         throw message || "Assertion failed";
     }
 }
+
 
 function limit_text_len(word) {
     if (!word)
@@ -67,6 +71,7 @@ function limit_text_len(word) {
     return word.slice(0, max_len) + "...";
 }
 
+
 function getHeatColorPoint(freqPercent) {
     if (!freqPercent)
         freqPercent = 0;
@@ -74,6 +79,7 @@ function getHeatColorPoint(freqPercent) {
     var hue = 100 - freqPercent;
     return "hsl(" + hue + ", 100%, 50%)";
 }
+
 
 function renderBubble() {
     if (!node_to_render_id)
@@ -113,6 +119,7 @@ function renderBubble() {
     }
 }
 
+
 function hideBubble(force) {
     bubbleDOM = document.getElementById("wd_selection_bubble");
     if (force || (!bubbleDOM.wdMouseOn && (node_to_render_id != rendered_node_id))) {
@@ -121,12 +128,14 @@ function hideBubble(force) {
     }
 }
 
+
 function process_hl_leave() {
     node_to_render_id = null;
     setTimeout(function () {
         hideBubble(false);
     }, 100);
 }
+
 
 function processMouse(e) {
     var hitNode = document.elementFromPoint(e.clientX, e.clientY);
@@ -271,9 +280,11 @@ function text_to_hl_nodes(text, dst) {
 
 }
 
+
 var good_tags_list = ["P", "H1", "H2", "H3", "H4", "H5", "H6", "B", "SMALL", "STRONG", "Q", "DIV", "SPAN"];
 
-mygoodfilter = function (node) {
+
+function mygoodfilter(node) {
     if (good_tags_list.indexOf(node.parentNode.tagName) !== -1)
         return NodeFilter.FILTER_ACCEPT;
     return NodeFilter.FILTER_SKIP;
@@ -287,6 +298,7 @@ function textNodesUnder(el) {
     }
     return a;
 }
+
 
 function doHighlightText(textNodes) {
     if (textNodes === null || dict_words === null || min_show_rank === null) {
@@ -323,6 +335,7 @@ function doHighlightText(textNodes) {
     }
 }
 
+
 function onNodeInserted(event) {
     var inobj = event.target;
     if (!inobj)
@@ -354,15 +367,35 @@ function unhighlight(lemma) {
 }
 
 
-function get_verdict(is_enabled, black_list, white_list, hostname) {
-    if (black_list.hasOwnProperty(hostname)) {
-        return "site in \"Skip List\"";
-    }
-    if (white_list.hasOwnProperty(hostname)) {
-        return "highlight";
-    }
-    return is_enabled ? "highlight" : "site is not in \"Favorites List\"";
+function get_verdict(is_enabled, black_list, white_list, callback_func) {
+    chrome.runtime.sendMessage({wdm_request: "hostname"}, function(response) {
+        if (!response) {
+            callback_func('unknown error');
+            return;
+        }
+        var hostname = response.wdm_hostname;
+        if (black_list.hasOwnProperty(hostname)) {
+            callback_func("site in \"Skip List\"");
+            return;
+        }
+        if (white_list.hasOwnProperty(hostname)) {
+            callback_func("highlight");
+            return;
+        }
+        if (!is_enabled) {
+            callback_func("site is not in \"Favorites List\"");
+            return;
+        }
+        chrome.runtime.sendMessage({wdm_request: "page_language"}, function(lang_response) {
+            if (!lang_response) {
+                callback_func('unknown error');
+                return;
+            }
+            callback_func(lang_response.wdm_iso_language_code == 'en' ? "highlight" : "page language is not English");
+        });
+    });
 }
+
 
 function bubble_handle_tts(lexeme) {
     chrome.runtime.sendMessage({type: "tts_speak", word: lexeme});
@@ -374,6 +407,7 @@ function bubble_handle_add_result(report, lemma) {
         unhighlight(lemma);
     }
 }
+
 
 function create_bubble() {
     var bubbleDOM = document.createElement('div');
@@ -463,14 +497,7 @@ function initForPage() {
         var black_list = result.wd_black_list;
         var white_list = result.wd_white_list;
 
-        //TODO simultaneously send page language request here
-        chrome.runtime.sendMessage({wdm_request: "hostname"}, function (response) {
-            if (!response) {
-                chrome.runtime.sendMessage({wdm_verdict: 'unknown error'});
-                return;
-            }
-            var hostname = response.wdm_hostname;
-            var verdict = get_verdict(is_enabled, black_list, white_list, hostname);
+        get_verdict(is_enabled, black_list, white_list, function (verdict) {
             chrome.runtime.sendMessage({wdm_verdict: verdict});
             if (verdict !== "highlight")
                 return;
@@ -509,7 +536,6 @@ function initForPage() {
                 node_to_render_id = null;
                 hideBubble(true);
             });
-
         });
     });
 }

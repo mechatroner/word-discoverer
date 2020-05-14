@@ -408,6 +408,11 @@ function initialize_extension() {
             var url = new URL(tab_url);
             var domain = url.hostname;
             sendResponse({wdm_hostname: domain});
+        } else if (request.wdm_request == "page_language") {
+            chrome.tabs.detectLanguage(sender.tab.id, function(iso_language_code) {
+                sendResponse({wdm_iso_language_code: iso_language_code});
+            });
+            return true; // This is to indicate that sendResponse would be sent asynchronously and keep the message channel open, see https://developer.chrome.com/extensions/runtime#event-onMessage
         } else if (request.wdm_verdict) {
             if (request.wdm_verdict == "highlight") {
                 chrome.storage.local.get(['wd_gd_sync_enabled', 'wd_last_sync_error'], function (result) {
