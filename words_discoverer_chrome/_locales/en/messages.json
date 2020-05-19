@@ -79,10 +79,10 @@
         "message": "Use bold font"
     },
     "enabledDescription": {
-        "message": "Highlight all Internet except \"Skip List\" sites."
+        "message": "Highlight all Internet except \"Skip List\" sites"
     },
     "disabledDescription": {
-        "message": "Highlight only \"Favorites List\" sites."
+        "message": "Highlight only \"Favorites List\" sites"
     },
     "addVerb": {
         "message": "Add",

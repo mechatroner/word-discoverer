@@ -116,10 +116,11 @@
         padding: 2px;
         font-size: 14px;
     }
-    .checkbox {
-      width: 14px;
-      height: 14px;
-      vertical-align: middle;
+    #addToList{
+        width: 14px;
+        height: 14px;
+        vertical-align: middle;
+        margin-top: 10px;
     }
 
     .pageCentered {
@@ -140,15 +141,15 @@
   </head>
   <body>
     <fieldset>
-    <span class="rateInfo" id="modeHeader"></span>
-    <br>
-    <br>
-    <input type="checkbox" class="checkbox" id="addToList">
+    <input type="radio" id="rb_enabled" name="switch_mode" value="rb_enabled">
+    <label for="rb_enabled">__MSG_enabledDescription__</label><br>
+    <input type="radio" id="rb_disabled" name="switch_mode" value="rb_disabled">
+    <label for="rb_disabled">__MSG_disabledDescription__</label><br>
+    <input type="checkbox" id="addToList">
     <span class="cbLabel">
       <span>__MSG_addVerb__ "</span><span id="addHostName"></span><span>" __MSG_toVerb__ </span><a href="example.com" target="_blank" id="addToListLabel"></a>
     </span>
     <br>
-    <button class="vocabButton" id="changeMode">__MSG_switchModeLabel__</button>
     </fieldset>
     <br>
     <fieldset>

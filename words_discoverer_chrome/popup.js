@@ -8,7 +8,7 @@ function display_mode() {
         var domain = url.hostname;
         document.getElementById("addHostName").textContent = domain;
         if (enabled_mode) {
-            document.getElementById("modeHeader").textContent = chrome.i18n.getMessage("enabledDescription");
+            document.getElementById("rb_enabled").checked = true; 
             document.getElementById("addToListLabel").textContent = chrome.i18n.getMessage("addSkippedLabel");
             document.getElementById("addToListLabel").href = chrome.extension.getURL('black_list.html');
             chrome.storage.local.get(["wd_black_list",], function(result) {
@@ -16,7 +16,7 @@ function display_mode() {
                 document.getElementById("addToList").checked = black_list.hasOwnProperty(domain);
             });
         } else {
-            document.getElementById("modeHeader").textContent = chrome.i18n.getMessage("disabledDescription");
+            document.getElementById("rb_disabled").checked = true; 
             document.getElementById("addToListLabel").textContent = chrome.i18n.getMessage("addFavoritesLabel");
             document.getElementById("addToListLabel").href = chrome.extension.getURL('white_list.html');
             chrome.storage.local.get(["wd_white_list",], function(result) {
@@ -50,7 +50,11 @@ function process_checkbox() {
 
 
 function process_mode_switch() {
-    enabled_mode = !enabled_mode;
+    if (document.getElementById("rb_enabled").checked) {
+        enabled_mode = true;
+    } else if (document.getElementById("rb_disabled").checked) {
+        enabled_mode = false;
+    }
     chrome.storage.local.set({"wd_is_enabled": enabled_mode});
     display_mode();
 }
@@ -151,7 +155,8 @@ function init_controls() {
         document.getElementById("rateM1").addEventListener("click", process_rate_m1);
         document.getElementById("rateP1").addEventListener("click", process_rate_p1);
         document.getElementById("rateP10").addEventListener("click", process_rate_p10);
-        document.getElementById("changeMode").addEventListener("click", process_mode_switch);
+        document.getElementById("rb_enabled").addEventListener("click", process_mode_switch);
+        document.getElementById("rb_disabled").addEventListener("click", process_mode_switch);
 
         document.getElementById("addText").addEventListener("keyup", function(event) {
             event.preventDefault();
