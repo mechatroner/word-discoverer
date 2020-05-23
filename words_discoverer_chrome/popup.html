@@ -4,8 +4,8 @@
     <style>
     body {
         background-color: rgb(255,248,220);
-        min-width: 320px;
-        max-width: 320px;
+        min-width: 340px;
+        max-width: 340px;
     }
     fieldset {
         background-color: orange;
@@ -45,6 +45,12 @@
     }
     .helpButton:hover {
         background-color: #3e8e41;
+    }
+    .margin_bottom {
+        margin-bottom: 10px !important;
+    }
+    .display_block {
+        display: block !important;
     }
     .vocabButton {
         width: 150px;
@@ -112,15 +118,11 @@
         font-weight: bold;
     }
     .cbLabel {
-        vertical-align: middle;
-        padding: 2px;
         font-size: 14px;
     }
-    #addToList{
-        width: 14px;
-        height: 14px;
-        vertical-align: middle;
+    #add_to_list_group {
         margin-top: 10px;
+        margin-left: 20px;
     }
 
     .pageCentered {
@@ -142,13 +144,15 @@
   <body>
     <fieldset>
     <input type="radio" id="rb_enabled" name="switch_mode" value="rb_enabled">
-    <label for="rb_enabled">__MSG_enabledDescription__</label><br>
+    <label class="cbLabel" for="rb_enabled">__MSG_enabledDescription__</label><br>
     <input type="radio" id="rb_disabled" name="switch_mode" value="rb_disabled">
-    <label for="rb_disabled">__MSG_disabledDescription__</label><br>
+    <label class="cbLabel" for="rb_disabled">__MSG_disabledDescription__</label><br>
+    <div id="add_to_list_group">
     <input type="checkbox" id="addToList">
     <span class="cbLabel">
       <span>__MSG_addVerb__ "</span><span id="addHostName"></span><span>" __MSG_toVerb__ </span><a href="example.com" target="_blank" id="addToListLabel"></a>
     </span>
+    </div>
     <br>
     </fieldset>
     <br>
@@ -163,9 +167,7 @@
     <br>
     <fieldset>
     <div class="rateInfo">__MSG_vocabSizeInfo1__ <span class="indicator" id="vocabIndicator">n/a</span> __MSG_vocabSizeInfo2__</div>
-    <button class="vocabButton" id="showVocab">__MSG_showVocab__</button>
-    <br>
-    <br>
+    <button class="vocabButton margin_bottom display_block" id="showVocab">__MSG_showVocab__</button>
     <span class="rateInfo">__MSG_tipInfo__</span>
     <br>
     <input type="text" id="addText"><button class="addButton" id="addWord"><img src="add.png"></button>
