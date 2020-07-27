@@ -1,0 +1,149 @@
+{
+  "appName": {
+    "message": "単語発見。あなたの語彙を増強します",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "Webページ上のまれな英語の辞書の単語や熟語をハイライトします。英語学習を容易にし、あなたの語彙を増強します。",
+    "description": "The description of the application, displayed in the web store."
+  },
+  "menuItem": {
+    "message": "語彙に追加",
+    "description": "Text in context menu"
+  },
+  "rateTranslateDbg": {
+    "message": "最も一般的な英単語100語をハイライトしていません"
+  },
+  "rateInfo1": {
+    "message": "ハイライトされていません",
+    "description": "1-st part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "rateInfo2": {
+    "message": "最も一般的な英単語。",
+    "description": "2-nd part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "adjust": {
+    "message": "詳細設定..."
+  },
+  "vocabSizeTranslateDbg": {
+    "message": "あなたの語彙サイズ：100ワード。"
+  },
+  "vocabSizeInfo1": {
+    "message": "あなたの語彙サイズ：",
+    "description": "1-st part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "vocabSizeInfo2": {
+    "message": "単語。",
+    "description": "2-nd part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "showVocab": {
+    "message": "語彙を表示"
+  },
+  "saveVocab": {
+    "message": "語彙をエクスポート"
+  },
+  "loadVocab": {
+    "message": "語彙をインポート"
+  },
+  "tipInfo": {
+    "message": "語彙に新しい表現を追加するには、マウスのホバーメニューやブラウザのコンテキストメニュー（テキストを選択+右クリックを選択します）か、この入力フィールドを使用してください。"
+  },
+  "addErrorDupp": {
+    "message": "すでに追加されています。"
+  },
+  "addErrorBad": {
+    "message": "追加できません。"
+  },
+  "addSuccess": {
+    "message": "追加しました。"
+  },
+  "saveVisuals": {
+    "message": "保存"
+  },
+  "enableWordsLabel": {
+    "message": "単語のハイライト表示を有効にする"
+  },
+  "enableIdiomsLabel": {
+    "message": "表現のハイライト表示を有効にする"
+  },
+  "useQuotes": {
+    "message": "（ハイライトの代わりに）引用符を使用する"
+  },
+  "useText": {
+    "message": "テキストのハイライトを使用する"
+  },
+  "useBackground": {
+    "message": "背景のハイライトを使用する"
+  },
+  "useBold": {
+    "message": "太字フォントを使用する"
+  },
+  "enabledDescription": {
+    "message": "「スキップリスト」サイト以外のすべてのインターネットをハイライトする。"
+  },
+  "disabledDescription": {
+    "message": "「お気に入りリスト」のサイトのみをハイライトする。"
+  },
+  "addVerb": {
+    "message": "追加",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "toVerb": {
+    "message": "に",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "addTranslateDbg": {
+    "message": "[お気に入り一覧]に[example.org]を追加"
+  },
+  "addFavoritesLabel": {
+    "message": "お気に入りリスト"
+  },
+  "addSkippedLabel": {
+    "message": "リストをスキップ"
+  },
+  "emptyListError": {
+    "message": "リストは空です;)"
+  },
+  "adjustPopupHlHeader": {
+    "message": "ハイライトされた表現用にポップアップメニューを調整する"
+  },
+  "rbNever": {
+    "message": "ポップアップメニューを表示しない"
+  },
+  "rbKey": {
+    "message": "マウスホバー上のポップアップメニューと[Ctrl]キーを表示する"
+  },
+  "rbAlways": {
+    "message": "マウスホバー上のポップアップメニューを表示する"
+  },
+  "adjustPopupOwHeader": {
+    "message": "ハイライトされていない単語ようにポップアップメニューの調整する"
+  },
+  "adjustOnlineDicts": {
+    "message": "ホバーとコンテキストメニューのオンライン辞書を調整します"
+  },
+  "dictNameHeader": {
+    "message": "辞書名："
+  },
+  "dictUrlHeader": {
+    "message": "辞書クエリURL："
+  },
+  "testBtn": {
+    "message": "テスト"
+  },
+  "restoreDefaults": {
+    "message": "デフォルトに戻す"
+  },
+  "adjustColorsHeader": {
+    "message": "ハイライト表示の色を調整する"
+  },
+  "importInfo": {
+    "message": "新しい単語が現在の語彙に追加されます。"
+  },
+  "selectFile": {
+    "message": "ファイルを選ぶ..."
+  },
+  "switchModeLabel": {
+    "message": "スイッチモード"
+  }
+}

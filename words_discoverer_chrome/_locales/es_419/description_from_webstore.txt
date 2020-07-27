@@ -1,0 +1,14 @@
+Words Discoverer resalta palabras de diccionario, modismos y refranes raros en inglés en las páginas web.
+Ayuda a los estudiantes de inglés no nativos a descubrir nuevas expresiones mientras navegan por Internet. 
+
+Words Discoverer es gratis, de código abierto y no tiene anuncios.
+
+Algunas de las funciones de la extensión:
+
+Words Discoverer es mejor que los programas del tipo "Palabra del día" porque las nuevas palabras se resaltan en el contexto del texto que lees, lo cual es un buen factor de motivación para comprobar finalmente las definiciones y aprender estas palabras (o modismos) .
+
+Dependiendo del tamaño de tu vocabulario, puedes ajustar el umbral de frecuencia de las palabras resaltadas; por ejemplo, omitir el 25% de las palabras más comunes en inglés, y resaltar todas las demás. 
+
+Si conoces la definición de una palabra resaltada, puedes añadirla a tu vocabulario personal y no se detectará más. 
+
+Hecho interesante: la mayoría de los angloparlantes nativos adultos conocen de 20,000 a 35,000 palabras, así que es totalmente posible añadirlas todas a tu archivo de vocabulario eventualmente.

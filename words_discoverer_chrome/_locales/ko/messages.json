@@ -1,0 +1,149 @@
+{
+  "appName": {
+    "message": "Words Discoverer: 어휘력을 늘리세요.",
+    "description": "The title of the application, displayed in the web store. Note to the translator: Do not translate first two words 'Words Discoverer'"
+  },
+  "appDesc": {
+    "message": "잘 안나오는 영어 사전 단어와 숙어를 웹페이지에서 강조표시합니다. 영어 학습을 촉진하고 어휘력을 향상시킵니다.",
+    "description": "The description of the application, displayed in the web store."
+  },
+  "menuItem": {
+    "message": "어휘사전에 추가",
+    "description": "Text in context menu"
+  },
+  "rateTranslateDbg": {
+    "message": "100개의 가장 흔한 영어 단어 강조표시하지 않음"
+  },
+  "rateInfo1": {
+    "message": "강조표시하지 않음",
+    "description": "1-st part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "rateInfo2": {
+    "message": "가장 흔한 영어 단어",
+    "description": "2-nd part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "adjust": {
+    "message": "기타 설정..."
+  },
+  "vocabSizeTranslateDbg": {
+    "message": "어휘사전 크기: 100단어"
+  },
+  "vocabSizeInfo1": {
+    "message": "어휘사전 크기:",
+    "description": "1-st part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "vocabSizeInfo2": {
+    "message": "단어",
+    "description": "2-nd part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "showVocab": {
+    "message": "어휘사전 표시"
+  },
+  "saveVocab": {
+    "message": "어휘사전 내보내기"
+  },
+  "loadVocab": {
+    "message": "어휘사전 가져오기"
+  },
+  "tipInfo": {
+    "message": "새로운 표현을 어휘사전에 추가하려면 마우스 호버 메뉴 또는 브라우저 컨텍스트 메뉴(선택한 텍스트 + 오른쪽 클릭) 또는 이 입력 필드를 사용하십시오."
+  },
+  "addErrorDupp": {
+    "message": "이미 추가됨"
+  },
+  "addErrorBad": {
+    "message": "추가할 수 없습니다."
+  },
+  "addSuccess": {
+    "message": "추가됨"
+  },
+  "saveVisuals": {
+    "message": "저장"
+  },
+  "enableWordsLabel": {
+    "message": "단어 강조표시 사용"
+  },
+  "enableIdiomsLabel": {
+    "message": "표현 강조표시 사용"
+  },
+  "useQuotes": {
+    "message": "따옴표 사용(강조표시 대신)"
+  },
+  "useText": {
+    "message": "텍스트 강조표시 사용"
+  },
+  "useBackground": {
+    "message": "배경 강조표시 사용"
+  },
+  "useBold": {
+    "message": "굵은 글꼴 사용"
+  },
+  "enabledDescription": {
+    "message": "\"제외 목록\" 사이트를 제외한 모든 인터넷 강조표시"
+  },
+  "disabledDescription": {
+    "message": "\"즐겨 찾기 목록\" 사이트만 강조표시"
+  },
+  "addVerb": {
+    "message": "추가",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "toVerb": {
+    "message": "->",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "addTranslateDbg": {
+    "message": "[example.org]를 [Favorites List]에 추가"
+  },
+  "addFavoritesLabel": {
+    "message": "즐겨찾기 목록"
+  },
+  "addSkippedLabel": {
+    "message": "목록 건너 뛰기"
+  },
+  "emptyListError": {
+    "message": "이 목록은 비어 있습니다."
+  },
+  "adjustPopupHlHeader": {
+    "message": "강조표시된 표현에 대해 팝업 메뉴 조정"
+  },
+  "rbNever": {
+    "message": "팝업 메뉴를 표시하지 않음"
+  },
+  "rbKey": {
+    "message": "마우스 호버와 [Ctrl] 키를 눌러 팝업 메뉴 표시"
+  },
+  "rbAlways": {
+    "message": "마우스 호버에 팝업 메뉴 표시"
+  },
+  "adjustPopupOwHeader": {
+    "message": "강조표시되지 않은 단어에 대해 팝업 메뉴 조정"
+  },
+  "adjustOnlineDicts": {
+    "message": "마우스 호버와 컨텍스트 메뉴에 대해 온라인 사전 조정"
+  },
+  "dictNameHeader": {
+    "message": "사전 이름:"
+  },
+  "dictUrlHeader": {
+    "message": "사전 쿼리 URL:"
+  },
+  "testBtn": {
+    "message": "테스트"
+  },
+  "restoreDefaults": {
+    "message": "기본값으로 복원"
+  },
+  "adjustColorsHeader": {
+    "message": "색상 강조표시 조정"
+  },
+  "importInfo": {
+    "message": "현재의 어휘사전에 새 단어가 추가됩니다."
+  },
+  "selectFile": {
+    "message": "파일 선택..."
+  },
+  "switchModeLabel": {
+    "message": "모드 전환"
+  }
+}

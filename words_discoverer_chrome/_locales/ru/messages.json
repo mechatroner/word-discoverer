@@ -1,0 +1,134 @@
+{
+  "appName": {
+    "message": "Words Discoverer: Пополни словарный запас.",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "Подсвечивает редкие слова и идиомы английского языка на веб страницах. Расширяет словарный запас и помогает учить английский.",
+    "description":"The description of the application, displayed in the web store."
+  },
+  "menuItem": {
+    "message": "Добавить в список выученных",
+    "description": "Text in context menu"
+  },
+  "rateInfo1": {
+    "message": "Не подсвечивать"
+  },
+  "rateInfo2": {
+      "message": "наиболее частых английских слов."
+  },
+  "adjust": {
+      "message": "Другие настройки..."
+  },
+  "vocabSizeInfo1": {
+      "message": "В личном списке:"
+  },
+  "vocabSizeInfo2": {
+      "message": "выученных слов."
+  },
+  "showVocab": {
+      "message": "Показать список"
+  },
+  "saveVocab": {
+      "message": "Экспортировать список"
+  },
+  "loadVocab": {
+      "message": "Импортировать список"
+  },
+  "tipInfo": {
+      "message": "Чтобы добавить новое выражение в список выученных - воспользуйтесь всплывающим окном, либо выделите текст слова, кликните правой кнопкой и выберите нужное действие. Также можно воспользоваться этим текстовым полем:"
+  },
+  "addErrorDupp": {
+      "message": "Уже добавлено."
+  },
+  "addErrorBad": {
+      "message": "Не удалось добавить."
+  },
+  "addSuccess": {
+      "message": "Добавлено."
+  },
+  "saveVisuals": {
+      "message": "Сохранить"
+  },
+  "enableWordsLabel": {
+      "message": "Включить подсветку слов"
+  },
+  "enableIdiomsLabel": {
+      "message": "Включить подсветку выражений"
+  },
+  "useQuotes": {
+      "message": "Использовать кавычки (вместо подсветки)"
+  },
+  "useText": {
+      "message": "Подсвечивать текст"
+  },
+  "useBackground": {
+      "message": "Подсвечивать фон текста"
+  },
+  "useBold": {
+      "message": "Использовать жирный шрифт"
+  },
+  "enabledDescription": {
+      "message": "Подсвечивать весь Интернет кроме сайтов из \"Стоп-cписка\"."
+  },
+  "disabledDescription": {
+      "message": "Подсвечивать только сайты из \"Списка Избранных\"."
+  },
+  "addVerb": {
+      "message": "Добавить"
+  },
+  "toVerb": {
+      "message": "в"
+  },
+  "addFavoritesLabel": {
+      "message": "Список Избранных"
+  },
+  "addSkippedLabel": {
+      "message": "Стоп-список"
+  },
+  "emptyListError": {
+      "message": "Этот список пуст ;)"
+  },
+  "adjustPopupHlHeader": {
+      "message": "Настроить всплывающее меню для подсвечиваемыx слов"
+  },
+  "rbNever": {
+      "message": "Не показывать меню"
+  },
+  "rbKey": {
+      "message": "Показывать меню при наведении мышью и нажатии клавиши [Ctrl]"
+  },
+  "rbAlways": {
+      "message": "Показывать меню при наведении мышью"
+  },
+  "adjustPopupOwHeader": {
+      "message": "Настроить всплывающее меню для неподсвечиваемых слов"
+  },
+  "adjustOnlineDicts": {
+      "message": "Настроить онлайн словари"
+  },
+  "dictNameHeader": {
+      "message": "Название словаря:"
+  },
+  "dictUrlHeader": {
+      "message": "URL словаря:"
+  },
+  "testBtn": {
+      "message": "Тест"
+  },
+  "restoreDefaults": {
+      "message": "Восстановить исходные"
+  },
+  "adjustColorsHeader": {
+      "message": "Настроить цвет подсветки"
+  },
+  "importInfo": {
+      "message": "Новые слова будут добавлены в список выученных."
+  },
+  "selectFile": {
+      "message": "Выбрать файл..."
+  },
+  "switchModeLabel": {
+      "message": "Переключить режим"
+  }
+}

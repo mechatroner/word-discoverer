@@ -1,0 +1,149 @@
+{
+  "appName": {
+    "message": "Words Discoverer : Développez votre vocabulaire",
+    "description": "The title of the application, displayed in the web store. Note to the translator: Do not translate first two words 'Words Discoverer'"
+  },
+  "appDesc": {
+    "message": "Surligne les mots et les expressions rares du dictionnaire anglais sur les pages Web. Facilite l’apprentissage de la langue anglaise et élargit votre vocabulaire.",
+    "description": "The description of the application, displayed in the web store."
+  },
+  "menuItem": {
+    "message": "Ajouter au vocabulaire",
+    "description": "Text in context menu"
+  },
+  "rateTranslateDbg": {
+    "message": "Ne pas surligner les 100 mots anglais les plus courants"
+  },
+  "rateInfo1": {
+    "message": "Ne pas surligner les",
+    "description": "1-st part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "rateInfo2": {
+    "message": "mots anglais les plus courants.",
+    "description": "2-nd part of \"Not highlighting 100 most common English words\" sentence"
+  },
+  "adjust": {
+    "message": "Plus de paramètres..."
+  },
+  "vocabSizeTranslateDbg": {
+    "message": "Taille  de votre vocabulaire : 100 mots."
+  },
+  "vocabSizeInfo1": {
+    "message": "Taille de votre vocabulaire :",
+    "description": "1-st part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "vocabSizeInfo2": {
+    "message": "mots.",
+    "description": "2-nd part of \"Your vocabulary size: 100 words.\" sentence"
+  },
+  "showVocab": {
+    "message": "Afficher le vocabulaire"
+  },
+  "saveVocab": {
+    "message": "Exporter le vocabulaire"
+  },
+  "loadVocab": {
+    "message": "Importer le vocabulaire"
+  },
+  "tipInfo": {
+    "message": "Pour ajouter une nouvelle expression à votre vocabulaire, vous pouvez utiliser le menu sensitif de la souris ou le menu contextuel du navigateur (sélection du texte + clic droit) ou ce champ d’entrée :"
+  },
+  "addErrorDupp": {
+    "message": "Déjà ajouté."
+  },
+  "addErrorBad": {
+    "message": "Impossible d'ajouter."
+  },
+  "addSuccess": {
+    "message": "Ajouté."
+  },
+  "saveVisuals": {
+    "message": "Enregistrer"
+  },
+  "enableWordsLabel": {
+    "message": "Activer le surlignage des mots"
+  },
+  "enableIdiomsLabel": {
+    "message": "Activer le surlignage des expressions"
+  },
+  "useQuotes": {
+    "message": "Utiliser les guillemets (au lieu du surlignage)"
+  },
+  "useText": {
+    "message": "Utiliser le surlignage de texte"
+  },
+  "useBackground": {
+    "message": "Utiliser le surlignage d'arrière-plan"
+  },
+  "useBold": {
+    "message": "Utiliser des caractères gras"
+  },
+  "enabledDescription": {
+    "message": "Surlignez sur tous les sites Internet à l'exception de ceux de la « Liste à ignorer »."
+  },
+  "disabledDescription": {
+    "message": "Surlignez que sur les sites de la « Liste des favoris »."
+  },
+  "addVerb": {
+    "message": "Ajouter",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "toVerb": {
+    "message": "à",
+    "description": "part of 'Add example.org to Favorites List' sentence"
+  },
+  "addTranslateDbg": {
+    "message": "Ajouter [example.org] à [Favoris Liste]"
+  },
+  "addFavoritesLabel": {
+    "message": "Liste des favoris"
+  },
+  "addSkippedLabel": {
+    "message": "Liste à ignorer"
+  },
+  "emptyListError": {
+    "message": "La liste est vide ;)"
+  },
+  "adjustPopupHlHeader": {
+    "message": "Régler le menu contextuel pour les expressions surlignées"
+  },
+  "rbNever": {
+    "message": "Ne pas afficher le menu contextuel"
+  },
+  "rbKey": {
+    "message": "Afficher le menu contextuel sur le menu sensitif de la souris et la touche [Ctrl]"
+  },
+  "rbAlways": {
+    "message": "Afficher le menu contextuel sur le menu sensitif de la souris"
+  },
+  "adjustPopupOwHeader": {
+    "message": "Régler le menu contextuel pour les mots non surlignés"
+  },
+  "adjustOnlineDicts": {
+    "message": "Régler les dictionnaires en ligne pour les menus sensitif et contextuel"
+  },
+  "dictNameHeader": {
+    "message": "Nom du dictionnaire :"
+  },
+  "dictUrlHeader": {
+    "message": "URL de requête du dictionnaire :"
+  },
+  "testBtn": {
+    "message": "Test"
+  },
+  "restoreDefaults": {
+    "message": "Restaurer les paramètres par défaut"
+  },
+  "adjustColorsHeader": {
+    "message": "Régler la couleur de surlignage"
+  },
+  "importInfo": {
+    "message": "De nouveaux mots seront ajoutés à votre vocabulaire actuel."
+  },
+  "selectFile": {
+    "message": "Choisir un dossier..."
+  },
+  "switchModeLabel": {
+    "message": "Changer de mode"
+  }
+}
