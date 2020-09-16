@@ -1,4 +1,4 @@
-# Computer Aided Reading tool: Words Discoverer.
+# Chrome Extension: Words Discoverer
 
 ## Description
 
