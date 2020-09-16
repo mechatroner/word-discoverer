@@ -1,4 +1,4 @@
-# Chrome Extension: Words Discoverer
+# Chrome Extension: Word Discoverer
 
 ## Description
 
@@ -15,7 +15,7 @@ Another way to help users is to highlight idioms, which sometimes can be very ha
 * Highlights English words from eng_dict.txt file
 * Highlights English idioms from eng_idioms.txt file
 
-[Words Discoverer in Chrome webstore](https://chrome.google.com/webstore/detail/words-discoverer-expand-y/noncaeikjgpbdeoocblijjgegnobogib)
+[Word Discoverer in Chrome webstore](https://chrome.google.com/webstore/detail/words-discoverer-expand-y/noncaeikjgpbdeoocblijjgegnobogib)
 
 ## Contributors
 
