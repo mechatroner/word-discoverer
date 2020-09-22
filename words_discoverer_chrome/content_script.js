@@ -185,6 +185,17 @@ function text_to_hl_nodes(text, dst) {
         }
         num_nonempty += 1;
         var match = undefined;
+
+        //finding user vocabulary
+        if (!match && wd_hl_settings.userWordParams.enabled) {
+            if (user_vocabulary.hasOwnProperty(tokens[wnum])) {
+                match = {normalized: tokens[wnum], kind: "userWord", begin: ibegin, end: ibegin + tokens[wnum].length};
+                ibegin += tokens[wnum].length + 1;
+                wnum += 1;
+                num_good += 1;
+            }
+        }
+        
         if (!match && wd_hl_settings.idiomParams.enabled) {
             var lwnum = wnum; //look ahead word number
             var libegin = ibegin; //look ahead word begin
@@ -245,7 +256,10 @@ function text_to_hl_nodes(text, dst) {
     for (var i = 0; i < matches.length; i++) {
         text_style = undefined;
         match = matches[i];
-        if (match.kind === "lemma") {
+        if (match.kind == "userWord") {
+            hlParams = wd_hl_settings.userWordParams;
+            text_style = make_hl_style(hlParams);
+        } else if (match.kind === "lemma") {
             hlParams = wd_hl_settings.wordParams;
             text_style = make_hl_style(hlParams);
         } else if (match.kind === "idiom") {

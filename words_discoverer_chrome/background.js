@@ -471,9 +471,19 @@ function initialize_extension() {
                 useColor: true,
                 color: "blue"
             };
+            user_word_hl_params = {
+                enabled: true,
+                quoted: false,
+                bold: true,
+                useBackground: false,
+                backgroundColor: "rgb(255, 248, 220)",
+                useColor: true,
+                color: "green"
+            }
             wd_hl_settings = {
                 wordParams: word_hl_params,
                 idiomParams: idiom_hl_params,
+                userWordParams: user_word_hl_params
             };
             chrome.storage.local.set({"wd_hl_settings": wd_hl_settings});
         }
