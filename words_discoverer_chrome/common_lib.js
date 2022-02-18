@@ -32,11 +32,12 @@ function sync_if_needed() {
 
 
 function add_lexeme(lexeme, result_handler) {
-    var req_keys = ['words_discoverer_eng_dict', 'wd_idioms', 'wd_user_vocabulary', 'wd_user_vocab_added', 'wd_user_vocab_deleted'];
+    var req_keys = ['words_discoverer_eng_dict', 'wd_idioms', 'wd_user_vocabulary', 'wd_user_unknown', 'wd_user_vocab_added', 'wd_user_vocab_deleted'];
     chrome.storage.local.get(req_keys, function(result) {
         var dict_words = result.words_discoverer_eng_dict;
         var dict_idioms = result.wd_idioms;
         var user_vocabulary = result.wd_user_vocabulary;
+        var user_unknown = result.wd_user_unknown;
         var wd_user_vocab_added = result.wd_user_vocab_added;
         var wd_user_vocab_deleted = result.wd_user_vocab_deleted;
         if (lexeme.length > 100) {
@@ -63,14 +64,20 @@ function add_lexeme(lexeme, result_handler) {
             }
         }
 
-        if (user_vocabulary.hasOwnProperty(key)) {
+        if (user_vocabulary.hasOwnProperty(key) && !user_unknown.hasOwnProperty(key)) {
             result_handler("exists", key);
             return;
         }
 
         var new_state = {'wd_user_vocabulary': user_vocabulary};
 
+        if (user_unknown.hasOwnProperty(key)) {
+            delete user_unknown[key];
+            new_state['wd_user_unknown'] = user_unknown;
+        }
+
         user_vocabulary[key] = 1;
+
         if (typeof wd_user_vocab_added !== 'undefined') {
             wd_user_vocab_added[key] = 1;
             new_state['wd_user_vocab_added'] = wd_user_vocab_added;
@@ -87,6 +94,51 @@ function add_lexeme(lexeme, result_handler) {
     });
 }
 
+function unknown_lexeme(lexeme, result_handler) {
+    var req_keys = ['words_discoverer_eng_dict', 'wd_idioms', 'wd_user_unknown'];
+    chrome.storage.local.get(req_keys, function(result) {
+        var dict_words = result.words_discoverer_eng_dict;
+        var dict_idioms = result.wd_idioms;
+        var user_unknown = result.wd_user_unknown;
+        if (lexeme.length > 100) {
+            result_handler("bad", undefined);
+            return;
+        }
+        lexeme = lexeme.toLowerCase();
+        lexeme = lexeme.trim();
+        if (!lexeme) {
+            result_handler("bad", undefined);
+            return;
+        }
+
+        var key = lexeme;
+        if (dict_words.hasOwnProperty(lexeme)) {
+            var wf = dict_words[lexeme];
+            if (wf) {
+                key = wf[0];
+            }
+        } else if (dict_idioms.hasOwnProperty(lexeme)) {
+            var wf = dict_idioms[lexeme];
+            if (wf && wf != -1) {
+                key = wf;
+            }
+        }
+
+        if (user_unknown.hasOwnProperty(key)) {
+            result_handler("exists", key);
+            return;
+        }
+
+        user_unknown[key] = 1;
+
+        var new_state = {'wd_user_unknown': user_unknown};
+
+        chrome.storage.local.set(new_state, function() { 
+            sync_if_needed();
+            result_handler("ok", key);
+        });
+    });
+}
 
 function make_hl_style(hl_params) {
     if (!hl_params.enabled)

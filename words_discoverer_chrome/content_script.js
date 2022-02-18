@@ -4,6 +4,7 @@ var dict_idioms = null;
 var min_show_rank = null;
 var word_max_rank = null;
 var user_vocabulary = null;
+var user_unknown = null;
 var is_enabled = null;
 var wd_hl_settings = null;
 var wd_hover_settings = null;
@@ -32,6 +33,8 @@ function make_class_name(lemma) {
 
 
 function get_rare_lemma(word) {
+    if (user_unknown && user_unknown.hasOwnProperty(word))
+        return word;
     if (word.length < 3)
         return undefined;
     var wf = undefined;
@@ -359,10 +362,21 @@ function onNodeInserted(event) {
 function unhighlight(lemma) {
     var wdclassname = make_class_name(lemma);
     var hlNodes = document.getElementsByClassName(wdclassname);
-    while (hlNodes && hlNodes.length > 0) {
-        var span = hlNodes[0];
+    for (var i = 0; i < hlNodes.length; i++) {
+        var span = hlNodes[i];
         span.setAttribute("style", "font-weight:inherit;color:inherit;font-size:inherit;background-color:inherit;display:inline;");
         span.setAttribute("class", "wdautohl_none_none");
+    }
+}
+
+function highlight(lemma) {
+    var wdclassname = make_class_name(lemma);
+    var hlNodes = document.getElementsByClassName("wdautohl_none_none");
+    for (var i = 0; i < hlNodes.length; i++) {
+        var span = hlNodes[i];
+        if (span.innerHTML !== lemma) continue;
+        span.setAttribute("style", "font-weight:bold;color:red;font-size:inherit;display:inline;");
+        span.setAttribute("class", wdclassname);
     }
 }
 
@@ -408,6 +422,12 @@ function bubble_handle_add_result(report, lemma) {
     }
 }
 
+function bubble_handle_unknown_result(report, lemma) {
+    if (report === 'ok') {
+        highlight(lemma);
+    }
+}
+
 
 function create_bubble() {
     var bubbleDOM = document.createElement('div');
@@ -433,6 +453,15 @@ function create_bubble() {
         add_lexeme(current_lexeme, bubble_handle_add_result);
     });
     bubbleDOM.appendChild(addButton);
+
+    var unknownButton = document.createElement('button');
+    unknownButton.setAttribute('class', 'wdAddButton');
+    unknownButton.textContent = '添加到生词';
+    unknownButton.style.marginBottom = "4px";
+    unknownButton.addEventListener("click", function () {
+        unknown_lexeme(current_lexeme, bubble_handle_unknown_result);
+    });
+    bubbleDOM.appendChild(unknownButton);
 
     var speakButton = document.createElement('button');
     speakButton.setAttribute('class', 'wdAddButton');
@@ -482,12 +511,13 @@ function initForPage() {
         }
     });
 
-    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_online_dicts', 'wd_idioms', 'wd_hover_settings', 'wd_word_max_rank', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_hl_settings', 'wd_black_list', 'wd_white_list', 'wd_enable_tts'], function (result) {
+    chrome.storage.local.get(['words_discoverer_eng_dict', 'wd_online_dicts', 'wd_idioms', 'wd_hover_settings', 'wd_word_max_rank', 'wd_show_percents', 'wd_is_enabled', 'wd_user_vocabulary', 'wd_user_unknown', 'wd_hl_settings', 'wd_black_list', 'wd_white_list', 'wd_enable_tts'], function (result) {
         dict_words = result.words_discoverer_eng_dict;
         dict_idioms = result.wd_idioms;
         wd_online_dicts = result.wd_online_dicts;
         wd_enable_tts = result.wd_enable_tts;
         user_vocabulary = result.wd_user_vocabulary;
+        user_unknown = result.wd_user_unknown;
         wd_hover_settings = result.wd_hover_settings;
         word_max_rank = result.wd_word_max_rank;
         var show_percents = result.wd_show_percents;

@@ -347,6 +347,9 @@ function sync_user_vocabularies() {
         if (typeof wd_user_vocabulary === 'undefined') {
             wd_user_vocabulary = {};
         }
+        if (typeof wd_user_unknown === 'undefined') {
+            wd_user_unknown = {};
+        }
         if (typeof wd_user_vocab_added === 'undefined') {
             wd_user_vocab_added = Object.assign({}, wd_user_vocabulary);
         }
@@ -504,6 +507,10 @@ function initialize_extension() {
         user_vocabulary = result.wd_user_vocabulary;
         if (typeof user_vocabulary === 'undefined') {
             chrome.storage.local.set({"wd_user_vocabulary": {}});
+        }
+        user_unknown = result.wd_user_unknown;
+        if (typeof user_unknown === 'undefined') {
+            chrome.storage.local.set({"wd_user_unknown": {}});
         }
         black_list = result.wd_black_list;
         if (typeof black_list === 'undefined') {
