@@ -524,6 +524,16 @@ function initForPage() {
                 }
             });
 
+            document.addEventListener("focusout", function (event) {
+                if (disable_by_keypress) {
+                    let elementTagName = event.target.tagName;
+                    if (elementTagName === 'TEXTAREA' || elementTagName === 'INPUT') {
+                        disable_by_keypress = false;
+                        chrome.runtime.sendMessage({wdm_verdict: "notInKeyboard"});
+                    }
+                }
+            });
+
             var textNodes = textNodesUnder(document.body);
             doHighlightText(textNodes);
 
